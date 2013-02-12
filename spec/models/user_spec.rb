@@ -30,6 +30,7 @@ describe User do
   it { should respond_to(:remember_token) }
   it { should respond_to(:admin) }
   it { should respond_to(:authenticate) }
+  it { should respond_to(:recipes) }
 
 
 
@@ -172,5 +173,34 @@ describe "remember token" do
     before { @user.save }
     its(:remember_token) { should_not be_blank }
 end
+
+describe "recipe associations" do
+
+    before { @user.save }
+    let!(:older_recipe) do 
+      FactoryGirl.create(:recipe, user: @user, recipe_code: "WW1-Summer-Ale-Ex-1", original_gravity: "1.040", created_at: 1.day.ago)
+    end
+    let!(:newer_recipe) do
+      FactoryGirl.create(:recipe, user: @user, recipe_code: "WW1-Summer-Ale-Ex-1", original_gravity: "1.040", created_at: 1.hour.ago)
+    end
+
+    it "should have the right recipes in the right order" do
+      @user.recipes.should == [newer_recipe, older_recipe]
+    end
+
+    it "should destroy associated recipes" do
+      recipes = @user.recipes.dup
+      @user.destroy
+      recipes.should_not be_empty
+      recipes.each do |recipe|
+        lambda do 
+          Recipe.find(recipe.id)
+        end.should raise_error(ActiveRecord::RecordNotFound)
+
+
+      end
+    end
+
+  end
 
 end

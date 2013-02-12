@@ -66,6 +66,18 @@ describe "Authentication" do
         end
       end
 
+      describe "in the Recipes controller" do
+
+        describe "submitting to the create action" do
+          before { post recipes_path }
+          specify { response.should redirect_to(signin_path) }
+        end
+
+        describe "submitting to the destroy action" do
+          before { delete recipe_path(FactoryGirl.create(:recipe)) }
+          specify { response.should redirect_to(signin_path) }
+        end
+      end
 
       describe "in the Users controller" do
 
@@ -121,7 +133,7 @@ describe "Authentication" do
 
       it { should have_selector('title', text: user.name) }
 
-      it { should have_link('Users',    href: users_path) }
+      it { should have_link('Beer Thinkers',    href: users_path) }
       it { should have_link('Profile',  href: user_path(user)) }
       it { should have_link('Settings', href: edit_user_path(user)) }
       it { should have_link('Sign out', href: signout_path) }

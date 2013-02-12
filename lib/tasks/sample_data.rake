@@ -18,5 +18,12 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
     end
+
+      users = User.all(limit: 6)
+      3.times do
+        recipe_code = "WW-Summer-Ale-Extract-1"
+        original_gravity = "1.040"
+        users.each { |user| user.recipes.create!(recipe_code: recipe_code, original_gravity: original_gravity) }
+    end
   end
 end

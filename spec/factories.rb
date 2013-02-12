@@ -9,6 +9,11 @@ FactoryGirl.define do
     factory :admin do
       admin true
     end
+  end
 
+  factory :recipe do
+    recipe_code "WW1-Summer-Ale-Ex-1"
+    original_gravity "1.040"
+    user
   end
 end

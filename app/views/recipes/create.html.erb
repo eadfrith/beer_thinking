@@ -1,0 +1,20 @@
+<% provide(:title, 'Create recipe') %>
+<h1>Create Recipe</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@recipe) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+
+
+      <%= f.label :recipe_code %>
+        <%= f.text_field :recipe_code %>
+
+        <%= f.label :original_gravity %>
+        <%= f.text_field :original_gravity %>
+
+        <%= f.submit "Create recipe", class: "btn btn-large btn-primary" %>
+    <% end %>
+  </div>
+</div>
+

@@ -58,11 +58,23 @@ describe "User pages" do
 
 describe "profile page" do
     let(:user) { FactoryGirl.create(:user) }
+    let!(:m1) { FactoryGirl.create(:recipe, user: user, recipe_code: "WW1-Summer-Ale-Extract-1", original_gravity: "1.040") }
+    let!(:m2) { FactoryGirl.create(:recipe, user: user, recipe_code: "WW1-Brown-Porter-Extract-Plus-Grains-1", original_gravity: "1.040") }
+
+
     before { visit user_path(user) }
 
     it { should have_selector('h1',    text: user.name) }
     it { should have_selector('title', text: user.name) }
   end
+
+  describe "recipes" do
+    it { should have_content(m1.recipe_code) }
+      it { should have_content(m2.recipe_code) }
+      it { should have_content(m1.original_gravity) }
+      it { should have_content(m2.original_gravity) }
+      it { should have_content(user.recipes.count) }
+    end
 
   describe "signup page" do
     before { visit signup_path }
