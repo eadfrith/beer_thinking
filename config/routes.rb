@@ -1,7 +1,7 @@
 BeerThinking::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :recipes, only: [:create, :destroy]
+  resources :recipes
   
 
 
@@ -11,7 +11,8 @@ BeerThinking::Application.routes.draw do
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/new_recipe', to: 'recipes#create'
-
+  match '/edit_recipe', to: 'recipes#edit'
+  match '/show_recipe', to: 'recipes#show'
   match '/help',    to: 'static_pages#help'
 
   # The priority is based upon order of creation:

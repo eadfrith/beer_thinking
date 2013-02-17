@@ -9,12 +9,32 @@
     </section>
   </aside>
   <div class="span8">
-    <% if @user.recipes.any? %>
-      <h3>Recipes (<%= @user.recipes.count %>)</h3>
-      <ol class="recipes">
-        <%= render @recipes %>
-      </ol>
-      <%= will_paginate @recipes %>
-    <% end %>
+    <h3>All Recipes (<%= @user.recipes.count %>)</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Recipe Code</th>
+          <th>Created at</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @recipes.each do |recipe| %>
+          <tr>
+            
+            <td><%= link_to recipe.recipe_code, recipe %></td>
+            <td><%= recipe.created_at %></td>
+              <% if current_user?(recipe.user) %>
+                <td>
+                  <%= link_to 'Edit', '#', :class => 'btn btn-mini' %>
+                  <%= link_to 'Delete', recipe, method: :delete, confirm: 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+                </td>
+              <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+   
+    <%= link_to 'Create New Recipe', new_recipe_path, :class => 'btn btn-primary' %>
   </div>
 </div>

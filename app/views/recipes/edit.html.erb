@@ -1,0 +1,26 @@
+<% provide(:title, 'Edit recipe') %>
+<h1>Edit Recipe</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= simple_nested_form_for @recipe do |f| %>
+      <%# render 'shared/error_messages', object: f.object %>
+
+
+      <%= f.input :recipe_code %>
+      <%= f.input :original_gravity %>
+
+      <%= f.simple_fields_for :hops do |h| %>
+      <%= h.input :name %>
+      <%= h.link_to_remove "Remove this hop" %>
+
+        
+      <% end %>
+      <p><%= f.link_to_add "Add a hop", :hops %></p>
+
+
+      <%= f.submit "Create recipe" %>
+    <% end %>
+  </div>
+</div>
+

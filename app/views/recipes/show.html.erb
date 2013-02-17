@@ -1,0 +1,27 @@
+<% provide(:title, @recipe.recipe_code) %>
+<div class="row">
+  
+  <div class="span8">
+    
+  	<%= @recipe.recipe_code %>
+    <%= @recipe.original_gravity %>
+
+    <% if @recipe.hops.any? %>
+    	<h3>Hops </h3>
+    	
+      	<% @recipe.hops.each do |h| %>
+  			
+    		<%= h.name %>
+    		<%= h.alpha_acids %>
+    		<%= h.amount %>
+    		<%= h.boil_or_steep %>
+    		<%= h.boil_or_steep_time %>
+    		
+    		
+  			
+		<% end %>
+     
+    <% end %>
+      
+     </div>
+</div>

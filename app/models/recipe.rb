@@ -1,7 +1,11 @@
 class Recipe < ActiveRecord::Base
-  attr_accessible :original_gravity, :recipe_code
+  attr_accessible :original_gravity, :recipe_code, :extract, :adjunct, :yeast,
+  	:water, :sugar, :beer_style, :brewing_method, :iteration, :hops_attributes
 
   belongs_to :user
+  has_many :hops, dependent: :destroy
+  accepts_nested_attributes_for :hops, :reject_if => :all_blank, :allow_destroy => true
+
 
   validates :user_id, presence: true
 
