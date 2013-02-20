@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130215112043) do
+ActiveRecord::Schema.define(:version => 20130220080109) do
+
+  create_table "grains", :force => true do |t|
+    t.string   "name"
+    t.decimal  "amount"
+    t.string   "colour"
+    t.string   "steep_time"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "recipe_id"
+  end
 
   create_table "hops", :force => true do |t|
     t.string   "name"
@@ -38,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20130215112043) do
     t.string   "beer_style"
     t.string   "brewing_method"
     t.integer  "iteration"
+    t.boolean  "published"
   end
 
   add_index "recipes", ["user_id", "created_at"], :name => "index_recipes_on_user_id_and_created_at"

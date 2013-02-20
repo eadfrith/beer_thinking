@@ -1,27 +1,78 @@
 <% provide(:title, @recipe.recipe_code) %>
-<div class="row">
-  
-  <div class="span8">
-    
-  	<%= @recipe.recipe_code %>
-    <%= @recipe.original_gravity %>
 
-    <% if @recipe.hops.any? %>
-    	<h3>Hops </h3>
-    	
-      	<% @recipe.hops.each do |h| %>
-  			
-    		<%= h.name %>
-    		<%= h.alpha_acids %>
-    		<%= h.amount %>
-    		<%= h.boil_or_steep %>
-    		<%= h.boil_or_steep_time %>
-    		
-    		
-  			
-		<% end %>
-     
-    <% end %>
-      
-     </div>
-</div>
+
+<table class="table table-striped">
+  <!-- TODO: FIX THIS LINE TO USE RECIPE OWNER NOT CURRENT USER -->
+  <caption><%= @recipe.recipe_code %> brewed by <%= current_user.name %> on <%= current_user.williams_warn_number %></caption>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Recipe Code</td>
+        <td><%= @recipe.recipe_code %></td>
+      </tr>
+      <tr>
+        <td>Beer Style</td>
+        <td><%= @recipe.beer_style %></td>
+      </tr>
+      <tr>
+        <td>Original Gravity</td>
+        <td><%= @recipe.original_gravity %></td>
+      </tr>
+      <tr>
+        <td>Brewing Method</td>
+        <td><%= @recipe.brewing_method %></td>
+      </tr>
+      <% if @recipe.extract != "" %>
+      <tr>
+        <td>Malt Extract</td>
+        <td><%= @recipe.extract %></td>
+      </tr>
+      <% end %>
+      <% if @recipe.adjunct != "" %>
+      <tr>
+        <td>Adjunct</td>
+        <td><%= @recipe.adjunct %></td>
+      </tr>
+      <% end %>
+      <% if @recipe.sugar != "" %>
+      <tr>
+        <td>Sugar</td>
+        <td><%= @recipe.sugar %></td>
+      </tr>
+      <% end %>
+      <% if @recipe.yeast != "" %>
+      <tr>
+        <td>Yeast</td>
+        <td><%= @recipe.yeast %></td>
+      </tr>
+      <% end %>
+
+      <% @recipe.hops.each do |h| %>
+        
+        <tr>
+          <td>Hop</td>
+          <td><%= h.name + ", Alpha Acids " + h.alpha_acids.to_s() + ", Amount " + h.amount.to_s() + ", " + h.boil_or_steep + " for " + h.boil_or_steep_time.to_s() %></td>
+        </tr>
+      <% end %>
+
+      <% @recipe.grains.each do |g| %>
+        <tr>
+          <td>Grain</td>
+          <td><%= g.name + ", Colour " + g.colour.to_s() + ", Amount " + g.amount.to_s() + ", Steep for " + g.steep_time %></td>
+        </tr>
+      <% end %>
+<tr>
+        <td>Published</td>
+        <td><%= @recipe.published %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  	
+   
+  

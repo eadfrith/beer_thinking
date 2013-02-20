@@ -29,7 +29,7 @@
 
 
 <fieldset>
-<legend>Ingredients</legend>
+<legend>Base Ingredients</legend>
           <div class="span6">
       <%= f.input :extract %>
       </div>
@@ -87,47 +87,49 @@
 <fieldset>
 <legend>Grains</legend>
 </fieldset>
-<p><%= f.link_to_add "Add a grain", :hops,:class => 'btn btn-med btn-primary' %></p>
 
-      <%= f.submit "Create recipe" ,:class => 'btn btn-large btn-success'%>
-    <% end %>
-  </div>
+ <%= f.simple_fields_for :grains do |g| %>
 
-</div>
-</div>
-
-
-<!--<
-div class="row">
-  <div class="span6">
-    <%= simple_nested_form_for @recipe do |f| %>
-    <fieldset>
-      <div class="form-horizontal">
-      <%# render 'shared/error_messages', object: f.object %>
-
-      <%= f.input :brewing_method, collection: [ "WW Standard Kits", "WW Advanced", "Extract Plus Grains", "All Grain"] %>
-      <%= f.input :beer_style, collection: [ "1A. Lite American Lager", "1B. Standard American Lager", "1C. Premium American Lager", "1D. Munich Helles", "1E. Dortmunder Export"] %>
-      <%= f.input :iteration %>
-      <%= f.input :recipe_code %>
-      <%= f.input :extract %>
-      <%= f.input :adjunct %>
-      <%= f.input :sugar %>
-      <%= f.input :yeast %>
-      <%= f.input :original_gravity %>
+     <fieldset>
+          <div class="span6">
+      <%= g.input :name %>
+      </div>
+      <div class="span3">
+      <%= g.input :amount %>
     </div>
-  </fieldset>
+    
+    </fieldset>
+    <fieldset>
+    <div class="span4">
+      <%= g.input :colour %>
+    </div>
+    <div class="span3">
+      <%= g.input :steep_time %>
+    </div>
+   
+    
+    <div class="span5">
+      <%= g.link_to_remove "Delete", :class => 'btn btn-med btn-danger' %>   
+    </div>
 
-      <%= f.simple_fields_for :hops do |h| %>
-      <%= h.input :name %>
-      <%= h.link_to_remove "Remove this hop" %>
+       </fieldset>
+      
+      
 
         
       <% end %>
-      <p><%= f.link_to_add "Add a hop", :hops %></p>
 
 
-      <%= f.submit "Create recipe" %>
+<p><%= f.link_to_add "Add a grain", :grains,:class => 'btn btn-med btn-primary' %></p>
+
+<div class="span5">
+<%= f.input :published, label: 'Publish to Beer Thinkers Community', as: :radio_buttons %>
+</div>
+
+     <p><%= f.submit "Save recipe" ,:class => 'btn btn-large btn-success'%></p>
     <% end %>
   </div>
 
-</div> -->
+</div>
+</div>
+
