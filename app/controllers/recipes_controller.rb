@@ -38,6 +38,15 @@ class RecipesController < ApplicationController
 
   def show
    @recipe = Recipe.find(params[:id])
+   redirect_to recipes_path if !@recipe.published? && @recipe.user.name != current_user.name
+  end
+
+  def index
+    #@recipes = Recipe.paginate(page: params[:page])
+    #@recipes = Recipe.search(params[:recipe_code, :beer_style])
+    @search = Recipe.search(params[:q])
+    @recipes = @search.result
+    
   end
 
 

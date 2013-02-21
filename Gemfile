@@ -9,6 +9,7 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem 'simple_form'
 gem 'cocoon'
 gem 'nested_form'
+gem 'ransack'
 
 
 

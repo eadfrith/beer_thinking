@@ -1,7 +1,11 @@
 BeerThinking::Application.routes.draw do
+  get "brew/new"
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :recipes
+  resources :brews
+  resources :fermentations
   
 
 
@@ -14,6 +18,8 @@ BeerThinking::Application.routes.draw do
   match '/edit_recipe', to: 'recipes#edit'
   match '/show_recipe', to: 'recipes#show'
   match '/help',    to: 'static_pages#help'
+  match '/new_brew', to: 'brews#create'
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

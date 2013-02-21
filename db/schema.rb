@@ -11,7 +11,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220080109) do
+ActiveRecord::Schema.define(:version => 20130220103220) do
+
+  create_table "brews", :force => true do |t|
+    t.integer  "brew_number"
+    t.datetime "start_date_time"
+    t.text     "wort_must_production_notes"
+    t.text     "clarifiaction"
+    t.text     "taste"
+    t.integer  "taste_score"
+    t.text     "clarity"
+    t.text     "carbonation"
+    t.decimal  "alcohol_percentage"
+    t.text     "other_comments"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "recipe_id"
+  end
+
+  create_table "fermentations", :force => true do |t|
+    t.datetime "date_time"
+    t.integer  "day"
+    t.string   "specific_gravity"
+    t.integer  "temperature"
+    t.integer  "pressure"
+    t.text     "notes"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "brew_id"
+  end
 
   create_table "grains", :force => true do |t|
     t.string   "name"

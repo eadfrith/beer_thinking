@@ -1,0 +1,60 @@
+<% provide(:title, 'Recipe Search') %>
+<h1>Search Published Recipes</h1>
+
+<fieldset>
+<legend>Search criteria</legend>
+</fieldset>
+
+
+<%= search_form_for @search do  |f| %>
+  <fieldset>
+  <div class="span6">
+    <%= f.label :beer_style_cont, "Beer style contains" %>
+    <%= f.text_field :beer_style_cont %>
+  </div>
+  <div class="span6">
+    <%= f.label :brewing_method_cont, "Brewing method contains" %>
+    <%= f.text_field :brewing_method_cont %>
+  </div>
+  <div class="span6"><%= f.submit "Search" ,:class => 'btn btn-large btn-success'%></div>
+</fieldset>
+  <% end %>
+
+
+<%# will_paginate %>
+
+<fieldset>
+<legend>Recipes</legend>
+</fieldset>
+
+
+  
+   
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Recipe Code</th>
+          <th>Author</th>
+          <th>Number of times brewed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @recipes.each do |recipe| %>
+        <% if (recipe.published? || recipe.user.name == current_user.name) %>
+          <tr>
+            
+            <td><%= link_to recipe.recipe_code, recipe %></td>
+            <td><%= recipe.user.name %></td>
+              <td>3</td>
+                
+          </tr>
+      <% end %>
+        <% end %>
+      </tbody>
+    </table>
+
+
+  	 
+   
+<%# will_paginate %>
+

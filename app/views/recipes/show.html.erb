@@ -2,8 +2,8 @@
 
 
 <table class="table table-striped">
-  <!-- TODO: FIX THIS LINE TO USE RECIPE OWNER NOT CURRENT USER -->
-  <caption><%= @recipe.recipe_code %> brewed by <%= current_user.name %> on <%= current_user.williams_warn_number %></caption>
+  
+  <caption><%= @recipe.recipe_code %> brewed by <%= @recipe.user.name %> on <%= current_user.williams_warn_number %></caption>
     <thead>
       <tr>
         <th></th>
@@ -72,6 +72,18 @@
       </tr>
     </tbody>
   </table>
+
+
+<fieldset>
+<legend>Record a brew using this recipe</legend>
+</fieldset>
+
+
+
+<%= link_to 'Record Brew', new_brew_path, :class => 'btn btn-primary' %>
+  
+
+
 
   	
    
