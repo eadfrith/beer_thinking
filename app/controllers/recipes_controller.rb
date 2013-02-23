@@ -1,5 +1,5 @@
 class RecipesController < ApplicationController
-  before_filter :signed_in_user, only: [:create, :destroy]
+  before_filter :signed_in_user, only: [:create, :update, :destroy]
   before_filter :correct_user,   only: :destroy
 
 
@@ -18,10 +18,11 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    
+    @recipe = Recipe.find(params[:id])
   end
 
   def update
+    @recipe = Recipe.find(params[:id])
     if @recipe.update_attributes(params[:recipe])
       flash[:success] = "Recipe updated"
       redirect_to current_user

@@ -5,7 +5,6 @@ class Recipe < ActiveRecord::Base
   belongs_to :user, :inverse_of => :recipes
   has_many :hops, dependent: :destroy
   has_many :grains, dependent: :destroy
-  has_many :brews
 
   accepts_nested_attributes_for :hops, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :grains, :reject_if => :all_blank, :allow_destroy => true

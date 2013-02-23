@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220103220) do
+ActiveRecord::Schema.define(:version => 20130223080906) do
 
   create_table "brews", :force => true do |t|
     t.integer  "brew_number"
@@ -27,7 +27,11 @@ ActiveRecord::Schema.define(:version => 20130220103220) do
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
     t.integer  "recipe_id"
+    t.boolean  "published"
+    t.integer  "user_id"
   end
+
+  add_index "brews", ["user_id", "created_at"], :name => "index_brews_on_user_id_and_created_at", :unique => true
 
   create_table "fermentations", :force => true do |t|
     t.datetime "date_time"
