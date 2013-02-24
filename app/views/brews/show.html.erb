@@ -1,0 +1,141 @@
+<table class="table table-striped">
+  
+  <caption><%= @recipe.recipe_code %> brewed by <%= @brew.user.name %> based on <%= link_to @recipe.recipe_code, recipe_path(@recipe) %></caption>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Recipe Code</td>
+        <td><%= @recipe.recipe_code %></td>
+      </tr>
+      <tr>
+        <td>Beer Style</td>
+        <td><%= @recipe.beer_style %></td>
+      </tr>
+      <tr>
+        <td>Original Gravity</td>
+        <td><%= @recipe.original_gravity %></td>
+      </tr>
+      <tr>
+        <td>Brewing Method</td>
+        <td><%= @recipe.brewing_method %></td>
+      </tr>
+      <% if @recipe.extract != "" %>
+      <tr>
+        <td>Malt Extract</td>
+        <td><%= @recipe.extract %></td>
+      </tr>
+      <% end %>
+      <% if @recipe.adjunct != "" %>
+      <tr>
+        <td>Adjunct</td>
+        <td><%= @recipe.adjunct %></td>
+      </tr>
+      <% end %>
+      <% if @recipe.sugar != "" %>
+      <tr>
+        <td>Sugar</td>
+        <td><%= @recipe.sugar %></td>
+      </tr>
+      <% end %>
+      <% if @recipe.yeast != "" %>
+      <tr>
+        <td>Yeast</td>
+        <td><%= @recipe.yeast %></td>
+      </tr>
+      <% end %>
+
+      <% @recipe.hops.each do |h| %>
+        
+        <tr>
+          <td>Hop</td>
+          <td><%= h.name + ", Alpha Acids " + h.alpha_acids.to_s() + ", Amount " + h.amount.to_s() + ", " + h.boil_or_steep + " for " + h.boil_or_steep_time.to_s() %></td>
+        </tr>
+      <% end %>
+
+      <% @recipe.grains.each do |g| %>
+        <tr>
+          <td>Grain</td>
+          <td><%= g.name + ", Colour " + g.colour.to_s() + ", Amount " + g.amount.to_s() + ", Steep for " + g.steep_time %></td>
+        </tr>
+      <% end %>
+<tr>
+        <td>Published</td>
+        <td><%= @recipe.published %></td>
+      </tr>
+
+      <% @brew.fermentations.each do |ferm| %>
+        <tr>
+          <td>Day <%= ferm.day %></td>
+          <td>
+
+
+            <%= "SG: " + ferm.specific_gravity + ", Temperature: " + ferm.temperature.to_s() + ", Pressure: " + ferm.pressure.to_s() + ", Notes: " + ferm.notes%></td>
+        </tr>
+      <% end %>
+
+    </tbody>
+  </table>
+
+<fieldset>
+<legend>Fermentation chart</legend>
+</fieldset>
+<%= content_tag :div, "", id: "brew_chart", data: {fermentations: @brew.fermentations} %>
+
+<fieldset>
+<legend>Clarification</legend>
+</fieldset>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Taste</td>
+        <td><%= @brew.taste %></td>
+      </tr>
+      <tr>
+        <td>Taste Score</td>
+        <td><%= @brew.taste_score %></td>
+      </tr>
+      <tr>
+        <td>Clarity</td>
+        <td><%= @brew.clarity %></td>
+      </tr>
+      <tr>
+        <td>Carbonation</td>
+        <td><%= @brew.carbonation %></td>
+      </tr>
+        <td>Alcohol Percentage</td>
+        <td><%= @brew.alcohol_percentage %></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+
+<fieldset>
+<legend>Other Comments</legend>
+</fieldset>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Comment</td>
+        <td><%= @brew.other_comments %></td>
+      </tr>
+
+    </tbody>
+  </table>

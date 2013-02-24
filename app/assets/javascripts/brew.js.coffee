@@ -4,3 +4,10 @@
 jQuery ->
 	$("#brew_start_date_time").datepicker()
 		dateFormat: 'yy-mm-dd'
+
+		Morris.Line
+			element: 'brew_chart'
+			data: $('#brew_chart').data('fermentations')
+			xkey: 'day'
+			ykeys: ['temperature']
+			labels: ['Temperature']

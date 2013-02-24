@@ -2,27 +2,27 @@
 
  
 <div class="row">
-	<%= simple_nested_form_for @brew do |f| %>
-	<%= f.input :recipe_id, :as => :hidden, :input_html => { :value => @recipe.id } %>
-	
+  <%= simple_nested_form_for @brew do |f| %>
+  <%= f.input :recipe_id, :as => :hidden, :input_html => { :value => @recipe.id } %>
+  
       <div class="form-horizontal">
-    	<fieldset>
-      		<legend>Brew Information</legend>
-      		<%# render 'shared/error_messages', object: f.object %>
-      		<div class="span3">
-      			<%= f.input :brew_number %>
-      		</div>
-      		<div class="span3">
-      			
-      			<%= f.text_field :start_date_time, label: "Date" %>
-      		</div>
+      <fieldset>
+          <legend>Brew Information</legend>
+          <%# render 'shared/error_messages', object: f.object %>
+          <div class="span3">
+            <%= f.input :brew_number %>
+          </div>
+          <div class="span3">
+            
+            <%= f.text_field :start_date_time, label: "Date" %>
+          </div>
 
-    	</fieldset>
-    	<fieldset>
-      		
-      		<div class="span7">
-      			<%= f.input :wort_must_production_notes, :as => :text, label: "Wort / Must Production Notes", :input_html => { :rows => 5 } %>
-      		</div>
+      </fieldset>
+      <fieldset>
+          
+          <div class="span7">
+            <%= f.input :wort_must_production_notes, :as => :text, label: "Wort / Must Production Notes", :input_html => { :rows => 5 } %>
+          </div>
 
 <table class="table table-striped">
   
@@ -97,8 +97,8 @@
   </table>
 
 
-    	</fieldset>
-    	
+      </fieldset>
+      
 
  <fieldset>
 <legend>Fermentation data</legend>
@@ -140,14 +140,55 @@
       <% end %>
 
       <p><%= f.link_to_add "Add data", :fermentations,:class => 'btn btn-med btn-primary' %></p>
+  
 
+<fieldset>
+<legend>Clarification</legend>
+</fieldset>
+  <div class="span12">
+            <%= f.input :clarifiaction, :as => :text, label: "Clarification Notes", :input_html => { :rows => 2 } %>
+          </div>
 
-		<div class="span5">
-			<%= f.input :published, label: 'Publish to Beer Thinkers Community', as: :radio_buttons %>
-		</div>
-
-     	<p><%= f.submit "Save brew" ,:class => 'btn btn-large btn-success'%></p>
+          <fieldset>
+          <legend>Final Product</legend>
+        </fieldset>
+        <fieldset>
+          <%# render 'shared/error_messages', object: f.object %>
+          <div class="span12">
+            <%= f.input :taste, :input_html => { :rows => 2 } %>
+          </div>
+          <div class="span3">
+            
+            <%= f.input :taste_score %>
+          </div>
+          <div class="span12">
+            
+            <%= f.input :clarity, :input_html => { :rows => 2 }  %>
+          </div>
+          <div class="span12">
+            
+            <%= f.input :carbonation, :input_html => { :rows => 2 }  %>
+          </div>
+          <div class="span3">
+            
+            <%= f.input :alcohol_percentage %>
+          </div>
+          <div class="span12">
+            
+            <%= f.input :other_comments , :input_html => { :rows => 2 } %>
+          </div>
+</fieldset>
+     
+    <fieldset>
+    <div class="span5">
+      <%= f.input :published, label: 'Publish to Beer Thinkers Community', as: :radio_buttons %>
+    </div>
+    <div>
+<%= f.submit "Save brew" ,:class => 'btn btn-large btn-success'%>
+</div>
+     </fieldset>
       </div>
+       
     <% end %>
 </div>
 
