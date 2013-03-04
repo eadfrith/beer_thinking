@@ -1,0 +1,57 @@
+<% provide(:title, 'Brew Search') %>
+<h1>Search Published Brews</h1>
+
+<fieldset>
+<legend>Search criteria</legend>
+</fieldset>
+
+
+<%= search_form_for @search do  |f| %>
+  <fieldset>
+  <div class="span6">
+    <%= f.label :brew_number_cont, "Brew number contains" %>
+    <%= f.text_field :brew_number_cont %>
+  </div>
+  
+  <div class="span6"><%= f.submit "Search" ,:class => 'btn btn-large btn-success'%></div>
+</fieldset>
+  <% end %>
+
+
+<%# will_paginate %>
+
+<fieldset>
+<legend>Brews</legend>
+</fieldset>
+
+
+  
+   
+<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Recipe Code</th>
+          <th>Author</th>
+          <th>Number of times brewed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @brews.each do |brew| %>
+        <% if (brew.published? || brew.user.name == current_user.name) %>
+          <tr>
+            
+            <td><%= link_to brew.brew_number, brew %></td>
+            <td><%= brew.user.name %></td>
+              <td>3</td>
+                
+          </tr>
+      <% end %>
+        <% end %>
+      </tbody>
+    </table>
+
+
+  	 
+   
+<%# will_paginate %>
+

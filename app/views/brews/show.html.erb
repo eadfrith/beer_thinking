@@ -69,6 +69,7 @@
       </tr>
 
       <% @brew.fermentations.each do |ferm| %>
+
         <tr>
           <td>Day <%= ferm.day %></td>
           <td>
@@ -84,11 +85,26 @@
 <fieldset>
 <legend>Fermentation chart</legend>
 </fieldset>
-<%= content_tag :div, "", id: "brew_chart", data: {fermentations: @brew.fermentations} %>
 
-<fieldset>
-<legend>Clarification</legend>
-</fieldset>
+<% return_keys = [ :day, :specific_gravity, :temperature ] %>
+
+<% return_array = @brew.fermentations.collect do |fermentation| %>
+  <% Hash[ return_keys.collect do |key| %>
+  <% if key == :specific_gravity %>
+    <% fermentation[key] = fermentation[key].tr(".", "") %>
+    <% fermentation[key][0] = '' %>
+    <% fermentation[key] = fermentation[key].to_i(base=10) %>
+    <% end %>
+   <% [ key, fermentation[key] ]  end  ] %>
+<% end %>
+
+
+
+
+<%= content_tag :div, "", id: "brew_chart", data: {fermentations: return_array} %>
+
+
+
 <table class="table table-striped">
     <thead>
       <tr>
@@ -97,6 +113,11 @@
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <td>Claritifcation</td>
+        <td><%= @brew.clarifiaction %></td>
+      </tr>
+
       <tr>
         <td>Taste</td>
         <td><%= @brew.taste %></td>

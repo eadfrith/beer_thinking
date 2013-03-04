@@ -9,5 +9,5 @@ jQuery ->
 			element: 'brew_chart'
 			data: $('#brew_chart').data('fermentations')
 			xkey: 'day'
-			ykeys: ['temperature']
-			labels: ['Temperature']
+			ykeys: ['specific_gravity', 'temperature']
+			labels: ['Specific Gravity', 'Temperature']

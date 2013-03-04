@@ -44,6 +44,12 @@ def show
    redirect_to brews_path if !@brew.published? && @brew.user.name != current_user.name
   end
 
+def index
+ 
+    @search = Brew.search(params[:q])
+    @brews = @search.result
+    
+  end
 
 def destroy
     @brew.destroy
