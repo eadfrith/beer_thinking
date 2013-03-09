@@ -16,12 +16,13 @@
 //= require bootstrap
 //= require jquery_nested_form
 //= require jquery.ui.datepicker
-//= require jquery.ui.slider
-//= require jquery-ui-timepicker-addon
 //= require raphael
 //= require morris
-//= require_tree .
-
+//= require recipe
+//= require sessions
+//= require static_pages
+//= require fermentation
+//= users
 
 
 

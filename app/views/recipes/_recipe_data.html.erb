@@ -1,0 +1,135 @@
+<fieldset>
+  <legend>Recipe Information</legend>
+  <%# render 'shared/error_messages', object: f.object %>
+  <% if current_user.admin? %>
+
+    <div class="span6">
+      <%= f.input :brewing_method, collection: [ "WW Standard Kits", "WW Advanced", "Extract", "Extract + Steeping", "Partial Mash", "All Grain"] %>
+    </div>
+  <% else %>
+    <div class="span6">
+      <%= f.input :brewing_method, collection: [ "Extract", "Extract + Steeping", "Partial Mash", "All Grain"] %>
+    </div>
+  <% end %>
+ 
+ <div class="span6">
+    <%= f.label :beer_style %>
+    <%= f.collection_select :beer_style, BjcpCategory.order(:id), :id, :category, include_blank: true %>
+  </div>
+
+    
+
+
+
+</fieldset>
+
+<fieldset>
+    
+  <div class="span6">
+    <%= f.input :iteration %>
+  </div>
+  <div class="span6">
+    <%= f.input :recipe_code, label: current_user.williams_warn_number %>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Base Ingredients</legend>
+  <div class="span6">
+    <%= f.input :extract, collection: ["American Amber Ale", "American Lager", "American Pale Ale", "Belgian Pale Ale", "Blonde Ale", "Bohemian Pilsner", "Dry Stout", "Dutch Pilsner", "English Brown Ale", "English Pale Ale", "Irish Red Ale", "Premium Lager", "Summer Ale", "Wheat Beer", "Dry Apple Cider", "Other"]%>
+
+  </div>
+  <div class="span6">
+    <%= f.input :adjunct %>
+  </div>
+</fieldset>
+ 
+<fieldset>
+  <div class="span6">
+    <%= f.input :sugar %>
+  </div>
+  <div class="span6">
+    <%= f.input :yeast %>
+  </div>
+</fieldset>
+
+<fieldset>
+  <div class="span6">
+    <%= f.input :water, label: "Water Volume" %>
+  </div>
+  <div class="span6">
+    <%= f.input :original_gravity %>
+  </div>
+</fieldset>
+   
+<fieldset>
+  <legend>Hops</legend>
+</fieldset>
+<%= f.simple_fields_for :hops do |h| %>
+
+  <fieldset>
+    <div class="span6">
+      <%= h.input :name %>
+    </div>
+    <div class="span3">
+      <%= h.input :alpha_acids %>
+    </div>
+    <div class="span3">
+      <%= h.input :amount %>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <div class="span4">
+      <%= h.input :boil_or_steep, collection: [ "Boil", "Steep"] %>
+    </div>
+    <div class="span3">
+      <%= h.input :boil_or_steep_time %>
+    </div>
+     
+    <div class="span5">
+      <%= h.link_to_remove "Delete", :class => 'btn btn-med btn-danger' %>   
+    </div>
+  </fieldset>
+<% end %>
+
+<p><%= f.link_to_add "Add a hop", :hops,:class => 'btn btn-med btn-primary' %></p>
+
+<fieldset>
+<legend>Grains</legend>
+</fieldset>
+
+<%= f.simple_fields_for :grains do |g| %>
+
+  <fieldset>
+    <div class="span6">
+      <%= g.input :name %>
+    </div>
+    <div class="span3">
+      <%= g.input :amount %>
+    </div>
+    
+  </fieldset>
+    
+  <fieldset>
+    <div class="span4">
+      <%= g.input :colour %>
+    </div>
+    <div class="span3">
+      <%= g.input :steep_time %>
+    </div>
+    <div class="span5">
+      <%= g.link_to_remove "Delete", :class => 'btn btn-med btn-danger' %>   
+    </div>
+  </fieldset>
+<% end %>
+
+
+<p><%= f.link_to_add "Add a grain", :grains,:class => 'btn btn-med btn-primary' %></p>
+
+<div class="span5">
+  <%= f.input :published, label: 'Publish to Beer Thinkers Community', as: :radio_buttons %>
+</div>
+
+<p><%= f.submit "Save recipe" ,:class => 'btn btn-large btn-success'%></p>
+ 

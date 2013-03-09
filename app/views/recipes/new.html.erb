@@ -1,135 +1,15 @@
-
+<% provide(:title, 'Create Recipe') %>
+<h1>Create New Recipe</h1>
  
   <div class="row">
     <%= simple_nested_form_for @recipe do |f| %>
     <div class="form-horizontal">
-    
-    
-    <fieldset>
-      <legend>Recipe Information</legend>
-      <%# render 'shared/error_messages', object: f.object %>
-      <div class="span6">
-      <%= f.input :brewing_method, collection: [ "WW Standard Kits", "WW Advanced", "Extract Plus Grains", "All Grain"] %>
-      </div>
-      <div class="span6">
-      <%= f.input :beer_style, collection: [ "1A. Lite American Lager", "1B. Standard American Lager", "1C. Premium American Lager", "1D. Munich Helles", "1E. Dortmunder Export", "10A. American Amber Ale"] %>
-    </div>
-    </fieldset>
-    <fieldset>
-    <div class="span3">
-      <%= f.input :original_gravity %>
-    </div>
-    <div class="span3">
-      <%= f.input :iteration %>
-    </div>
-    <div class="span6">
-      <%= f.input :recipe_code %>
-    </div>
-    </fieldset>
-
-
-<fieldset>
-<legend>Base Ingredients</legend>
-          <div class="span6">
-      <%= f.input :extract %>
-      </div>
-      <div class="span6">
-      <%= f.input :adjunct %>
-    </div>
-  </fieldset>
-  <fieldset>
-    <div class="span6">
-      <%= f.input :sugar %>
-    </div>
-    <div class="span6">
-      <%= f.input :yeast %>
-    </div>
-    
-       </fieldset>
-   <fieldset>
-<legend>Hops</legend>
-</fieldset>
-      <%= f.simple_fields_for :hops do |h| %>
-
-     <fieldset>
-          <div class="span6">
-      <%= h.input :name %>
-      </div>
-      <div class="span3">
-      <%= h.input :alpha_acids %>
-    </div>
-    <div class="span3">
-      <%= h.input :amount %>
-    </div>
-    </fieldset>
-    <fieldset>
-    <div class="span4">
-      <%= h.input :boil_or_steep, collection: [ "Boil", "Steep"] %>
-    </div>
-    <div class="span3">
-      <%= h.input :boil_or_steep_time %>
-    </div>
    
-    
-    <div class="span5">
-      <%= h.link_to_remove "Delete", :class => 'btn btn-med btn-danger' %>   
-    </div>
+     <%= render 'recipe_data', f: f %>
 
-       </fieldset>
-      
-      
-
-        
-      <% end %>
-
-      <p><%= f.link_to_add "Add a hop", :hops,:class => 'btn btn-med btn-primary' %></p>
-
-<fieldset>
-<legend>Grains</legend>
-</fieldset>
-
- <%= f.simple_fields_for :grains do |g| %>
-
-     <fieldset>
-          <div class="span6">
-      <%= g.input :name %>
-      </div>
-      <div class="span3">
-      <%= g.input :amount %>
-    </div>
-    
-    </fieldset>
-    <fieldset>
-    <div class="span4">
-      <%= g.input :colour %>
-    </div>
-    <div class="span3">
-      <%= g.input :steep_time %>
-    </div>
-   
-    
-    <div class="span5">
-      <%= g.link_to_remove "Delete", :class => 'btn btn-med btn-danger' %>   
-    </div>
-
-       </fieldset>
-      
-      
-
-        
-      <% end %>
-
-
-<p><%= f.link_to_add "Add a grain", :grains,:class => 'btn btn-med btn-primary' %></p>
-
-<div class="span5">
-<%= f.input :published, label: 'Publish to Beer Thinkers Community', as: :radio_buttons %>
-</div>
-
-     <p><%= f.submit "Save recipe" ,:class => 'btn btn-large btn-success'%></p>
     <% end %>
   </div>
 
 </div>
-</div>
+
 

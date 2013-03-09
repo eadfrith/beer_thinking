@@ -9,33 +9,11 @@
     </section>
   </aside>
   <div class="span8">
-    <h3>All Recipes (<%= @user.recipes.count %>)</h3>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Recipe Code</th>
-          <th>Created at</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @recipes.each do |recipe| %>
-          <tr>
-            
-            <td><%= link_to recipe.recipe_code, recipe %></td>
-            <td><%= recipe.created_at %></td>
-              <% if current_user?(recipe.user) %>
-                <td>
-                  <%= link_to 'Edit', edit_recipe_path(recipe), :class => 'btn btn-mini' %>
-                  <%= link_to 'Delete', recipe, method: :delete, confirm: 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
-                </td>
-              <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%= link_to 'Create New Recipe', new_recipe_path, :class => 'btn btn-primary' %>
-   <h3>All Brews (<%= @user.brews.count %>)</h3>
+       <% if current_user?(@user) %>
+    <h3>My Brews (<%= @user.brews.count %>)</h3>
+  <% else %>
+    <h3><%= @user.name %>'s Brews (<%= @user.brews.count %>)</h3>
+  <% end %>
       <table class="table table-striped">
       <thead>
         <tr>
@@ -65,6 +43,41 @@
         <% end %>
       </tbody>
     </table>
-    <%= link_to 'Create New Brew', recipes_path, :class => 'btn btn-primary' %>
+    <% if current_user?(@user) %>
+      <%= link_to 'Record New Brew', recipes_path, :class => 'btn btn-primary' %>
+    <% end %>
+    <% if current_user?(@user) %>
+      <h3>My Recipes (<%= @user.recipes.count %>)</h3>
+    <% else %>
+      <h3><%= @user.name %>'s Recipes (<%= @user.recipes.count %>)</h3>
+    <% end %>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Recipe Code</th>
+          <th>Created at</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @recipes.each do |recipe| %>
+          <tr>
+            
+            <td><%= link_to recipe.recipe_code, recipe %></td>
+            <td><%= recipe.created_at %></td>
+              <% if current_user?(recipe.user) %>
+                <td>
+                  <%= link_to 'Edit', edit_recipe_path(recipe), :class => 'btn btn-mini' %>
+                  <%= link_to 'Delete', recipe, method: :delete, confirm: 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+                </td>
+              <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% if current_user?(@user) %>
+      <%= link_to 'Create New Recipe', new_recipe_path, :class => 'btn btn-primary' %>
+    <% end %>
+
   </div>
 </div>

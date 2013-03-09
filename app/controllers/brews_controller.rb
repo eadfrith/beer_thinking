@@ -25,7 +25,7 @@ class BrewsController < ApplicationController
 
   def edit
     @brew = Brew.find(params[:id])
-    @recipe = Recipe.find(params[:id])
+    @recipe = Recipe.find(@brew.recipe_id)
   end
 
   def update
@@ -40,7 +40,8 @@ class BrewsController < ApplicationController
 
 def show
    @brew = Brew.find(params[:id])
-   @recipe = Recipe.find(params[:id])
+   #@recipe = Recipe.find(params[:id])
+    @recipe = Recipe.find(@brew.recipe_id)
    redirect_to brews_path if !@brew.published? && @brew.user.name != current_user.name
   end
 

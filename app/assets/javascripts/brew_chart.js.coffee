@@ -2,6 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
-	console.log("FWAFhkhkhksssssss")
-	$("#brew_start_date_time").datepicker
-		dateFormat: 'yy-mm-dd'
+	Morris.Line
+		element: 'brew_chart'
+		data: $('#brew_chart').data('fermentations')
+		xkey: 'day'
+		ykeys: ['specific_gravity', 'temperature']
+		labels: ['Specific Gravity', 'Temperature']

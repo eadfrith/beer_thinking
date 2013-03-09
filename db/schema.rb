@@ -11,7 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130223080906) do
+ActiveRecord::Schema.define(:version => 20130309081835) do
+
+  create_table "beer_styles", :force => true do |t|
+    t.string   "beer_style"
+    t.string   "bjcp_category"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "bjcp_categories", :force => true do |t|
+    t.string   "category"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "brewing_methods", :force => true do |t|
+    t.string   "brewing_method"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "brews", :force => true do |t|
     t.integer  "brew_number"
@@ -98,5 +117,11 @@ ActiveRecord::Schema.define(:version => 20130223080906) do
 
   add_index "users", ["email", "williams_warn_number"], :name => "index_users_on_email_and_williams_warn_number", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+
+  create_table "ww_beer_kits", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "name"
+  end
 
 end

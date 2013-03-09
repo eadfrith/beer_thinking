@@ -10,6 +10,7 @@ gem 'simple_form'
 gem 'cocoon'
 gem 'nested_form'
 gem 'ransack'
+gem 'sprockets'
 
 
 

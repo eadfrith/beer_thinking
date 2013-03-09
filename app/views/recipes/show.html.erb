@@ -51,6 +51,12 @@
         <td><%= @recipe.yeast %></td>
       </tr>
       <% end %>
+      <% if @recipe.water != "" %>
+      <tr>
+        <td>Water Volume</td>
+        <td><%= @recipe.water %></td>
+      </tr>
+      <% end %>
 
       <% @recipe.hops.each do |h| %>
         
