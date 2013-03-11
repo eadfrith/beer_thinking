@@ -11,20 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130309081835) do
+ActiveRecord::Schema.define(:version => 20130311024907) do
 
   create_table "beer_styles", :force => true do |t|
     t.string   "beer_style"
-    t.string   "bjcp_category"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.integer  "bjcp_category_id", :limit => 255
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
   end
 
   create_table "bjcp_categories", :force => true do |t|
     t.string   "category"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.integer  "bjcp_category_id", :limit => 255
   end
+
+  add_index "bjcp_categories", ["bjcp_category_id"], :name => "index_bjcp_categories_on_bjcp_category_id", :unique => true
 
   create_table "brewing_methods", :force => true do |t|
     t.string   "brewing_method"
@@ -69,9 +72,11 @@ ActiveRecord::Schema.define(:version => 20130309081835) do
     t.decimal  "amount"
     t.string   "colour"
     t.string   "steep_time"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "recipe_id"
+    t.integer  "steep_water"
+    t.integer  "steep_water_temp"
   end
 
   create_table "hops", :force => true do |t|
@@ -83,6 +88,8 @@ ActiveRecord::Schema.define(:version => 20130309081835) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "recipe_id"
+    t.integer  "steep_water_temp"
+    t.integer  "steep_water_volume"
   end
 
   create_table "recipes", :force => true do |t|
@@ -100,6 +107,10 @@ ActiveRecord::Schema.define(:version => 20130309081835) do
     t.string   "brewing_method"
     t.integer  "iteration"
     t.boolean  "published"
+    t.string   "bjcp_category"
+    t.string   "ww_beer_kits"
+    t.string   "other_extract"
+    t.string   "other_adjunct"
   end
 
   add_index "recipes", ["user_id", "created_at"], :name => "index_recipes_on_user_id_and_created_at"

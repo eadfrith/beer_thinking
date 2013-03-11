@@ -9,16 +9,37 @@
 <%= search_form_for @search do  |f| %>
   <fieldset>
   <div class="span6">
-    <%= f.label :beer_style_cont, "Beer style contains" %>
-    <%= f.text_field :beer_style_cont %>
+    <%= f.label :beer_style_eq, "Beer Style" %>
+    <%# f.text_field :beer_style_cont %>
+    <%= f.select :bjcp_category_eq, options_from_collection_for_select(BjcpCategory.all, :category, :category,
+    @search.bjcp_category_eq), include_blank: true %>
+
+    <%# f.select :beer_style_eq, options_from_collection_for_select(BeerStyle.all, "id", "beer_style",
+     @search.beer_style_eq) %>
+
+    
   </div>
   <div class="span6">
-    <%= f.label :brewing_method_cont, "Brewing method contains" %>
-    <%= f.text_field :brewing_method_cont %>
+    <%# f.text_field :brewing_method_cont %>
+
+    <%= f.label :brewing_method_eq, "Brewing Method" %>
+    <%= f.select :brewing_method_eq,  options_from_collection_for_select(BrewingMethod.all, :brewing_method, :brewing_method, @search.brewing_method_eq), include_blank: true %>
+
   </div>
+  
+  <div class="span6">
+
+    <%= f.label :user_id_eq, "Beer Thinker" %>
+    <%= f.select :user_id_eq,  options_from_collection_for_select(User.all, :id, :name, @search.user_id_eq), include_blank: true %>
+
+  </div>
+
+
   <div class="span6"><%= f.submit "Search" ,:class => 'btn btn-large btn-success'%></div>
 </fieldset>
   <% end %>
+
+
 
 
 <%# will_paginate %>

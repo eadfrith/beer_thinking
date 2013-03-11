@@ -1,27 +1,44 @@
 <fieldset>
   <legend>Recipe Information</legend>
   <%# render 'shared/error_messages', object: f.object %>
-  <% if current_user.admin? %>
+  
+  <script>
+    var admin_user="<%= current_user.admin %>";
+  </script>
 
-    <div class="span6">
-      <%= f.input :brewing_method, collection: [ "WW Standard Kits", "WW Advanced", "Extract", "Extract + Steeping", "Partial Mash", "All Grain"] %>
-    </div>
-  <% else %>
-    <div class="span6">
-      <%= f.input :brewing_method, collection: [ "Extract", "Extract + Steeping", "Partial Mash", "All Grain"] %>
-    </div>
-  <% end %>
- 
- <div class="span6">
-    <%= f.label :beer_style %>
-    <%= f.collection_select :beer_style, BjcpCategory.order(:id), :id, :category, include_blank: true %>
-  </div>
+  <div class="span6">
+    
+    <% if current_user.admin %>
 
+    <%= f.input :brewing_method, collection: ["WW Standard Kits", "WW Advanced", "Extract", "Extract + Steeping", "Partial Mash", "All Grain"] %>
+    <% else %>
+     <%= f.input :brewing_method, collection: ["Extract", "Extract + Steeping", "Partial Mash", "All Grain"]%>
+     <% end %>
+
+  
+    <%# f.input :brewing_method, collection: BrewingMethod.order(:id), label_method: :brewing_method, value_method: :brewing_method, include_blank: true %>
+
+
+ <%= f.input :bjcp_category, label: "BJCP Category", collection: BjcpCategory.order(:bjcp_category_id), label_method: :category, value_method: :category, include_blank: true %>
+  
+  
+   <%= f.input(:beer_style, label: "Beer Style", collection: BjcpCategory.order(:bjcp_category_id),
+      as: :grouped_select,
+      group_method: :beer_styles,
+      group_label_method: :category,
+      label_method: :beer_style, value_method: :beer_style,
+      include_blank: true) %>
+
+
+  
+   
+ </div>
+</fieldset>
     
 
 
 
-</fieldset>
+
 
 <fieldset>
     
@@ -36,11 +53,16 @@
 <fieldset>
   <legend>Base Ingredients</legend>
   <div class="span6">
-    <%= f.input :extract, collection: ["American Amber Ale", "American Lager", "American Pale Ale", "Belgian Pale Ale", "Blonde Ale", "Bohemian Pilsner", "Dry Stout", "Dutch Pilsner", "English Brown Ale", "English Pale Ale", "Irish Red Ale", "Premium Lager", "Summer Ale", "Wheat Beer", "Dry Apple Cider", "Other"]%>
 
+    <%= f.input :extract, label: "Extract", collection: WwBeerKits.order(:id), label_method: :name, value_method: :name, include_blank: true %>
+
+  <%= f.input :other_extract, label: "Other Manufacturer's Extract" %>
+    
   </div>
   <div class="span6">
-    <%= f.input :adjunct %>
+    
+    <%= f.input :adjunct, collection: ["1KG WW DME", "1.5KG WW DME", "Other", "None"] %>
+    <%= f.input :other_adjunct , label: "Other Manufacturer's Adjunct"%>
   </div>
 </fieldset>
  
@@ -68,11 +90,11 @@
 <%= f.simple_fields_for :hops do |h| %>
 
   <fieldset>
-    <div class="span6">
+    <div class="span4">
       <%= h.input :name %>
     </div>
     <div class="span3">
-      <%= h.input :alpha_acids %>
+      <%= h.input :alpha_acids , label: "Alpha Acids (%)"%>
     </div>
     <div class="span3">
       <%= h.input :amount %>
@@ -87,10 +109,22 @@
       <%= h.input :boil_or_steep_time %>
     </div>
      
+    
+  </fieldset>
+
+  <fieldset>
+    <div class="span4">
+      <%= h.input :steep_water_volume %>
+    </div>
+    <div class="span3">
+      <%= h.input :steep_water_temp, label: "Steep Water Temperature" %>
+    </div>
+     
     <div class="span5">
       <%= h.link_to_remove "Delete", :class => 'btn btn-med btn-danger' %>   
     </div>
   </fieldset>
+  <hr></hr>
 <% end %>
 
 <p><%= f.link_to_add "Add a hop", :hops,:class => 'btn btn-med btn-primary' %></p>
@@ -102,7 +136,7 @@
 <%= f.simple_fields_for :grains do |g| %>
 
   <fieldset>
-    <div class="span6">
+    <div class="span4">
       <%= g.input :name %>
     </div>
     <div class="span3">
@@ -118,15 +152,27 @@
     <div class="span3">
       <%= g.input :steep_time %>
     </div>
+    
+  </fieldset>
+
+  <fieldset>
+    <div class="span4">
+      <%= g.input :steep_water , label: "Steep Water Volume" %>
+    </div>
+    <div class="span3">
+      <%= g.input :steep_water_temp, label: "Steep Water Temperature" %>
+    </div>
+     
     <div class="span5">
       <%= g.link_to_remove "Delete", :class => 'btn btn-med btn-danger' %>   
     </div>
   </fieldset>
+  <hr></hr>
 <% end %>
 
 
 <p><%= f.link_to_add "Add a grain", :grains,:class => 'btn btn-med btn-primary' %></p>
-
+ <hr></hr>
 <div class="span5">
   <%= f.input :published, label: 'Publish to Beer Thinkers Community', as: :radio_buttons %>
 </div>

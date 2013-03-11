@@ -1,9 +1,11 @@
 class Recipe < ActiveRecord::Base
   attr_accessible :original_gravity, :recipe_code, :extract, :adjunct, :yeast,
-  	:water, :sugar, :beer_style, :brewing_method, :iteration, :published, :hops_attributes,
-     :grains_attributes, :brews_attributes
+  	:water, :sugar, :beer_style, :brewing_method, :iteration, :published, :bjcp_category, :ww_beer_kits,
+    :other_extract, :other_adjunct, :hops_attributes, :grains_attributes, :brews_attributes
 
   belongs_to :user, :inverse_of => :recipes
+  
+  
   has_many :hops, dependent: :destroy
   has_many :grains, dependent: :destroy
  
