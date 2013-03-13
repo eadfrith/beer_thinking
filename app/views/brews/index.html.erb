@@ -8,11 +8,12 @@
 
 <%= search_form_for @search do  |f| %>
   <fieldset>
+
   <div class="span6">
-    <%= f.label :brew_number_cont, "Brew number contains" %>
-    <%= f.text_field :brew_number_cont %>
+    <%= f.label :user_id_eq, "Beer Thinker" %>
+    <%= f.select :user_id_eq,  options_from_collection_for_select(User.all, :id, :name, @search.user_id_eq), include_blank: true %>
   </div>
-  
+
   <div class="span6"><%= f.submit "Search" ,:class => 'btn btn-large btn-success'%></div>
 </fieldset>
   <% end %>

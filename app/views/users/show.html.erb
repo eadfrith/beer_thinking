@@ -47,6 +47,7 @@
       <%= link_to 'Record New Brew', recipes_path, :class => 'btn btn-primary' %>
     <% end %>
     <% if current_user?(@user) %>
+    <hr></hr>
       <h3>My Recipes (<%= @user.recipes.count %>)</h3>
     <% else %>
       <h3><%= @user.name %>'s Recipes (<%= @user.recipes.count %>)</h3>

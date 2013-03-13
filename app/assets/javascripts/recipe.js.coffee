@@ -8,6 +8,7 @@ jQuery ->
 	$('#recipe_extract').hide()
 	$('#recipe_adjunct').hide()
 	$('#recipe_other_adjunct').hide()
+	$('#recipe_recipe_code').hide()
 
 	$('#recipe_brewing_method :selected').text("")
 	
@@ -21,9 +22,23 @@ jQuery ->
 			$('#recipe_bjcp_category').change ->
 				cat_sel = $('#recipe_bjcp_category :selected').text()
 				style_focus = $(styles).filter("optgroup[label='#{cat_sel}']").html()
+				
 				if style_focus
 					$('#recipe_beer_style').html(style_focus)
 					$('#recipe_beer_style').show()
+					$('#recipe_beer_style').change ->
+						style_sel = $('#recipe_beer_style :selected').text()
+						if brew_method == "Extract"
+							method_code = "Ex"
+						else if brew_method == "Extract + Steeping"
+							method_code = "ExSt"
+						else if brew_method == "Partial Mash"
+							method_code = "PtlMsh"
+						else if brew_method == "All Grain"
+							method_code = "AG"
+						rec_code = ww_number + "-" + style_sel + "-" + method_code
+						
+						$('#recipe_recipe_code').val(rec_code)
 				else
 					$('#recipe_beer_style').empty()
 					$('#recipe_beer_style').hide()
@@ -33,27 +48,44 @@ jQuery ->
 					$('#recipe_adjunct').show()
 					$('#recipe_extract').change ->
 						kit_sel = $('#recipe_extract :selected').text()
+						
 						if (kit_sel == "Other")
 							$('#recipe_other_extract').show()
+					
 					$('#recipe_adjunct').change ->
 						adj_sel = $('#recipe_adjunct :selected').text()
 						if (adj_sel == "Other")
 							$('#recipe_other_adjunct').show()
-				else
+				else 
 					$('#recipe_extract').hide()
 					$('#recipe_other_extract').hide()
 					$('#recipe_other_adjunct').hide()
 					$('#recipe_adjunct').hide()
+					$('#recipe_sugar').hide()
+					
 		else
 			$('#recipe_bjcp_category').hide()
 			$('#recipe_adjunct').show()
 			$('#recipe_beer_style').html(kits)
 			$('#recipe_beer_style').show()
 			$('#recipe_extract').show()
+
+			$('#recipe_beer_style').change ->
+				style = $('#recipe_beer_style :selected').text()
+				if brew_method == "WW Standard Kits"
+					method_code = "Ex"
+				else if brew_method = "WW Advanced"
+					method_code = "ExSt"
+				rec_code = ww_number + "-" + style + "-" + method_code
+				
+				$('#recipe_recipe_code').val(rec_code)
+
+			
 			$('#recipe_extract').change ->
 				kit_sel = $('#recipe_extract :selected').text()
 				if (kit_sel == "Other")
 					$('#recipe_other_extract').show()
+
 			$('#recipe_adjunct').change ->
 				adj_sel = $('#recipe_adjunct :selected').text()
 				if (adj_sel == "Other")

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130311024907) do
+ActiveRecord::Schema.define(:version => 20130313074917) do
 
   create_table "beer_styles", :force => true do |t|
     t.string   "beer_style"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20130311024907) do
     t.integer  "recipe_id"
     t.boolean  "published"
     t.integer  "user_id"
+    t.string   "brew_code"
   end
 
   add_index "brews", ["user_id", "created_at"], :name => "index_brews_on_user_id_and_created_at", :unique => true

@@ -4,6 +4,8 @@ class Recipe < ActiveRecord::Base
     :other_extract, :other_adjunct, :hops_attributes, :grains_attributes, :brews_attributes
 
   belongs_to :user, :inverse_of => :recipes
+
+  after_create :update_iteration
   
   
   has_many :hops, dependent: :destroy
@@ -23,6 +25,28 @@ class Recipe < ActiveRecord::Base
 
   default_scope order: 'recipes.created_at DESC'
 
- 
+
+
+
+def update_iteration
+  #iter = Recipe.count(:iteration, :conditions => 'user_id=self.user_id' )
+  short_code = self.recipe_code.match /(.*[-])/
+  
+
+  #ter = Recipe.where(:user_id => self.user_id, ['recipe_code like ?', "%#{short_code[0]+short_code[1]}%"]).count
+
+  #iter = Recipe.maximum(:iteration)
+  iter = Recipe.maximum(:iteration, :conditions => ['recipe_code LIKE ?', self.recipe_code+"%"]) 
+   #iter = Recipe.where("user_id = ? AND recipe_code LIKE ?", self.user_id, self.recipe_code+"%").count
+   if iter == nil
+    self.update_attribute :iteration, 1
+    
+   else
+    self.update_attribute :iteration, iter+1
+    
+  end
+    self.update_attribute :recipe_code, self.recipe_code+"-"+self.iteration.to_s
+
+end
 
 end
