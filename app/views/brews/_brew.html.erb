@@ -1,11 +1,15 @@
  <%= f.input :recipe_id, :as => :hidden, :input_html => { :value => @recipe.id } %>
+ 
+  <% @recipe.update_attributes(times_brewed: @recipe.times_brewed+=1) %>
+
+
   
       <div class="form-horizontal">
       <fieldset>
           <legend>Brew Information</legend>
           <%# render 'shared/error_messages', object: f.object %>
-          <div class="span3">
-            <%= f.input :brew_number %>
+          <div class="span6">
+            <%= f.hidden_field :brew_code %>
           </div>
           <div class="span3">
             

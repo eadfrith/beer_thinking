@@ -30,14 +30,14 @@
       label_method: :beer_style, value_method: :beer_style,
       include_blank: true) %>
 
+<%= f.hidden_field :recipe_code %>
+
 
    
  </div>
 </fieldset>
     
 
-<%# f.hidden_field :recipe_code%>
-<%= f.input :recipe_code, label: "" %>
 
 
 
@@ -54,7 +54,7 @@
   </div>
   <div class="span6">
     
-    <%= f.input :adjunct, collection: ["1KG WW DME", "1.5KG WW DME", "Other", "None"] %>
+    <%= f.input :adjunct, collection: ["1KG WW DME", "1.5KG WW DME", "Other", "None"], include_blank: true %>
     <%= f.input :other_adjunct , label: "Other Manufacturer's Adjunct"%>
   </div>
 </fieldset>

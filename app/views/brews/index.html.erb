@@ -31,9 +31,9 @@
 <table class="table table-striped">
       <thead>
         <tr>
-          <th>Recipe Code</th>
+          <th>Brew Code</th>
           <th>Author</th>
-          <th>Number of times brewed</th>
+          
         </tr>
       </thead>
       <tbody>
@@ -41,9 +41,9 @@
         <% if (brew.published? || brew.user.name == current_user.name) %>
           <tr>
             
-            <td><%= link_to brew.brew_number, brew %></td>
+            <td><%= link_to brew.brew_code, brew %></td>
             <td><%= brew.user.name %></td>
-              <td>3</td>
+              
                 
           </tr>
       <% end %>

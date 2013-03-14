@@ -1,7 +1,7 @@
 class Recipe < ActiveRecord::Base
   attr_accessible :original_gravity, :recipe_code, :extract, :adjunct, :yeast,
   	:water, :sugar, :beer_style, :brewing_method, :iteration, :published, :bjcp_category, :ww_beer_kits,
-    :other_extract, :other_adjunct, :hops_attributes, :grains_attributes, :brews_attributes
+    :other_extract, :other_adjunct, :times_brewed, :hops_attributes, :grains_attributes, :brews_attributes
 
   belongs_to :user, :inverse_of => :recipes
 
@@ -46,6 +46,7 @@ def update_iteration
     
   end
     self.update_attribute :recipe_code, self.recipe_code+"-"+self.iteration.to_s
+    self.update_attribute :times_brewed, 0
 
 end
 

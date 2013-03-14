@@ -1,6 +1,6 @@
 <% provide(:title, @user.name) %>
 <div class="row">
-  <aside class="span4">
+  <aside class="span3">
     <section>
       <h1>
         <%= gravatar_for @user %>
@@ -8,7 +8,7 @@
       </h1>
     </section>
   </aside>
-  <div class="span8">
+  <div class="span9">
        <% if current_user?(@user) %>
     <h3>My Brews (<%= @user.brews.count %>)</h3>
   <% else %>
@@ -17,7 +17,7 @@
       <table class="table table-striped">
       <thead>
         <tr>
-          <th>Brew Number</th>
+          <th>Brew Code</th>
           <th>Created at</th>
           <th>Based on Recipe</th>
           <th>Actions</th>
@@ -30,7 +30,7 @@
           <tr>
               
 
-            <td><%= link_to brew.brew_number, brew %></td>
+            <td><%= link_to brew.brew_code, brew %></td>
             <td><%= brew.created_at %></td>
             <td><%= link_to @rec_code, @rec %></td>
               <% if current_user?(brew.user) %>

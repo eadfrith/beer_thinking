@@ -1,7 +1,7 @@
 <%= javascript_include_tag "brew_chart" %>
 <table class="table table-striped">
   
-  <caption><%= @recipe.recipe_code %> brewed by <%= @brew.user.name %> based on <%= link_to @recipe.recipe_code, recipe_path(@recipe) %></caption>
+  <caption><%= @recipe.recipe_code %> created by <%= @brew.user.name %> based on <%= link_to @recipe.recipe_code, recipe_path(@recipe) %></caption>
     <thead>
       <tr>
         <th></th>

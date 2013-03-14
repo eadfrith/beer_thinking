@@ -4,6 +4,10 @@
 <h1>Record a New Brew</h1>
 <div class="row">
   <%= simple_nested_form_for @brew do |f| %>
+  	<script>
+    var ww_number="<%= current_user.williams_warn_number %>";
+    var rec_code = "<%= @recipe.recipe_code %>";
+  </script>
     <%= render 'brew', f: f %>
   <% end %>
 </div>
