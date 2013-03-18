@@ -26,19 +26,21 @@ jQuery ->
 				if style_focus
 					$('#recipe_beer_style').html(style_focus)
 					$('#recipe_beer_style').show()
-					$('#recipe_beer_style').change ->
-						style_sel = $('#recipe_beer_style :selected').text()
-						if brew_method == "Extract"
-							method_code = "Ex"
-						else if brew_method == "Extract + Steeping"
-							method_code = "ExSt"
-						else if brew_method == "Partial Mash"
-							method_code = "PtlMsh"
-						else if brew_method == "All Grain"
-							method_code = "AG"
-						rec_code = ww_number + "-" + style_sel + "-" + method_code
-						
-						$('#recipe_recipe_code').val(rec_code)
+
+
+					
+					style_sel = $('#recipe_beer_style :selected').text()
+					if brew_method == "Extract"
+						method_code = "Ex"
+					else if brew_method == "Extract + Steeping"
+						method_code = "ExSt"
+					else if brew_method == "Partial Mash"
+						method_code = "PtlMsh"
+					else if brew_method == "All Grain"
+						method_code = "AG"
+					rec_code = ww_number + "-" + style_sel + "-" + method_code
+					
+					$('#recipe_recipe_code').val(rec_code)
 				else
 					$('#recipe_beer_style').empty()
 					$('#recipe_beer_style').hide()
