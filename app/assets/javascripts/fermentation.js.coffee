@@ -2,4 +2,5 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
-	$('#fermentation_date_time').datepicker()
+	$("#fermentation_date_time").datepicker
+		dateFormat: 'yy-mm-dd'

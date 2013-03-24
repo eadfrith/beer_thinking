@@ -19,11 +19,11 @@ class Recipe < ActiveRecord::Base
   validates :user_id, presence: true
 
   VALID_GRAVITY_REGEX = /\A[1-9](.)[0-9][0-9][0-9]\z/
-  validates :original_gravity, presence: true, format: { with: VALID_GRAVITY_REGEX }
+  validates :original_gravity, format: { with: VALID_GRAVITY_REGEX }
   
   validates :recipe_code, presence: true
 
-  default_scope order: 'recipes.created_at DESC'
+  default_scope order: 'recipes.times_brewed DESC'
 
 
 

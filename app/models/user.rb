@@ -11,7 +11,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :williams_warn_number, :password, :password_confirmation, :recipe_attributes, :brew_attributes
+  attr_accessible :email, :name, :williams_warn_number, :password, :password_confirmation, :secret_code, :recipe_attributes, :brew_attributes
   has_secure_password
   has_many :recipes, :inverse_of => :user, dependent: :destroy
   has_many :brews, :inverse_of => :user, dependent: :destroy
@@ -26,6 +26,8 @@ class User < ActiveRecord::Base
 
   validates :password, length: { minimum: 6 }
   validates :password_confirmation, presence: true
+  VALID_SECRET_CODE = /[W][W][4][E][v][a][!]/
+  validates :secret_code, format: {with: VALID_SECRET_CODE}
 
   VALID_WW_REGEX = /\A[W][W][1-9][0-9]{0,5}\z/
   validates :williams_warn_number, presence:true, format: { with: VALID_WW_REGEX }, uniqueness: true

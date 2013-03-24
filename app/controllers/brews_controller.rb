@@ -13,7 +13,7 @@ class BrewsController < ApplicationController
 
   def create
     @brew = current_user.brews.build(params[:brew])
-  
+    
     #@brew = Brew.new(params[:brew])
     if @brew.save
       flash[:success] = "Brew saved!"
@@ -49,7 +49,7 @@ def index
  
     @search = Brew.search(params[:q])
     @brews = @search.result
-    
+     
   end
 
 def destroy

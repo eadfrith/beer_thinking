@@ -10,9 +10,14 @@ class UsersController < ApplicationController
   end
 
   def show
+   
   	@user = User.find(params[:id])
-    @recipes = @user.recipes.paginate(page: params[:page])
-    @brews = @user.brews.paginate(page: params[:page])
+    if @user == current_user
+      @recipes = @user.recipes.paginate(page: params[:page])
+      @brews = @user.brews.paginate(page: params[:page])
+    else
+      redirect_to(root_path)
+    end
   end
 
 
@@ -20,7 +25,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       sign_in @user
-      flash[:success] = "Welcome to Beer Thinking!"
+      flash[:success] = "Welcome to the Beer Thinkers!"
       redirect_to @user
     else
       render 'new'
@@ -43,6 +48,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    
     @users = User.paginate(page: params[:page])
   end
 
@@ -61,7 +67,8 @@ class UsersController < ApplicationController
 
     def admin_user
       redirect_to(root_path) unless current_user.admin?
+end
   end
 
 
-end
+

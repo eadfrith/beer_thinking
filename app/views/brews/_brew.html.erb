@@ -6,7 +6,7 @@
   
       <div class="form-horizontal">
       <fieldset>
-          <legend>Brew Information</legend>
+          <legend>Brew Start Date</legend>
           <%# render 'shared/error_messages', object: f.object %>
           <div class="span6">
             <%= f.hidden_field :brew_code %>
@@ -115,9 +115,7 @@
 </fieldset>
      <fieldset>
 
-          <div class="span4">
-      <%= h.text_field :date_time %>
-      </div>
+         
       <div class="span4">
       <%= h.input :day %>
     </div>
@@ -151,8 +149,9 @@
    
         
       <% end %>
-<%= f.link_to_add "Add New Data", :fermentations,:class => 'btn btn-med btn-primary' %> 
-      
+
+<%= f.link_to_add "Add New Fermentation Data", :fermentations,:class => 'btn btn-med btn-primary' %> 
+     
 
 <fieldset>
 <legend>Clarification</legend>
@@ -194,7 +193,7 @@
     <fieldset>
     
     <div>
-<%= f.submit "Publish Finished Brew" ,:class => 'btn btn-large btn-success', :published => 'true'  %>
+<%= f.submit "Publish Finished Brew" ,:class => 'btn btn-large btn-success'  %>
 </div>
      </fieldset>
       </div>

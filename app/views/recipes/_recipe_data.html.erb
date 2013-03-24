@@ -166,9 +166,12 @@
 
 <p><%= f.link_to_add "Add a grain", :grains,:class => 'btn btn-med btn-primary' %></p>
  <hr></hr>
-<div class="span5">
+ <fieldset>
+<legend>Publish Recipe Or Keep Private</legend>
+</fieldset>
+<div class="span12">
   <%= f.input :published, label: 'Publish to Beer Thinkers Community', as: :radio_buttons %>
 </div>
-
+<div>
 <p><%= f.submit "Save recipe" ,:class => 'btn btn-large btn-success'%></p>
- 
+ </div>

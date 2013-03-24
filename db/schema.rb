@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130314232043) do
+ActiveRecord::Schema.define(:version => 20130322090110) do
 
   create_table "beer_styles", :force => true do |t|
     t.string   "beer_style"
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20130314232043) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin"
+    t.string   "secret_code"
   end
 
   add_index "users", ["email", "williams_warn_number"], :name => "index_users_on_email_and_williams_warn_number", :unique => true
