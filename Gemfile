@@ -14,7 +14,6 @@ gem 'sprockets'
 
 
 
-
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -47,11 +46,10 @@ group :test do
 	gem 'growl', '1.0.3'
   gem 'factory_girl_rails', '4.2.0'
 end
-
+	
 group :production do
-  gem 'pg', '0.12.2'
+	gem 'pg', '0.12.2'
 end
-
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
