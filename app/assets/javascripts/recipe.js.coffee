@@ -27,8 +27,9 @@ jQuery ->
 				$('#recipe_beer_style').show()
 
 
+				
 				style_sel = $('#recipe_beer_style :selected').text()
-				$('#recipe_beer_style').change ->
+				$('#recipe_bjcp_category').change ->
 					style_sel = $('#recipe_beer_style :selected').text()
 					if brew_method == "Extract"
 						method_code = "Ex"
