@@ -13,7 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require bootstrap
 //= require jquery_nested_form
 //= require jquery.ui.datepicker
 //= require raphael
@@ -22,6 +21,7 @@
 //= require sessions
 //= require static_pages
 //= require fermentation
+//= require bootstrap
 //= users
 
 
