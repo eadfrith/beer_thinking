@@ -11,10 +11,10 @@
 // GO AFTER THE REQUIRES BELOW.
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap
 //= require jquery-ui
 //= require jquery_nested_form
 //= require jquery.ui.datepicker
-//= require bootstrap
 //= require raphael
 //= require morris
 //= require recipe
