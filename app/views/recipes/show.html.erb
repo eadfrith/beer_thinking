@@ -3,7 +3,7 @@
 
 <table class="table table-striped">
   
-  <caption><%= @recipe.recipe_code %> created by <%= @recipe.user.name %> on <%= current_user.williams_warn_number %></caption>
+  <caption><%= @recipe.recipe_name %> created by <%= @recipe.user.name %> on <%= current_user.williams_warn_number %></caption>
     <thead>
       <tr>
         <th></th>
@@ -12,12 +12,16 @@
     </thead>
     <tbody>
       <tr>
-        <td>Recipe Code</td>
-        <td><%= @recipe.recipe_code %></td>
+        <td>Recipe Name</td>
+        <td><%= @recipe.recipe_name %></td>
       </tr>
       <tr>
         <td>Iteration</td>
         <td><%= @recipe.iteration %></td>
+      </tr>
+      <tr>
+        <td>BJCP Category</td>
+        <td><%= @recipe.bjcp_category %></td>
       </tr>
       <tr>
         <td>Beer Style</td>
@@ -55,9 +59,15 @@
         <td><%= @recipe.yeast %></td>
       </tr>
       <% end %>
+       <% if @recipe.other_ingredient != "" %>
+      <tr>
+        <td>Other Ingredients</td>
+        <td><%= @recipe.other_ingredient %></td>
+      </tr>
+      <% end %>
       <% if @recipe.water != "" %>
       <tr>
-        <td>Water Volume</td>
+        <td>Brew Volume</td>
         <td><%= @recipe.water %></td>
       </tr>
       <% end %>

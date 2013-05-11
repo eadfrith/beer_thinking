@@ -56,7 +56,8 @@
 <table class="table table-striped">
       <thead>
         <tr>
-          <th>Recipe Code</th>
+          <th>Recipe Name</th>
+          <th>Style</th>
           <th>Author</th>
           <th>Number of times brewed</th>
         </tr>
@@ -66,7 +67,8 @@
         <% if (recipe.published? || recipe.user.name == current_user.name) %>
           <tr>
             
-            <td><%= link_to recipe.recipe_code, recipe %></td>
+            <td><%= link_to recipe.recipe_name, recipe %></td>
+            <td><%= link_to recipe.beer_style, recipe %></td>
             <td><%= recipe.user.name %></td>
               <td><%= recipe.times_brewed %></td>
                 

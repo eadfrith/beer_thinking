@@ -11,28 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130322090110) do
+ActiveRecord::Schema.define(:version => 20130511115556) do
+
+  create_table "adjuncts", :force => true do |t|
+    t.string   "adjunct"
+    t.integer  "weight"
+    t.string   "units"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "beer_styles", :force => true do |t|
-    t.string   "beer_style"
-    t.integer  "bjcp_category_id", :limit => 255
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.string  "beer_style"
+    t.integer "bjcp_category_id", :limit => 255
   end
 
   create_table "bjcp_categories", :force => true do |t|
-    t.string   "category"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
-    t.integer  "bjcp_category_id", :limit => 255
+    t.string  "category"
+    t.integer "bjcp_category_id", :limit => 255
   end
 
-  add_index "bjcp_categories", ["bjcp_category_id"], :name => "index_bjcp_categories_on_bjcp_category_id", :unique => true
-
   create_table "brewing_methods", :force => true do |t|
-    t.string   "brewing_method"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.string "brewing_method"
   end
 
   create_table "brews", :force => true do |t|
@@ -78,6 +78,12 @@ ActiveRecord::Schema.define(:version => 20130322090110) do
     t.integer  "recipe_id"
     t.integer  "steep_water"
     t.integer  "steep_water_temp"
+    t.string   "weight_unit"
+    t.string   "water_unit"
+    t.string   "colour_unit"
+    t.string   "water_temp_unit"
+    t.string   "method"
+    t.string   "steep_time_unit"
   end
 
   create_table "hops", :force => true do |t|
@@ -93,12 +99,28 @@ ActiveRecord::Schema.define(:version => 20130322090110) do
     t.integer  "steep_water_volume"
   end
 
+  create_table "other_adjuncts", :force => true do |t|
+    t.string   "adjunct"
+    t.integer  "weight"
+    t.string   "units"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "other_extracts", :force => true do |t|
+    t.string   "extract"
+    t.integer  "weight"
+    t.string   "units"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "recipes", :force => true do |t|
     t.string   "recipe_code"
     t.string   "original_gravity"
     t.integer  "user_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.string   "extract"
     t.string   "adjunct"
     t.string   "yeast"
@@ -113,6 +135,16 @@ ActiveRecord::Schema.define(:version => 20130322090110) do
     t.string   "other_extract"
     t.string   "other_adjunct"
     t.integer  "times_brewed"
+    t.string   "recipe_name"
+    t.string   "other_ingredient"
+    t.integer  "adjunct_weight"
+    t.string   "adjunct_unit"
+    t.integer  "other_adjunt_weight"
+    t.integer  "extract_weight"
+    t.string   "extract_unit"
+    t.string   "other_adjunct_unit"
+    t.integer  "other_extract_weight"
+    t.string   "other_extract_unit"
   end
 
   add_index "recipes", ["user_id", "created_at"], :name => "index_recipes_on_user_id_and_created_at"
@@ -133,9 +165,15 @@ ActiveRecord::Schema.define(:version => 20130322090110) do
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
   create_table "ww_beer_kits", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "ww_extracts", :force => true do |t|
+    t.string   "extract"
+    t.integer  "weight"
+    t.string   "units"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "name"
   end
 
 end

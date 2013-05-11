@@ -51,18 +51,7 @@ jQuery ->
 				$('#recipe_beer_style').hide()
 
 			if (brew_method != "All Grain")
-				$('#recipe_extract').show()
-				$('#recipe_adjunct').show()
-				$('#recipe_extract').change ->
-					kit_sel = $('#recipe_extract :selected').text()
-					
-					if (kit_sel == "Other")
-						$('#recipe_other_extract').show()
-				
-				$('#recipe_adjunct').change ->
-					adj_sel = $('#recipe_adjunct :selected').text()
-					if (adj_sel == "Other")
-						$('#recipe_other_adjunct').show()
+
 			else 
 				$('#recipe_extract').hide()
 				$('#recipe_other_extract').hide()

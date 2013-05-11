@@ -11,7 +11,11 @@
     
     <% if current_user.admin %>
 
-    <%= f.input :brewing_method, collection: ["WW Standard Kits", "WW Advanced", "Extract", "Extract + Steeping", "Partial Mash", "All Grain"] %>
+    <%= f.input :recipe_name, label: "Recipe Name" %>
+
+    <%= f.input :brewing_method, :as => :select, collection: ["WW Standard Kits", "WW Advanced", "Extract", "Extract + Steeping", "Partial Mash", "All Grain"] %>
+
+
     <% else %>
      <%= f.input :brewing_method, collection: ["Extract", "Extract + Steeping", "Partial Mash", "All Grain"]%>
      <% end %>
@@ -44,29 +48,122 @@
 
 
 <fieldset>
-  <legend>Base Ingredients</legend>
-  <div class="span6">
+  <legend>Extracts</legend>
+  <%= f.simple_fields_for :ww_extracts do |e| %>
+  <div class="span5">
 
-    <%= f.input :extract, label: "Extract", collection: WwBeerKits.order(:id), label_method: :name, value_method: :name, include_blank: true %>
+    <%= e.input :extract, label: "WW Extract", collection: WwBeerKits.order(:id), label_method: :name, value_method: :name, include_blank: true %>
+  </div>
 
-  <%= f.input :other_extract, label: "Other Manufacturer's Extract" %>
+  <div class="span3">
     
+    <%= e.input :weight, label: "Weight" %>
+   
   </div>
-  <div class="span6">
+  <div class="span3">
     
-    <%= f.input :adjunct, collection: ["1KG WW DME", "1.5KG WW DME", "Other", "None"], include_blank: true %>
-    <%= f.input :other_adjunct , label: "Other Manufacturer's Adjunct"%>
+    <%= e.input :units, label: "Units", collection: ["g", "kg", "oz"], include_blank: true %>
+   
   </div>
+  <div class="span1">
+      <%= e.link_to_remove "X", :class => 'btn btn-med btn-danger' %>   
+    </div>
+ <% end %>
+ <p><%= f.link_to_add "Add WW Extract", :ww_extracts,:class => 'btn btn-med btn-primary' %></p>
+
+<%= f.simple_fields_for :other_extracts do |o| %>
+
+ <div class="span5">
+
+    <%= o.input :extract, label: "Other Extract" %>
+  </div>
+
+  <div class="span3">
+    
+    <%= o.input :weight, label: "Weight" %>
+   
+  </div>
+  <div class="span3">
+    
+    <%= o.input :units, label: "Units", collection: ["g", "kg", "oz"], include_blank: true %>
+   
+  </div>  
+  <div class="span1">
+      <%= o.link_to_remove "X", :class => 'btn btn-med btn-danger' %>   
+    </div>
+ <% end %>
+<p><%= f.link_to_add "Add Other Extract", :other_extracts,:class => 'btn btn-med btn-primary' %></p>
+</fieldset>
+
+<fieldset>
+  <legend>Adjuncts</legend>
+
+<%= f.simple_fields_for :adjuncts do |a| %>
+ <div class="span5">
+
+    <%= a.input :adjunct, label: "Adjunct Type", collection: ["WW DME", "Other"], include_blank: true %>
+  </div>
+
+  <div class="span3">
+    
+    <%= a.input :weight, label: "Weight" %>
+   
+  </div>
+  <div class="span3">
+    
+    <%= a.input :units, label: "Units", collection: ["g", "kg", "oz"], include_blank: true %>
+   
+  </div>  
+   <div class="span1">
+      <%= a.link_to_remove "X", :class => 'btn btn-med btn-danger' %>   
+    </div>
+ <% end %>
+<p><%= f.link_to_add "Add Adjunct", :adjuncts,:class => 'btn btn-med btn-primary' %></p>
+</fieldset>
+ 
+ <fieldset>
+  <legend>Sugars</legend>
+
+<%= f.simple_fields_for :other_adjuncts do |s| %>
+ <div class="span5">
+
+    <%= s.input :adjunct, label: "Sugar Type" %>
+  </div>
+
+  <div class="span3">
+    
+    <%= s.input :weight, label: "Weight" %>
+   
+  </div>
+  <div class="span3">
+    
+    <%= s.input :units, label: "Units", collection: ["g", "kg", "oz"], include_blank: true %>
+   
+  </div>  
+   <div class="span1">
+      <%= s.link_to_remove "X", :class => 'btn btn-med btn-danger' %>   
+    </div>
+ <% end %>
+<p><%= f.link_to_add "Add Sugar", :other_adjuncts,:class => 'btn btn-med btn-primary' %></p>
+
+ 
 </fieldset>
  
 <fieldset>
-  <div class="span6">
-    <%= f.input :sugar %>
+   <div class="span12">
+    <%= f.input :other_ingredient %>
   </div>
+</fieldset>
+
+<fieldset>
+ 
   <div class="span6">
     <%= f.input :yeast %>
   </div>
+  
 </fieldset>
+
+
 
 <fieldset>
   <div class="span6">
@@ -129,36 +226,60 @@
 <%= f.simple_fields_for :grains do |g| %>
 
   <fieldset>
-    <div class="span4">
+    <div class="span5">
       <%= g.input :name %>
     </div>
-    <div class="span3">
-      <%= g.input :amount %>
+    <div class="span5">
+      <%= g.input :method, collection: [ "Mashed", "Steeped"] %>
     </div>
     
+     <div class="span1">
+      <%= g.link_to_remove "X", :class => 'btn btn-med btn-danger' %>   
+    </div>
   </fieldset>
-    
-  <fieldset>
+<fieldset>
+   <div class="span5">
+      <%= g.input :amount, label: "Grain Weight" %>
+    </div>
     <div class="span4">
+      <%= g.input :weight_unit, label: "Units", collection: [ "g", "kg", "oz", "lbs"] %>
+    </div>
+</fieldset>
+  <fieldset>
+    <div class="span5">
       <%= g.input :colour %>
     </div>
-    <div class="span3">
-      <%= g.input :steep_time %>
+    <div class="span4">
+      <%= g.input :colour_unit, label: "Units", collection: [ "L", "SRM", "EBC"] %>
     </div>
-    
+ </fieldset>
+
+ <fieldset>
+    <div class="span5">
+      <%= g.input :steep_water , label: "Water Volume" %>
+    </div>
+    <div class="span4">
+      <%= g.input :water_unit, label: "Units" , collection: [ "ml", "L", "fl.oz", "US Gal"] %>
+    </div>
   </fieldset>
+<fieldset>
+<div class="span5">
+      <%= g.input :steep_water_temp, label: "Water Temperature" %>
+    </div>
+    <div class="span4">
+      <%= g.input :water_temp_unit, label: "Units" , collection: [ "C", "F" ] %>
+    </div>
+</fieldset>
 
   <fieldset>
-    <div class="span4">
-      <%= g.input :steep_water , label: "Steep Water Volume" %>
+    <div class="span5">
+      <%= g.input :steep_time , label: "Duration" %>
     </div>
-    <div class="span3">
-      <%= g.input :steep_water_temp, label: "Steep Water Temperature" %>
+    <div class="span4">
+      <%= g.input :steep_time_unit, label: "Units" , collection: [ "min", "hrs", "days" ] %>
     </div>
      
-    <div class="span5">
-      <%= g.link_to_remove "Delete", :class => 'btn btn-med btn-danger' %>   
-    </div>
+   
   </fieldset>
   <hr></hr>
 <% end %>

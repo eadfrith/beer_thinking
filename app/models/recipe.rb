@@ -1,7 +1,10 @@
 class Recipe < ActiveRecord::Base
   attr_accessible :original_gravity, :recipe_code, :extract, :adjunct, :yeast,
   	:water, :sugar, :beer_style, :brewing_method, :iteration, :published, :bjcp_category, :ww_beer_kits,
-    :other_extract, :other_adjunct, :times_brewed, :hops_attributes, :grains_attributes, :brews_attributes
+    :other_extract, :other_adjunct, :times_brewed, :recipe_name, :other_ingredient, :extract_weight, 
+    :extract_unit, :adjunct_weight, :adjunct_unit, :other_adjunt_weight, :other_adjunct_unit,
+    :other_extract_weight, :other_extract_unit, :hops_attributes, :grains_attributes, :brews_attributes, :ww_extracts_attributes,
+    :other_extracts_attributes, :adjuncts_attributes, :other_adjuncts_attributes
 
   belongs_to :user, :inverse_of => :recipes
 
@@ -10,11 +13,18 @@ class Recipe < ActiveRecord::Base
   
   has_many :hops, dependent: :destroy
   has_many :grains, dependent: :destroy
+  has_many :ww_extracts, dependent: :destroy
+  has_many :other_extracts, dependent: :destroy
+  has_many :adjuncts, dependent: :destroy
+  has_many :other_adjuncts, dependent: :destroy
  
 
   accepts_nested_attributes_for :hops, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :grains, :reject_if => :all_blank, :allow_destroy => true
-
+  accepts_nested_attributes_for :ww_extracts, :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :other_extracts, :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :adjuncts, :reject_if => :all_blank, :allow_destroy => true
+  accepts_nested_attributes_for :other_adjuncts, :reject_if => :all_blank, :allow_destroy => true
 
   validates :user_id, presence: true
 

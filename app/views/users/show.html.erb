@@ -55,31 +55,200 @@
       <h3><%= @user.name %>'s Recipes (<%= @user.recipes.count %>)</h3>
     <% end %>
     <% if @user.recipes.count != 0 %>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Recipe Code</th>
-          <th>Created at</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @recipes.each do |recipe| %>
-          <tr>
-            
-            <td><%= link_to recipe.recipe_code, recipe %></td>
+   
+
+      <% @ww_std_recipes = @recipes.select { |recipe| recipe.brewing_method == 'WW Standard Kits'} %> 
+      <% @ww_adv_recipes = @recipes.select { |recipe| recipe.brewing_method == 'WW Advanced'} %> 
+      <% @extract_recipes = @recipes.select { |recipe| recipe.brewing_method == 'Extract'} %> 
+      <% @extract_steep_recipes = @recipes.select { |recipe| recipe.brewing_method == 'Extract + Steeping'} %> 
+      <% @partial_mash_recipes = @recipes.select { |recipe| recipe.brewing_method == 'Partial Mash'} %>
+      <% @all_grain_recipes = @recipes.select { |recipe| recipe.brewing_method == 'All Grain'} %> 
+    
+      <% if @ww_std_recipes.count != 0 %>
+        <h4>WiliamsWarn Standard Kits</h4>
+                  
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Recipe Name</th>
+              <th>Beer Style</th>
+              <th>Created at</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+        <% @ww_std_recipes.each do |recipe| %>    
+  
+          <tbody>      
+            <td><%= link_to recipe.recipe_name, recipe %></td>
+            <td><%= recipe.beer_style %></td>
             <td><%= recipe.created_at %></td>
-              <% if current_user?(recipe.user) %>
+            <% if current_user?(recipe.user) %>
                 <td>
                   <%= link_to 'Edit', edit_recipe_path(recipe), :class => 'btn btn-mini' %>
                   <%= link_to 'Delete', recipe, method: :delete, confirm: 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
                 </td>
-              <% end %>
-          </tr>
+            <% end %>
+          </tbody>
         <% end %>
-      </tbody>
-    </table>
+        </table> 
+      <% end %>   
+
+      <% if @ww_adv_recipes.count != 0 %>
+        <h4>WiliamsWarn Advanced</h4>
+                  
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Recipe Name</th>
+              <th>Beer Style</th>
+              <th>Created at</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+        <% @ww_adv_recipes.each do |recipe| %>    
+  
+          <tbody>      
+            <td><%= link_to recipe.recipe_name, recipe %></td>
+            <td><%= recipe.beer_style %></td>
+            <td><%= recipe.created_at %></td>
+            <% if current_user?(recipe.user) %>
+                <td>
+                  <%= link_to 'Edit', edit_recipe_path(recipe), :class => 'btn btn-mini' %>
+                  <%= link_to 'Delete', recipe, method: :delete, confirm: 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+                </td>
+            <% end %>
+          </tbody>
+        <% end %>
+        </table> 
+      <% end %>   
+
+      <% if @extract_recipes.count != 0 %>
+        <h4>Extract</h4>
+                  
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Recipe Name</th>
+              <th>Beer Style</th>
+              <th>Created at</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+        <% @extract_recipes.each do |recipe| %>    
+  
+          <tbody>      
+            <td><%= link_to recipe.recipe_name, recipe %></td>
+            <td><%= recipe.beer_style %></td>
+            <td><%= recipe.created_at %></td>
+            <% if current_user?(recipe.user) %>
+                <td>
+                  <%= link_to 'Edit', edit_recipe_path(recipe), :class => 'btn btn-mini' %>
+                  <%= link_to 'Delete', recipe, method: :delete, confirm: 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+                </td>
+            <% end %>
+          </tbody>
+        <% end %>
+        </table> 
+      <% end %>   
+
+      <% if @extract_steep_recipes.count != 0 %>
+        <h4>Extract + Steeping</h4>
+                  
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Recipe Name</th>
+              <th>Beer Style</th>
+              <th>Created at</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+        <% @extract_steep_recipes.each do |recipe| %>    
+  
+          <tbody>      
+            <td><%= link_to recipe.recipe_name, recipe %></td>
+            <td><%= recipe.beer_style %></td>
+            <td><%= recipe.created_at %></td>
+            <% if current_user?(recipe.user) %>
+                <td>
+                  <%= link_to 'Edit', edit_recipe_path(recipe), :class => 'btn btn-mini' %>
+                  <%= link_to 'Delete', recipe, method: :delete, confirm: 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+                </td>
+            <% end %>
+          </tbody>
+        <% end %>
+        </table> 
+      <% end %>        
+
+
+      <% if @partial_mash_recipes.count != 0 %>
+        <h4>Partial Mash</h4>
+                  
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Recipe Name</th>
+              <th>Beer Style</th>
+              <th>Created at</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+        <% @partial_mash_recipes.each do |recipe| %>    
+  
+          <tbody>      
+            <td><%= link_to recipe.recipe_name, recipe %></td>
+            <td><%= recipe.beer_style %></td>
+            <td><%= recipe.created_at %></td>
+            <% if current_user?(recipe.user) %>
+                <td>
+                  <%= link_to 'Edit', edit_recipe_path(recipe), :class => 'btn btn-mini' %>
+                  <%= link_to 'Delete', recipe, method: :delete, confirm: 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+                </td>
+            <% end %>
+          </tbody>
+        <% end %>
+        </table> 
+      <% end %>    
+
+      <% if @all_grain_recipes.count != 0 %>
+        <h4>All Grain</h4>
+                  
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Recipe Name</th>
+              <th>Beer Style</th>
+              <th>Created at</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+        <% @all_grain_recipes.each do |recipe| %>    
+  
+          <tbody>      
+            <td><%= link_to recipe.recipe_name, recipe %></td>
+            <td><%= recipe.beer_style %></td>
+            <td><%= recipe.created_at %></td>
+            <% if current_user?(recipe.user) %>
+                <td>
+                  <%= link_to 'Edit', edit_recipe_path(recipe), :class => 'btn btn-mini' %>
+                  <%= link_to 'Delete', recipe, method: :delete, confirm: 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+                </td>
+            <% end %>
+          </tbody>
+        <% end %>
+        </table> 
+      <% end %>    
+
+
     <% end %>
+   
+
     <% if current_user?(@user) %>
       <%= link_to 'Create New Recipe', new_recipe_path, :class => 'btn btn-primary' %>
     <% end %>
