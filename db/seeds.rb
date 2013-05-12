@@ -19,7 +19,7 @@ puts "Importing BJCP Categories..."
 CSV.foreach(Rails.root.join("categories.csv"), headers: false) do |row|
   BjcpCategory.create! do |categories|
     categories.category = row[0] 
-    categories.bjcp_category = row[1] 
+    categories.bjcp_category_id = row[1] 
   end
 end
 
@@ -27,6 +27,6 @@ puts "Importing BJCP Beers..."
 CSV.foreach(Rails.root.join("bjcp_beers.csv"), headers: false) do |row|
   BeerStyle.create! do |style|
     style.beer_style = row[0] 
-    style.bjcp_category = row[1]
+    style.bjcp_category_id = row[1]
   end
 end

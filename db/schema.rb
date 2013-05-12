@@ -22,17 +22,25 @@ ActiveRecord::Schema.define(:version => 20130511115556) do
   end
 
   create_table "beer_styles", :force => true do |t|
-    t.string  "beer_style"
-    t.integer "bjcp_category_id", :limit => 255
+    t.string   "beer_style"
+    t.integer  "bjcp_category_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "bjcp_categories", :force => true do |t|
-    t.string  "category"
-    t.integer "bjcp_category_id", :limit => 255
+    t.string   "category"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "bjcp_category_id"
   end
 
+  add_index "bjcp_categories", ["bjcp_category_id"], :name => "index_bjcp_categories_on_bjcp_category_id", :unique => true
+
   create_table "brewing_methods", :force => true do |t|
-    t.string "brewing_method"
+    t.string   "brewing_method"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "brews", :force => true do |t|
@@ -165,7 +173,9 @@ ActiveRecord::Schema.define(:version => 20130511115556) do
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
   create_table "ww_beer_kits", :force => true do |t|
-    t.string "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "name"
   end
 
   create_table "ww_extracts", :force => true do |t|
