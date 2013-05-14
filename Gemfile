@@ -1,24 +1,24 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
-gem 'bootstrap-sass', '2.1'
+gem 'bootstrap-sass'
 gem 'bcrypt-ruby', '3.0.1'
-gem 'faker', '1.0.1'
-gem 'will_paginate', '3.0.3'
-gem 'bootstrap-will_paginate', '0.0.6'
+gem 'faker'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 gem 'simple_form'
 gem 'cocoon'
 gem 'nested_form'
 gem 'ransack'
 gem 'sprockets'
-
+gem 'jquery-rails'
 
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 group :development, :test do
-  gem 'sqlite3', '1.3.5'
+  gem 'pg', '0.12.2'
   gem 'rspec-rails', '2.11.0'
   gem 'guard-rspec', '1.2.1'
   gem 'guard-spork', '1.2.0'
@@ -38,7 +38,7 @@ group :assets do
   gem 'jquery-ui-rails'
 end
 
-gem 'jquery-rails'
+
 
 group :test do
 	gem 'capybara', '1.1.2'

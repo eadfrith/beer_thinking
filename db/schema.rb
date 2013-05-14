@@ -11,14 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130511115556) do
+ActiveRecord::Schema.define(:version => 20130514094536) do
 
   create_table "adjuncts", :force => true do |t|
     t.string   "adjunct"
-    t.integer  "weight"
+    t.decimal  "weight"
     t.string   "units"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "recipe_id"
   end
 
   create_table "beer_styles", :force => true do |t|
@@ -84,8 +85,8 @@ ActiveRecord::Schema.define(:version => 20130511115556) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.integer  "recipe_id"
-    t.integer  "steep_water"
-    t.integer  "steep_water_temp"
+    t.decimal  "steep_water"
+    t.decimal  "steep_water_temp"
     t.string   "weight_unit"
     t.string   "water_unit"
     t.string   "colour_unit"
@@ -103,24 +104,31 @@ ActiveRecord::Schema.define(:version => 20130511115556) do
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
     t.integer  "recipe_id"
-    t.integer  "steep_water_temp"
-    t.integer  "steep_water_volume"
+    t.decimal  "steep_water_temp"
+    t.decimal  "steep_water_volume"
+    t.string   "amount_unit"
+    t.string   "boil_or_steep_unit"
+    t.string   "liquid_type"
+    t.string   "temp_unit"
+    t.string   "volume_unit"
   end
 
   create_table "other_adjuncts", :force => true do |t|
     t.string   "adjunct"
-    t.integer  "weight"
+    t.decimal  "weight"
     t.string   "units"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "recipe_id"
   end
 
   create_table "other_extracts", :force => true do |t|
     t.string   "extract"
-    t.integer  "weight"
+    t.decimal  "weight"
     t.string   "units"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "recipe_id"
   end
 
   create_table "recipes", :force => true do |t|
@@ -153,9 +161,29 @@ ActiveRecord::Schema.define(:version => 20130511115556) do
     t.string   "other_adjunct_unit"
     t.integer  "other_extract_weight"
     t.string   "other_extract_unit"
+    t.string   "yeast_type"
+    t.decimal  "yeast_starter_size"
+    t.string   "yeast_starter_unit"
+    t.decimal  "yeast_weight"
+    t.string   "yeast_weight_unit"
+    t.decimal  "yeast_packs"
+    t.decimal  "bitterness"
+    t.decimal  "colour"
+    t.string   "colour_unit"
+    t.string   "water_unit"
+    t.string   "recipe_note"
   end
 
   add_index "recipes", ["user_id", "created_at"], :name => "index_recipes_on_user_id_and_created_at"
+
+  create_table "sugars", :force => true do |t|
+    t.string   "sugar"
+    t.decimal  "weight"
+    t.string   "units"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "recipe_id"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -180,10 +208,11 @@ ActiveRecord::Schema.define(:version => 20130511115556) do
 
   create_table "ww_extracts", :force => true do |t|
     t.string   "extract"
-    t.integer  "weight"
+    t.decimal  "weight"
     t.string   "units"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "recipe_id"
   end
 
 end
