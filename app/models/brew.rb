@@ -1,6 +1,7 @@
 class Brew < ActiveRecord::Base
   attr_accessible :alcohol_percentage, :brew_number, :carbonation, :clarifiaction, :clarity, :recipe_id,
-  :other_comments, :start_date_time, :taste, :taste_score, :wort_must_production_notes, :published, :brew_code, :fermentations_attributes
+  :other_comments, :start_date_time, :taste, :taste_score, :wort_must_production_notes, :published, :brew_code,
+  :actual_og, :estimate_fg, :estimate_alcohol, :fermentations_attributes
 
   belongs_to :user, :inverse_of => :brews
   has_many :fermentations, dependent: :destroy

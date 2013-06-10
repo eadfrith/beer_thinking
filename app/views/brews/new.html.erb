@@ -1,5 +1,4 @@
 <%= javascript_include_tag "brew" %>
-<%= javascript_include_tag "brew" %>
 <% provide(:title, 'Record a Brew') %>
 <h1>Record a New Brew</h1>
 <div class="row">
@@ -7,6 +6,7 @@
   	<script>
     var ww_number="<%= current_user.williams_warn_number %>";
     var rec_code = "<%= @recipe.recipe_code %>";
+    var brewer = "<%= current_user.name %>";
   </script>
     <%= render 'brew', f: f %>
   <% end %>

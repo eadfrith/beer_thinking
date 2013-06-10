@@ -10,6 +10,15 @@
 
 <%= search_form_for @search do  |f| %>
   <fieldset>
+
+<div class="span6">
+    <%# f.text_field :brewing_method_cont %>
+
+    <%= f.label :brewing_method_eq, "Brewing Method" %>
+    <%= f.select :brewing_method_eq,  options_from_collection_for_select(BrewingMethod.all, :brewing_method, :brewing_method, @search.brewing_method_eq), include_blank: true %>
+
+  </div>
+    
   <div class="span6">
     <%= f.label :beer_style_eq, "Beer Style" %>
     <%# f.text_field :beer_style_cont %>
@@ -21,13 +30,7 @@
 
     
   </div>
-  <div class="span6">
-    <%# f.text_field :brewing_method_cont %>
-
-    <%= f.label :brewing_method_eq, "Brewing Method" %>
-    <%= f.select :brewing_method_eq,  options_from_collection_for_select(BrewingMethod.all, :brewing_method, :brewing_method, @search.brewing_method_eq), include_blank: true %>
-
-  </div>
+  
   
   <div class="span6">
 

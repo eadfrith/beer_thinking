@@ -5,6 +5,7 @@
   <script>
     var admin_user="<%= current_user.admin %>";
     var ww_number="<%= current_user.williams_warn_number %>";
+    var brewer ="<%= current_user.name %>";
   </script>
 
   <div class="span6">
@@ -41,6 +42,8 @@
     
 
     <%= f.input :original_gravity %>
+    <%= f.input :estimate_fg, label: "Estimated Final Gravity" %>
+    <%= f.input :estimate_alcohol, label: "Estimated % Alcohol by Volume" %>
     <%= f.input :bitterness, label: "Bitterness (IBU)" %>
    
  </div>
@@ -55,7 +58,7 @@
   </div>
  <div class="span4">
     
-    <%= f.input :colour_unit, label: "Units", collection: ["L", "EBC", "SRM"] %>
+    <%= f.input :colour_unit, label: "Units", collection: ["°L", "EBC", "SRM"] %>
    
   </div>
 </fieldset>
@@ -68,7 +71,7 @@
   </div>
  <div class="span4">
     
-    <%= f.input :water_unit, label: "Units", collection: ["L", "US. Gals"] %>
+    <%= f.input :water_unit, label: "Units", collection: ["L", "US Gals.", "UK Gals."] %>
    
   </div>
 </fieldset>
@@ -94,7 +97,7 @@
     <%= e.input :weight, label: "Weight" %>
   </div>
   <div class="span4">  
-    <%= e.input :units, label: "Units", collection: ["g", "kg", "oz"], include_blank: true %>
+    <%= e.input :units, label: "Units", collection: ["g", "kg", "oz", "lbs"], include_blank: true %>
   </div>
  </fieldset> 
  <hr></hr>
@@ -144,7 +147,7 @@
   </div>
 
   <div class="span4">
-    <%= a.input :units, label: "Units", collection: ["g", "kg", "oz"], include_blank: true %>
+    <%= a.input :units, label: "Units", collection: ["g", "kg", "oz", "lbs"], include_blank: true %>
   </div>  
 </fieldset>
   <hr></hr>
@@ -289,7 +292,7 @@
       <%= h.input :steep_water_volume, label: "Liquid Volume" %>
     </div>
     <div class="span4">
-      <%= h.input :volume_unit, label: "Units", collection: ["ml", "L", "fl. oz", "US Gals"] %>
+      <%= h.input :volume_unit, label: "Units", collection: ["ml", "L", "fl. oz", "US Gals.", "UK Gals."] %>
     </div>
      
     
@@ -300,7 +303,7 @@
       <%= h.input :steep_water_temp, label: "Liquid Temperature" %>
     </div>
     <div class="span4">
-      <%= h.input :temp_unit, label: "Units", collection: ["C", "F"]  %>
+      <%= h.input :temp_unit, label: "Units", collection: ["°C", "°F"]  %>
     </div>
  </fieldset>
 
@@ -330,7 +333,7 @@
   </fieldset>
 <fieldset>
    <div class="span5">
-      <%= g.input :amount, label: "Grain Weight" %>
+      <%= g.input :amount, label: "Grain Weight" %>WW53
     </div>
     <div class="span4">
       <%= g.input :weight_unit, label: "Units", collection: [ "g", "kg", "oz", "lbs"] %>
@@ -341,7 +344,7 @@
       <%= g.input :colour %>
     </div>
     <div class="span4">
-      <%= g.input :colour_unit, label: "Units", collection: [ "L", "SRM", "EBC"] %>
+      <%= g.input :colour_unit, label: "Units", collection: [ "°L", "SRM", "EBC"] %>
     </div>
  </fieldset>
 
@@ -350,15 +353,15 @@
       <%= g.input :steep_water , label: "Water Volume" %>
     </div>
     <div class="span4">
-      <%= g.input :water_unit, label: "Units" , collection: [ "ml", "L", "fl.oz", "US Gal"] %>
+      <%= g.input :water_unit, label: "Units" , collection: [ "ml", "L", "fl.oz", "US Gal", "UK Gals"] %>
     </div>
   </fieldset>
 <fieldset>
 <div class="span5">
-      <%= g.input :steep_water_temp, label: "Water Temperature" %>
+      <%= g.input :steep_water_temp, label: "Initial Rest Temperature" %>
     </div>
     <div class="span4">
-      <%= g.input :water_temp_unit, label: "Units" , collection: [ "C", "F" ] %>
+      <%= g.input :water_temp_unit, label: "Units" , collection: [ "°C", "°F" ] %>
     </div>
 </fieldset>
 

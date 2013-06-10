@@ -6,6 +6,10 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
+      
+      <section>
+        <%= link_to "Search Published Recipes", recipes_path, :class => 'btn btn-primary' %>
+    </section>
     </section>
   </aside>
   <div class="span9">
@@ -18,7 +22,7 @@
       <table class="table table-striped">
       <thead>
         <tr>
-          <th>Brew Code</th>
+          <th>Brew Name</th>
           <th>Created at</th>
           <th>Based on Recipe</th>
           <th>Actions</th>
@@ -30,8 +34,7 @@
               <% @rec_code = @rec.recipe_code %>
           <tr>
               
-
-            <td><%= link_to brew.brew_code, brew %></td>
+            <td><%= link_to @rec.recipe_name, brew %></td>
             <td><%= brew.created_at %></td>
             <td><%= link_to @rec_code, @rec %></td>
               <% if current_user?(brew.user) %>
@@ -56,6 +59,7 @@
     <% end %>
     <% if @user.recipes.count != 0 %>
    
+<% @all_recipes = @recipes.select { |recipe| recipe.brewing_method != 'FWAF'} %>
 
       <% @ww_std_recipes = @recipes.select { |recipe| recipe.brewing_method == 'WW Standard Kits'} %> 
       <% @ww_adv_recipes = @recipes.select { |recipe| recipe.brewing_method == 'WW Advanced'} %> 
@@ -63,7 +67,9 @@
       <% @extract_steep_recipes = @recipes.select { |recipe| recipe.brewing_method == 'Extract + Steeping'} %> 
       <% @partial_mash_recipes = @recipes.select { |recipe| recipe.brewing_method == 'Partial Mash'} %>
       <% @all_grain_recipes = @recipes.select { |recipe| recipe.brewing_method == 'All Grain'} %> 
-    
+
+      <%= @all_recipes.count %>
+     
       <% if @ww_std_recipes.count != 0 %>
         <h4>WiliamsWarn Standard Kits</h4>
                   
