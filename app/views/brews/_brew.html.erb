@@ -2,7 +2,7 @@
  
   <% @recipe.update_attributes(times_brewed: @recipe.times_brewed+=1) %>
 
-
+ 
   
       <div class="form-horizontal">
       <fieldset>
@@ -151,7 +151,7 @@
       <% end %>
 
 <%= f.link_to_add "Add New Fermentation Data", :fermentations,:class => 'btn btn-med btn-primary' %> 
-     
+     <br></br>
 
 <fieldset>
 <legend>Clarification</legend>
@@ -197,7 +197,18 @@
             <%= f.input :other_comments , :input_html => { :rows => 2 } %>
           </div>
 </fieldset>
-     
+
+ <fieldset>
+          <legend>Choose Picture to Upload</legend>
+        </fieldset>
+    <div class="span4">
+      <%= f.file_field :image %>
+    </div>
+
+  
+<%= f.submit "Upload Image" ,:class => 'btn btn-med btn-primary'  %>
+<br></br>
+<br></br>
     <fieldset>
     
     <div>

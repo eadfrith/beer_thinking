@@ -1,10 +1,9 @@
 <% provide(:title, @recipe.recipe_code) %>
-
+<h3><%= @recipe.recipe_name %> created by <%= @recipe.user.name %> on <%= current_user.williams_warn_number %></h3>
 
 <table class="table table-striped">
   
-  <caption><%= @recipe.recipe_name %> created by <%= @recipe.user.name %> on <%= current_user.williams_warn_number %></caption>
-    <thead>
+     <thead>
       <tr>
         <th></th>
         <th></th>
@@ -36,9 +35,19 @@
         <td><%= @recipe.original_gravity %></td>
       </tr>
       <tr>
+        <td>Estimated Final Gravity</td>
+        <td><%= @recipe.estimate_fg %></td>
+      </tr>
+      <tr>
+        <td>Estimated % Alcohol by Volume</td>
+        <td><%= @recipe.estimate_alcohol %></td>
+      </tr>
+      <% if @recipe.bitterness != nil %>
+      <tr>
         <td>Bitterness</td>
         <td><%= @recipe.bitterness.to_s() + " IBU" %></td>
       </tr>
+      <% end %>
       <% if @recipe.colour != nil %>
       <tr>
         <td>Colour</td>

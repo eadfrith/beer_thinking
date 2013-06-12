@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130610115347) do
+ActiveRecord::Schema.define(:version => 20130612100303) do
 
   create_table "adjuncts", :force => true do |t|
     t.string   "adjunct"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20130610115347) do
     t.string   "estimate_fg"
     t.decimal  "estimate_alcohol"
     t.string   "actual_og"
+    t.string   "image"
   end
 
   add_index "brews", ["user_id", "created_at"], :name => "index_brews_on_user_id_and_created_at", :unique => true

@@ -1,8 +1,17 @@
-<%= javascript_include_tag "brew_chart" %>
+<%# javascript_include_tag "brew_chart" %>
+<h3><%= @recipe.recipe_name %> brewed by <%= @brew.user.name %></h3>
+
+<div id="brew_image">
+ 
+      <%= image_tag @brew.image_url(:thumb).to_s %>
+      
+</div>
+
+
 
 <table class="table table-striped">
   
-  <caption><%= @recipe.recipe_name %> brewed by <%= @brew.user.name %></caption>
+ 
     <thead>
       <tr>
         <th></th>
@@ -25,10 +34,6 @@
       <tr>
         <td>Beer Style</td>
         <td><%= @recipe.beer_style %></td>
-      </tr>
-      <tr>
-        <td>Original Gravity</td>
-        <td><%= @recipe.original_gravity %></td>
       </tr>
       <tr>
         <td>Brewing Method</td>
@@ -73,10 +78,7 @@
           <td><%= g.name + ", Colour " + g.colour.to_s() + ", Amount " + g.amount.to_s() + ", Steep for " + g.steep_time %></td>
         </tr>
       <% end %>
-<tr>
-        <td>Published</td>
-        <td><%= @recipe.published %></td>
-      </tr>
+
 
       <% @brew.fermentations.each do |ferm| %>
 
@@ -88,41 +90,18 @@
             <%= "SG: " + ferm.specific_gravity + ", Temperature: " + ferm.temperature.to_s() + ", Pressure: " + ferm.pressure.to_s() + ", Notes: " + ferm.notes%></td>
         </tr>
       <% end %>
-
-    </tbody>
-  </table>
-
-<fieldset>
-<legend>Fermentation chart</legend>
-</fieldset>
-
-<% return_keys = [ :day, :specific_gravity, :temperature ] %>
-
-<% return_array = @brew.fermentations.collect do |fermentation| %>
-  <% Hash[ return_keys.collect do |key| %>
-  <% if key == :specific_gravity %>
-    <% fermentation[key] = fermentation[key].tr(".", "") %>
-    <% fermentation[key][0] = '' %>
-    <% fermentation[key] = fermentation[key].to_i(base=10) %>
-    <% end %>
-   <% [ key, fermentation[key] ]  end  ] %>
-<% end %>
-
-
-
-
-<%= content_tag :div, "", id: "brew_chart", data: {fermentations: return_array} %>
-
-
-
-<table class="table table-striped">
-    <thead>
-      <tr>
-        <th></th>
-        <th></th>
+   <tr>
+        <td>Actual Original Gravity</td>
+        <td><%= @brew.actual_og %></td>
       </tr>
-    </thead>
-    <tbody>
+      <tr>
+        <td>Actual Final Gravity</td>
+        <td><%= @brew.estimate_fg %></td>
+      </tr>
+      <tr>
+        <td>Alcohol Percentage</td>
+        <td><%= @brew.alcohol_percentage %></td>
+      </tr>
       <tr>
         <td>Clarification</td>
         <td><%= @brew.clarifiaction %></td>
@@ -144,12 +123,53 @@
         <td>Carbonation</td>
         <td><%= @brew.carbonation %></td>
       </tr>
-        <td>Alcohol Percentage</td>
-        <td><%= @brew.alcohol_percentage %></td>
+      <tr>
+        <td>Published</td>
+        <td><%= @recipe.published %></td>
       </tr>
-
     </tbody>
   </table>
+
+<fieldset>
+<legend>Fermentation chart</legend>
+</fieldset>
+
+<div id="fermentation_chart" style="width: 560px; height: 300px;"></div>
+
+
+<% temp_array = Array.new() %>
+<% pressure_array = Array.new() %>
+<% sg_array = Array.new() %>
+
+<% @brew.fermentations.each {|x| %>
+    <% temp_array += [x[:temperature]]    %>
+    <% pressure_array += [x[:pressure]]    %>
+    <% sg_array += [(x[:specific_gravity].to_f * 1000).to_i]    %>
+<% } %>
+
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+  new Highcharts.Chart({
+    chart: { renderTo: 'fermentation_chart' },
+    title: { text: 'Fermentation Data by Day' },
+    xAxis: { title: { text: 'Day'},
+      categories: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+         max: 12
+         
+     },
+      yAxis: [{ title: { text: 'Specific Gravity'},opposite: true },
+              { title: { text: 'Pressure',}, opposite: true },
+              { title: { text: 'Pressure'} }],
+     series: [{ name: "Pressure", yAxis: 1, data: <%= pressure_array %> },
+        { name: "Temperature", yAxis: 2, data: <%= temp_array %> },
+        { name: "Specific Gravity", data: <%= sg_array %> }
+      ]
+  });
+});
+</script>
+
+
 
 
 <fieldset>

@@ -3,6 +3,11 @@
 <h1>Edit a Brew</h1>
 <div class="row">
   <%= simple_nested_form_for @brew do |f| %>
+  <div id="brew_image">
+ 
+      <%= image_tag @brew.image_url(:thumb).to_s %>
+      
+</div>
     <%= render 'brew', f: f %>
   <% end %>
 </div>

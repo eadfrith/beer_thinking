@@ -12,7 +12,9 @@ gem 'nested_form'
 gem 'ransack'
 gem 'sprockets'
 gem 'jquery-rails'
-
+gem 'lazy_high_charts'
+gem 'carrierwave'
+gem 'rmagick'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
