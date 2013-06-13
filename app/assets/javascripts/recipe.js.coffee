@@ -43,6 +43,12 @@ jQuery ->
 		else if brew_method = "WW Advanced"
 			method_code = "ExSt"
 		
+		$('#recipe_generic_category').change ->
+			generic_style_sel = $('#recipe_generic_category :selected').text()
+			rec_code = brewer + "-" + generic_style_sel + "-" + method_code
+			console.log "FWAF " + rec_code
+			$('#recipe_recipe_code').val(rec_code)
+
 		$('#recipe_bjcp_category').show()
 		$('#recipe_bjcp_category').change ->
 			cat_sel = $('#recipe_bjcp_category :selected').text()

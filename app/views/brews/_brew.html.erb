@@ -119,17 +119,27 @@
       <div class="span4">
       <%= h.input :day %>
     </div>
-    
-</fieldset>
-<fieldset>
-<div class="span4">
-      <%= h.input :specific_gravity %>
+    <div class="span4">
+      <%= h.input :specific_gravity, label: "Specific Gravity" %>
     </div>
+
+</fieldset>
+
+
+<fieldset>
     <div class="span4">
       <%= h.input :temperature %>
     </div>
     <div class="span4">
+      <%= h.input :temperature_unit, label: "Units", collection: ["C", "F"] %>
+    </div>
+    </fieldset>
+    <fieldset>
+    <div class="span4">
       <%= h.input :pressure %>
+    </div>
+    <div class="span4">
+      <%= h.input :pressure_unit, label: "Units", collection: ["bar", "psi"] %>
     </div>
     </fieldset>
 <fieldset>

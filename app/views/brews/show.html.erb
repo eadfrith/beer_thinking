@@ -140,16 +140,26 @@
 <% temp_array = Array.new() %>
 <% pressure_array = Array.new() %>
 <% sg_array = Array.new() %>
+<% sg_array_number = Array.new() %>
+<% temp_disp_unit = Array.new() %>
+<% pressure_disp_unit = Array.new() %>
 
 <% @brew.fermentations.each {|x| %>
     <% temp_array += [x[:temperature]]    %>
     <% pressure_array += [x[:pressure]]    %>
-    <% sg_array += [(x[:specific_gravity].to_f * 1000).to_i]    %>
+    <% temp_disp_unit += [x[:temperature_unit]]    %>
+    <% pressure_disp_unit += [x[:pressure_unit]]    %>
+    <% sg_array += [x[:specific_gravity]]    %>
+    <% sg_array_number += [x[:specific_gravity].to_f * 1000]    %>
 <% } %>
 
 
 <script type="text/javascript" charset="utf-8">
   $(function () {
+  
+ 
+
+
   new Highcharts.Chart({
     chart: { renderTo: 'fermentation_chart' },
     title: { text: 'Fermentation Data by Day' },
@@ -158,12 +168,12 @@
          max: 12
          
      },
-      yAxis: [{ title: { text: 'Specific Gravity'},opposite: true },
-              { title: { text: 'Pressure',}, opposite: true },
-              { title: { text: 'Pressure'} }],
+      yAxis: [{ title: { text: 'Specific Gravity'} },
+              { title: { text: 'Temperature (' + 'deg ' + '<%= temp_disp_unit[0] %>' +')'}, opposite: true },
+              { title: { text: 'Pressure (' + '<%= pressure_disp_unit[0] %>' +')'},opposite: true }],
      series: [{ name: "Pressure", yAxis: 1, data: <%= pressure_array %> },
         { name: "Temperature", yAxis: 2, data: <%= temp_array %> },
-        { name: "Specific Gravity", data: <%= sg_array %> }
+        { name: "Specific Gravity", data: <%= sg_array_number %> }
       ]
   });
 });

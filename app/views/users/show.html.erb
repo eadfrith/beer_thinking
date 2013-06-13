@@ -25,7 +25,9 @@
           <th>Brew Name</th>
           <th>Created at</th>
           <th>Based on Recipe</th>
-          <th>Actions</th>
+          <% if current_user?(@user) %>
+            <th>Actions</th>
+          <% end %>
         </tr>
       </thead>
       <tbody>
@@ -59,7 +61,6 @@
     <% end %>
     <% if @user.recipes.count != 0 %>
    
-<% @all_recipes = @recipes.select { |recipe| recipe.brewing_method != 'FWAF'} %>
 
       <% @ww_std_recipes = @recipes.select { |recipe| recipe.brewing_method == 'WW Standard Kits'} %> 
       <% @ww_adv_recipes = @recipes.select { |recipe| recipe.brewing_method == 'WW Advanced'} %> 
@@ -68,8 +69,7 @@
       <% @partial_mash_recipes = @recipes.select { |recipe| recipe.brewing_method == 'Partial Mash'} %>
       <% @all_grain_recipes = @recipes.select { |recipe| recipe.brewing_method == 'All Grain'} %> 
 
-      <%= @all_recipes.count %>
-     
+    
       <% if @ww_std_recipes.count != 0 %>
         <h4>WiliamsWarn Standard Kits</h4>
                   
@@ -79,7 +79,9 @@
               <th>Recipe Name</th>
               <th>Beer Style</th>
               <th>Created at</th>
-              <th>Actions</th>
+              <% if current_user?(@user) %>
+                <th>Actions</th>
+              <% end %>
             </tr>
           </thead>
 
@@ -87,7 +89,11 @@
   
           <tbody>      
             <td><%= link_to recipe.recipe_name, recipe %></td>
-            <td><%= recipe.beer_style %></td>
+            <% if recipe.beer_style != "" %>
+              <td><%= recipe.beer_style %></td>
+            <% else %>
+              <td><%= recipe.generic_category %></td>
+            <% end %>
             <td><%= recipe.created_at %></td>
             <% if current_user?(recipe.user) %>
                 <td>
@@ -109,7 +115,9 @@
               <th>Recipe Name</th>
               <th>Beer Style</th>
               <th>Created at</th>
-              <th>Actions</th>
+              <% if current_user?(@user) %>
+               <th>Actions</th>
+              <% end %>
             </tr>
           </thead>
 
@@ -117,7 +125,11 @@
   
           <tbody>      
             <td><%= link_to recipe.recipe_name, recipe %></td>
-            <td><%= recipe.beer_style %></td>
+            <% if recipe.beer_style != "" %>
+              <td><%= recipe.beer_style %></td>
+            <% else %>
+              <td><%= recipe.generic_category %></td>
+            <% end %>
             <td><%= recipe.created_at %></td>
             <% if current_user?(recipe.user) %>
                 <td>
@@ -139,7 +151,9 @@
               <th>Recipe Name</th>
               <th>Beer Style</th>
               <th>Created at</th>
-              <th>Actions</th>
+              <% if current_user?(@user) %>
+                <th>Actions</th>
+              <% end %>
             </tr>
           </thead>
 
@@ -147,7 +161,11 @@
   
           <tbody>      
             <td><%= link_to recipe.recipe_name, recipe %></td>
-            <td><%= recipe.beer_style %></td>
+            <% if recipe.beer_style != "" %>
+              <td><%= recipe.beer_style %></td>
+            <% else %>
+              <td><%= recipe.generic_category %></td>
+            <% end %>
             <td><%= recipe.created_at %></td>
             <% if current_user?(recipe.user) %>
                 <td>
@@ -169,7 +187,9 @@
               <th>Recipe Name</th>
               <th>Beer Style</th>
               <th>Created at</th>
-              <th>Actions</th>
+              <% if current_user?(@user) %>
+                <th>Actions</th>
+              <% end %>
             </tr>
           </thead>
 
@@ -177,7 +197,11 @@
   
           <tbody>      
             <td><%= link_to recipe.recipe_name, recipe %></td>
-            <td><%= recipe.beer_style %></td>
+            <% if recipe.beer_style != "" %>
+              <td><%= recipe.beer_style %></td>
+            <% else %>
+              <td><%= recipe.generic_category %></td>
+            <% end %>
             <td><%= recipe.created_at %></td>
             <% if current_user?(recipe.user) %>
                 <td>
@@ -200,7 +224,9 @@
               <th>Recipe Name</th>
               <th>Beer Style</th>
               <th>Created at</th>
-              <th>Actions</th>
+              <% if current_user?(@user) %>
+                <th>Actions</th>
+              <% end %>
             </tr>
           </thead>
 
@@ -208,7 +234,11 @@
   
           <tbody>      
             <td><%= link_to recipe.recipe_name, recipe %></td>
-            <td><%= recipe.beer_style %></td>
+            <% if recipe.beer_style != "" %>
+              <td><%= recipe.beer_style %></td>
+            <% else %>
+              <td><%= recipe.generic_category %></td>
+            <% end %>
             <td><%= recipe.created_at %></td>
             <% if current_user?(recipe.user) %>
                 <td>
@@ -230,7 +260,9 @@
               <th>Recipe Name</th>
               <th>Beer Style</th>
               <th>Created at</th>
-              <th>Actions</th>
+              <% if current_user?(@user) %>
+                <th>Actions</th>
+              <% end %>
             </tr>
           </thead>
 
@@ -238,7 +270,11 @@
   
           <tbody>      
             <td><%= link_to recipe.recipe_name, recipe %></td>
-            <td><%= recipe.beer_style %></td>
+            <% if recipe.beer_style != "" %>
+              <td><%= recipe.beer_style %></td>
+            <% else %>
+              <td><%= recipe.generic_category %></td>
+            <% end %>
             <td><%= recipe.created_at %></td>
             <% if current_user?(recipe.user) %>
                 <td>

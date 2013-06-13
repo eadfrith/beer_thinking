@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130612100303) do
+ActiveRecord::Schema.define(:version => 20130613105334) do
 
   create_table "adjuncts", :force => true do |t|
     t.string   "adjunct"
@@ -79,6 +79,8 @@ ActiveRecord::Schema.define(:version => 20130612100303) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.integer  "brew_id"
+    t.string   "pressure_unit"
+    t.string   "temperature_unit"
   end
 
   create_table "grains", :force => true do |t|
@@ -178,6 +180,7 @@ ActiveRecord::Schema.define(:version => 20130612100303) do
     t.string   "recipe_note"
     t.decimal  "estimate_alcohol"
     t.string   "estimate_fg"
+    t.string   "generic_category"
   end
 
   add_index "recipes", ["user_id", "created_at"], :name => "index_recipes_on_user_id_and_created_at"

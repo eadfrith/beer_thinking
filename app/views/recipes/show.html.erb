@@ -28,7 +28,11 @@
       </tr>
       <tr>
         <td>Beer Style</td>
-        <td><%= @recipe.beer_style %></td>
+            <% if @recipe.beer_style != "" %>
+              <td><%= @recipe.beer_style %></td>
+            <% else %>
+              <td><%= @recipe.generic_category %></td>
+            <% end %>
       </tr>
       <tr>
         <td>Original Gravity</td>

@@ -42,7 +42,7 @@ def show
    @brew = Brew.find(params[:id])
    #@recipe = Recipe.find(params[:id])
     @recipe = Recipe.find(@brew.recipe_id)
-   redirect_to brews_path if !@brew.published? && @brew.user.name != current_user.name
+   redirect_to brews_path if @brew.published? 
   end
 
 def index

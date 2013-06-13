@@ -5,7 +5,8 @@ class Recipe < ActiveRecord::Base
     :extract_unit, :adjunct_weight, :adjunct_unit, :other_adjunt_weight, :other_adjunct_unit,
     :bitterness, :colour, :colour_unit, :water_unit, :recipe_note,
     :other_extract_weight, :other_extract_unit, :method, :weight_unit, :colour_unit, :water_unit, :water_temp_unit,
-    :steep_time_unit, :yeast_type, :yeast_starter_size, :yeast_starter_unit, :yeast_weight, :yeast_weight_unit, :estimate_fg, :estimate_alcohol,
+    :steep_time_unit, :yeast_type, :yeast_starter_size, :yeast_starter_unit, :yeast_weight, :yeast_weight_unit, 
+    :estimate_fg, :estimate_alcohol, :generic_category,
     :yeast_packs, :hops_attributes, :grains_attributes, :brews_attributes, :ww_extracts_attributes,
     :other_extracts_attributes, :adjuncts_attributes, :other_adjuncts_attributes, :sugars_attributes
 
@@ -34,6 +35,7 @@ class Recipe < ActiveRecord::Base
 
   VALID_GRAVITY_REGEX = /\A[1-9](.)[0-9][0-9][0-9]\z/
   validates :original_gravity, format: { with: VALID_GRAVITY_REGEX }
+  validates :estimate_fg, format: { with: VALID_GRAVITY_REGEX }
   
   validates :recipe_code, presence: true
 

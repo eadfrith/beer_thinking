@@ -4,6 +4,8 @@ class Brew < ActiveRecord::Base
   :actual_og, :estimate_fg, :estimate_alcohol, :image, :fermentations_attributes
 
   belongs_to :user, :inverse_of => :brews
+
+
   has_many :fermentations, dependent: :destroy
 
   mount_uploader :image, ImageUploader
@@ -12,7 +14,11 @@ class Brew < ActiveRecord::Base
 
   accepts_nested_attributes_for :fermentations, :reject_if => :all_blank, :allow_destroy => true
 
+  
+
   default_scope order: 'brews.created_at DESC'
+
+
 
 def times_brewed(code)
 iter = Brew.count(:brew_number, :conditions => ['brew_code LIKE ?', code+"%"]) 

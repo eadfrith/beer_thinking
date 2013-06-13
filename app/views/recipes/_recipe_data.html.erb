@@ -22,19 +22,21 @@
      <%= f.input :brewing_method, collection: ["Extract", "Extract + Steeping", "Partial Mash", "All Grain"]%>
      <% end %>
 
-  
+   <%= f.input :generic_category, collection: ["Lager / Pilsner", "Ale / Port / Stout", "Wheat / Rye", "Other Beer", "Cider / Perry / Mead / Wine"]%>
     <%# f.input :brewing_method, collection: BrewingMethod.order(:id), label_method: :brewing_method, value_method: :brewing_method, include_blank: true %>
 
 
  <%= f.input :bjcp_category, label: "BJCP Category", collection: BjcpCategory.order(:bjcp_category_id), label_method: :category, value_method: :category, include_blank: true %>
   
   
-   <%= f.input(:beer_style, label: "Beer Style", collection: BjcpCategory.order(:bjcp_category_id),
+   <%= f.input(:beer_style, label: "BJCP Style", collection: BjcpCategory.order(:bjcp_category_id),
       as: :grouped_select,
       group_method: :beer_styles,
       group_label_method: :category,
       label_method: :beer_style, value_method: :beer_style,
       include_blank: true) %>
+
+
 
 <%= f.hidden_field :recipe_code %>
 
