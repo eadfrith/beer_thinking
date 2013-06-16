@@ -3,6 +3,11 @@
 <h1>Edit a Brew</h1>
 <div class="row">
   <%= simple_nested_form_for @brew do |f| %>
+    	<script>
+    var ww_number="<%= current_user.williams_warn_number %>";
+    var rec_code = "<%= @recipe.recipe_code %>";
+    var brewer = "<%= current_user.name %>";
+  </script>
   <div id="brew_image">
  
       <%= image_tag @brew.image_url(:thumb).to_s %>
