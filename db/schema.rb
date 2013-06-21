@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130613105334) do
+ActiveRecord::Schema.define(:version => 20130621064420) do
 
   create_table "adjuncts", :force => true do |t|
     t.string   "adjunct"
@@ -71,10 +71,10 @@ ActiveRecord::Schema.define(:version => 20130613105334) do
 
   create_table "fermentations", :force => true do |t|
     t.datetime "date_time"
-    t.integer  "day"
+    t.decimal  "day"
     t.string   "specific_gravity"
-    t.integer  "temperature"
-    t.integer  "pressure"
+    t.decimal  "temperature"
+    t.decimal  "pressure"
     t.text     "notes"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false

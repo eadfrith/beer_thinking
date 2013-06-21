@@ -6,7 +6,7 @@ class Brew < ActiveRecord::Base
   belongs_to :user, :inverse_of => :brews
 
 
-  has_many :fermentations, dependent: :destroy
+  has_many :fermentations, dependent: :destroy, order: "day ASC"
 
   mount_uploader :image, ImageUploader
 

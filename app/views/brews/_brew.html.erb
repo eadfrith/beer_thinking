@@ -212,9 +212,9 @@
 </fieldset>
       <%= f.simple_fields_for :fermentations do |h| %>
  <fieldset>
-<legend><%= f.submit "Save Data" ,:class => 'btn btn-med btn-success'%> 
-     <%= h.link_to_remove "Delete Data", :class => 'btn btn-med btn-danger' %>
-     </legend>
+<%#LEGEND TAG HERE f.submit "Save Data" ,:class => 'btn btn-med btn-success'%> 
+     <%# h.link_to_remove "X", :class => 'btn btn-med btn-danger' %>
+  
 </fieldset>
      <fieldset>
 
@@ -225,6 +225,10 @@
     <div class="span4">
       <%= h.input :specific_gravity, label: "Specific Gravity" %>
     </div>
+  <div class="span4">
+      <%= h.link_to_remove "Delete Day", :class => 'btn btn-med btn-danger' %>
+    </div>
+
 
 </fieldset>
 
@@ -254,7 +258,7 @@
     </div>
     
 </fieldset>
-
+<hr></hr>
     
     
 
@@ -325,7 +329,7 @@
     <fieldset>
     
     <div>
-<%= f.submit "Publish Finished Brew" ,:class => 'btn btn-large btn-success'  %>
+<%= f.submit "Save Brew" ,:class => 'btn btn-large btn-success'  %>
 </div>
      </fieldset>
       </div>

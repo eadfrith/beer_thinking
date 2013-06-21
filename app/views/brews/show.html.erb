@@ -178,7 +178,8 @@
           <td>
 
 
-            <%= "SG: " + ferm.specific_gravity + ", Temperature: " + ferm.temperature.to_s() + ", Pressure: " + ferm.pressure.to_s() + ", Notes: " + ferm.notes%></td>
+            <%= "SG: " + ferm.specific_gravity + ", Temperature: " + ferm.temperature.to_s() + " °" + ferm.temperature_unit +
+            ", Pressure: " + ferm.pressure.to_s() + " " + ferm.pressure_unit + ", Notes: " + ferm.notes%></td>
         </tr>
       <% end %>
    <tr>
@@ -234,17 +235,19 @@
 <% sg_array_number = Array.new() %>
 <% temp_disp_unit = Array.new() %>
 <% pressure_disp_unit = Array.new() %>
+<% day_array = Array.new() %>
 
 <% @brew.fermentations.each {|x| %>
-    <% temp_array += [x[:temperature]]    %>
-    <% pressure_array += [x[:pressure]]    %>
+    <% day_array += [x[:day].to_f()]    %>
+    <% temp_array += [x[:temperature].to_f()]    %>
+    <% pressure_array += [x[:pressure].to_f()]    %>
     <% temp_disp_unit += [x[:temperature_unit]]    %>
     <% pressure_disp_unit += [x[:pressure_unit]]    %>
     <% sg_array += [x[:specific_gravity]]    %>
     <% sg_array_number += [x[:specific_gravity].to_f * 1000]    %>
 <% } %>
 
-
+ 
 <script type="text/javascript" charset="utf-8">
   $(function () {
   
@@ -255,15 +258,16 @@
     chart: { renderTo: 'fermentation_chart' },
     title: { text: 'Fermentation Data by Day' },
     xAxis: { title: { text: 'Day'},
-      categories: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
+      categories: <%= day_array.to_json %>,
          max: 12
          
      },
       yAxis: [{ title: { text: 'Specific Gravity'} },
-              { title: { text: 'Temperature (' + 'deg ' + '<%= temp_disp_unit[0] %>' +')'}, opposite: true },
-              { title: { text: 'Pressure (' + '<%= pressure_disp_unit[0] %>' +')'},opposite: true }],
-     series: [{ name: "Pressure", yAxis: 1, data: <%= pressure_array %> },
-        { name: "Temperature", yAxis: 2, data: <%= temp_array %> },
+              
+              { title: { text: 'Pressure (' + '<%= pressure_disp_unit[0] %>' +')'},opposite: true },
+              { title: { text: 'Temperature (' + 'deg ' + '<%= temp_disp_unit[0] %>' +')'}, opposite: true },],
+     series: [{ name: "Pressure", yAxis: 1, data: <%= pressure_array.to_json %> },
+        { name: "Temperature", yAxis: 2, data: <%= temp_array.to_json %> },
         { name: "Specific Gravity", data: <%= sg_array_number %> }
       ]
   });
