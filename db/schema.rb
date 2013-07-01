@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130621064420) do
+ActiveRecord::Schema.define(:version => 20130630062423) do
 
   create_table "adjuncts", :force => true do |t|
     t.string   "adjunct"
@@ -65,6 +65,12 @@ ActiveRecord::Schema.define(:version => 20130621064420) do
     t.decimal  "estimate_alcohol"
     t.string   "actual_og"
     t.string   "image"
+    t.string   "colour"
+    t.string   "brewing_method"
+    t.string   "overall_beverage_style"
+    t.string   "bjcp_beer_style"
+    t.string   "beer_thinker"
+    t.string   "recipe_name"
   end
 
   add_index "brews", ["user_id", "created_at"], :name => "index_brews_on_user_id_and_created_at", :unique => true
@@ -81,6 +87,12 @@ ActiveRecord::Schema.define(:version => 20130621064420) do
     t.integer  "brew_id"
     t.string   "pressure_unit"
     t.string   "temperature_unit"
+  end
+
+  create_table "generic_categories", :force => true do |t|
+    t.string   "generic_category"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "grains", :force => true do |t|

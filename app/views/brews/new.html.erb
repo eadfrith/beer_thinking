@@ -2,12 +2,17 @@
 <% provide(:title, 'Record a Brew') %>
 <h1>Record a New Brew</h1>
 <div class="row">
-  <%= simple_nested_form_for @brew, :html => {:multipart => true} do |f| %>
+	  <%= simple_nested_form_for @brew, :html => {:multipart => true} do |f| %>
   	<script>
     var ww_number="<%= current_user.williams_warn_number %>";
     var rec_code = "<%= @recipe.recipe_code %>";
     var brewer = "<%= current_user.name %>";
+    var brewing_method = "<%= @recipe.brewing_method %>";
+    var overall_beverage_style = "<%= @recipe.generic_category %>";
+    var bjcp_beer_style = "<%= @recipe.bjcp_category %>";
+    var recipe_name = "<%= @recipe.recipe_name %>";
   </script>
+   <% @recipe.update_attributes(times_brewed: @recipe.times_brewed+=1) %>
     <%= render 'brew', f: f %>
   <% end %>
 </div>

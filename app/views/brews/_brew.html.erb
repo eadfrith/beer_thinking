@@ -1,6 +1,6 @@
  <%= f.input :recipe_id, :as => :hidden, :input_html => { :value => @recipe.id } %>
  
-  <% @recipe.update_attributes(times_brewed: @recipe.times_brewed+=1) %>
+  <%# @recipe.update_attributes(times_brewed: @recipe.times_brewed+=1) %>
 
  
   
@@ -30,6 +30,11 @@
         <h3><%= @recipe.recipe_name %> created by <%= @recipe.user.name %> on <%= current_user.williams_warn_number %></h3
            <div class="span6">
             <%= f.hidden_field :brew_code %>
+            <%= f.hidden_field :brewing_method %>
+            <%= f.hidden_field :overall_beverage_style %>
+            <%= f.hidden_field :bjcp_beer_style %>
+            <%= f.hidden_field :beer_thinker %>
+            <%= f.hidden_field :recipe_name %>
           </div>
 <table class="table table-striped">
   
@@ -50,7 +55,7 @@
         <td><%= @recipe.recipe_code %></td>
       </tr>
       <tr>
-        <td>Iteration</td>
+        <td>Recipe Version for the Category</td>
         <td><%= @recipe.iteration %></td>
       </tr>
       <tr>
@@ -300,6 +305,9 @@
           <div class="span3">
             
             <%= f.input :taste_score %>
+          </div>
+          <div class="span12">      
+            <%= f.input :colour, :input_html => { :rows => 2 }  %>
           </div>
           <div class="span12">
             

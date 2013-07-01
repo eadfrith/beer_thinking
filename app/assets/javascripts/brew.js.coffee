@@ -2,6 +2,14 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
+
+	$('#brew_brewing_method').val(brewing_method)
+	$('#brew_overall_beverage_style').val(overall_beverage_style)
+	$('#brew_bjcp_beer_style').val(bjcp_beer_style)
+	$('#brew_beer_thinker').val(brewer)
+	$('#brew_recipe_name').val(recipe_name)
+	console.log (bjcp_beer_style)
+
 	$('#brew_brew_code').hide()
 	$("#brew_start_date_time").datepicker
 		dateFormat: 'yy-mm-dd'

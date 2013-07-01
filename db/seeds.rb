@@ -30,3 +30,10 @@ CSV.foreach(Rails.root.join("bjcp_beers.csv"), headers: false) do |row|
     style.bjcp_category_id = row[1]
   end
 end
+
+puts "Importing Generic Categories..."
+CSV.foreach(Rails.root.join("generic_categories.csv"), headers: false) do |row|
+  GenericCategory.create! do |cat|
+    cat.generic_category = row[0] 
+  end
+end

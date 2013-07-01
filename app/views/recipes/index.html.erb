@@ -18,9 +18,18 @@
     <%= f.select :brewing_method_eq,  options_from_collection_for_select(BrewingMethod.all, :brewing_method, :brewing_method, @search.brewing_method_eq), include_blank: true %>
 
   </div>
+
+  <div class="span6">
+    <%= f.label :generic_category_eq, "Overall Beverage Style" %>
+   
+    <%= f.select :generic_category_eq, options_from_collection_for_select(GenericCategory.all, :generic_category, :generic_category,
+    @search.generic_category_eq), include_blank: true %>
+
+    
+  </div>
     
   <div class="span6">
-    <%= f.label :beer_style_eq, "Beer Style" %>
+    <%= f.label :beer_style_eq, "BJCP Beer Style" %>
     <%# f.text_field :beer_style_cont %>
     <%= f.select :bjcp_category_eq, options_from_collection_for_select(BjcpCategory.all, :category, :category,
     @search.bjcp_category_eq), include_blank: true %>
@@ -61,7 +70,7 @@
         <tr>
           <th>Recipe Name</th>
           <th>Style</th>
-          <th>Author</th>
+          <th>Brewer</th>
           <th>Number of times brewed</th>
         </tr>
       </thead>

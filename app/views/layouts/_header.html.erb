@@ -8,7 +8,7 @@
       <!--<a class="brand" href="#">Title</a>-->
       <ul class="nav">
          
-          <!--<li><%= link_to "Help", help_path %></li>-->
+          
           <% if signed_in? %>
           <li><%= link_to "Home", current_user %></li>
             <li id="fat-menu" class="dropdown">
@@ -27,7 +27,7 @@
                 Recipes <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to "My Recipes", current_user %></li>
+                <!-- <li><%= link_to "My Recipes", current_user %></li> -->
                 <li><%= link_to "Search Published Recipes", recipes_path %></li>
                 <li><%= link_to "Create New Recipe", new_recipe_path %></li>
                 
@@ -38,17 +38,18 @@
                 Brews <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to "My Brews", current_user %></li>
+                <!-- <li><%= link_to "My Brews", current_user %></li> -->
                 <li><%= link_to "Search Published Brews", brews_path %></li>
                 <li><%= link_to "Record New Brew", recipes_path %></li>
                
               </ul>
             </li>
-            
+            <li><%= link_to "BJCP Styles", "http://www.bjcp.org/stylecenter.php", :target => "_blank" %></li>
             <li class="divider pull-right"></li>
                <li>
                   <%= link_to "Sign out", signout_path, method: "delete" %>
                </li>
+               <li><%= link_to "Help", help_path %></li>
           <% else %>
           <li><%= link_to "Home", root_path %></li>
             <li><%= link_to "Sign in", signin_path %></li>

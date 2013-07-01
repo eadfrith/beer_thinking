@@ -22,9 +22,8 @@
      <%= f.input :brewing_method, collection: ["Extract", "Extract + Steeping", "Partial Mash", "All Grain"]%>
      <% end %>
 
-   <%= f.input :generic_category, collection: ["Lager / Pilsner", "Ale / Port / Stout", "Wheat / Rye", "Other Beer", "Cider / Perry / Mead / Wine"]%>
-    <%# f.input :brewing_method, collection: BrewingMethod.order(:id), label_method: :brewing_method, value_method: :brewing_method, include_blank: true %>
-
+   <%= f.input :generic_category, label: "Overall Beverage Style", collection: GenericCategory.order(:generic_category), label_method: :generic_category, value_method: :generic_category, include_blank: true %>
+    
 
  <%= f.input :bjcp_category, label: "BJCP Category", collection: BjcpCategory.order(:bjcp_category_id), label_method: :category, value_method: :category, include_blank: true %>
   
@@ -206,45 +205,7 @@
 <% end %>
 <p><%= f.link_to_add "Add Other Sugar", :sugars,:class => 'btn btn-med btn-primary' %></p>
  
-<fieldset>
-  <legend>Other Ingredients</legend>
 
-   <div class="span12">
-    <%= f.input :other_ingredient, label: "Ingredient" %>
-  </div>
-</fieldset>
-
-<fieldset>
- <legend>Yeast</legend>
-  <div class="span5">
-    <%= f.input :yeast %>
-  </div>
-  <div class="span5">
-    <%= f.input :yeast_type, collection: ["Dry", "Liquid"] %>
-  </div>
-  
-</fieldset>
-<fieldset>
-  <div class="span5">
-    <%= f.input :yeast_weight, label: "Weight" %>
-  </div>
-  
-  <div class="span5">
-    <%= f.input :yeast_weight_unit, label: "Units", collection: ["g", "oz"] %>
-  </div>
-</fieldset>
-
-<fieldset>
-  <div class="span5">
-    <%= f.input :yeast_packs, label: "No. Packs" %>
-  </div>
-  <div class="span3">
-    <%= f.input :yeast_starter_size, label: "Starter Size" %>
-  </div>
-  <div class="span3">
-    <%= f.input :yeast_starter_unit, label: "Units", collection: ["L", "fl. oz"] %>
-  </div>
-</fieldset>
 
 
    
@@ -335,7 +296,7 @@
   </fieldset>
 <fieldset>
    <div class="span5">
-      <%= g.input :amount, label: "Grain Weight" %>WW53
+      <%= g.input :amount, label: "Grain Weight" %>
     </div>
     <div class="span4">
       <%= g.input :weight_unit, label: "Units", collection: [ "g", "kg", "oz", "lbs"] %>
@@ -383,13 +344,52 @@
 
 <p><%= f.link_to_add "Add a grain", :grains,:class => 'btn btn-med btn-primary' %></p>
  <hr></hr>
+ <fieldset>
+ <legend>Yeast</legend>
+  <div class="span5">
+    <%= f.input :yeast %>
+  </div>
+  <div class="span5">
+    <%= f.input :yeast_type, collection: ["Dry", "Liquid"] %>
+  </div>
+  
+</fieldset>
+<fieldset>
+  <div class="span5">
+    <%= f.input :yeast_weight, label: "Weight" %>
+  </div>
+  
+  <div class="span5">
+    <%= f.input :yeast_weight_unit, label: "Units", collection: ["g", "oz"] %>
+  </div>
+</fieldset>
 
+<fieldset>
+  <div class="span5">
+    <%= f.input :yeast_packs, label: "No. Packs" %>
+  </div>
+  <div class="span3">
+    <%= f.input :yeast_starter_size, label: "Starter Size" %>
+  </div>
+  <div class="span3">
+    <%= f.input :yeast_starter_unit, label: "Units", collection: ["L", "fl. oz"] %>
+  </div>
+</fieldset>
 <fieldset>
   <legend>Recipe Notes</legend>
   <div class="span12">
   <%= f.input :recipe_note, :as => :text,:input_html => { :cols => 200, :rows => 10 } %>
 </div>
 </fieldset>   
+
+<fieldset>
+  <legend>Other Ingredients</legend>
+
+   <div class="span12">
+    <%= f.input :other_ingredient, label: "Ingredient" %>
+  </div>
+</fieldset>
+
 
       
 

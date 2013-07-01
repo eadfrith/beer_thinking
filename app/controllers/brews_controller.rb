@@ -49,6 +49,7 @@ def index
  
     @search = Brew.search(params[:q])
     @brews = @search.result
+    
      
   end
 

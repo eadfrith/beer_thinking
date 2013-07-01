@@ -39,7 +39,8 @@ class Recipe < ActiveRecord::Base
   
   validates :recipe_code, presence: true
 
-  default_scope order: 'recipes.times_brewed DESC'
+  #default_scope order: 'recipes.times_brewed DESC'
+  default_scope order: 'recipes.recipe_name ASC'
 
 
 

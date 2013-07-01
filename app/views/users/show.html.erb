@@ -11,16 +11,17 @@
   </aside>
   <div class="span9">
        <% if current_user?(@user) %>
-    <h3>My Brews (<%= @user.brews.count %>)</h3>
+    <h3>My Brews (<%= @user.brews.count %>)  <%= link_to 'Record New Brew', recipes_path, :class => 'btn btn-primary' %></h3> 
   <% else %>
     <h3><%= @user.name %>'s Brews (<%= @user.brews.count %>)</h3>
   <% end %>
+ 
   <% if @user.brews.count != 0 %>
       <table class="table table-striped">
       <thead>
         <tr>
           <th>Brew Name</th>
-          <th>Created at</th>
+          
           <th>Based on Recipe</th>
           <% if current_user?(@user) %>
             <th>Actions</th>
@@ -34,7 +35,7 @@
           <tr>
               
             <td><%= link_to @rec.recipe_name, brew %></td>
-            <td><%= brew.created_at %></td>
+            
             <td><%= link_to @rec_code, @rec %></td>
               <% if current_user?(brew.user) %>
                 <td>
@@ -47,12 +48,10 @@
       </tbody>
     </table>
     <% end %>
-    <% if current_user?(@user) %>
-      <%= link_to 'Record New Brew', recipes_path, :class => 'btn btn-primary' %>
-    <% end %>
+    
     <% if current_user?(@user) %>
     <hr></hr>
-      <h3>My Recipes (<%= @user.recipes.count %>)</h3>
+      <h3>My Recipes (<%= @user.recipes.count %>)  <%= link_to 'Create New Recipe', new_recipe_path, :class => 'btn btn-primary' %></h3>
     <% else %>
       <h3><%= @user.name %>'s Recipes (<%= @user.recipes.count %>)</h3>
     <% end %>
@@ -75,7 +74,7 @@
             <tr>
               <th>Recipe Name</th>
               <th>Beer Style</th>
-              <th>Created at</th>
+            
               <% if current_user?(@user) %>
                 <th>Actions</th>
               <% end %>
@@ -91,7 +90,7 @@
             <% else %>
               <td><%= recipe.generic_category %></td>
             <% end %>
-            <td><%= recipe.created_at %></td>
+            
             <% if current_user?(recipe.user) %>
                 <td>
                   <%= link_to 'Edit', edit_recipe_path(recipe), :class => 'btn btn-mini' %>
@@ -111,7 +110,7 @@
             <tr>
               <th>Recipe Name</th>
               <th>Beer Style</th>
-              <th>Created at</th>
+              
               <% if current_user?(@user) %>
                <th>Actions</th>
               <% end %>
@@ -127,7 +126,7 @@
             <% else %>
               <td><%= recipe.generic_category %></td>
             <% end %>
-            <td><%= recipe.created_at %></td>
+            
             <% if current_user?(recipe.user) %>
                 <td>
                   <%= link_to 'Edit', edit_recipe_path(recipe), :class => 'btn btn-mini' %>
@@ -147,7 +146,7 @@
             <tr>
               <th>Recipe Name</th>
               <th>Beer Style</th>
-              <th>Created at</th>
+              
               <% if current_user?(@user) %>
                 <th>Actions</th>
               <% end %>
@@ -163,7 +162,7 @@
             <% else %>
               <td><%= recipe.generic_category %></td>
             <% end %>
-            <td><%= recipe.created_at %></td>
+            
             <% if current_user?(recipe.user) %>
                 <td>
                   <%= link_to 'Edit', edit_recipe_path(recipe), :class => 'btn btn-mini' %>
@@ -183,7 +182,7 @@
             <tr>
               <th>Recipe Name</th>
               <th>Beer Style</th>
-              <th>Created at</th>
+              
               <% if current_user?(@user) %>
                 <th>Actions</th>
               <% end %>
@@ -199,7 +198,7 @@
             <% else %>
               <td><%= recipe.generic_category %></td>
             <% end %>
-            <td><%= recipe.created_at %></td>
+            
             <% if current_user?(recipe.user) %>
                 <td>
                   <%= link_to 'Edit', edit_recipe_path(recipe), :class => 'btn btn-mini' %>
@@ -220,7 +219,7 @@
             <tr>
               <th>Recipe Name</th>
               <th>Beer Style</th>
-              <th>Created at</th>
+              
               <% if current_user?(@user) %>
                 <th>Actions</th>
               <% end %>
@@ -236,7 +235,7 @@
             <% else %>
               <td><%= recipe.generic_category %></td>
             <% end %>
-            <td><%= recipe.created_at %></td>
+            
             <% if current_user?(recipe.user) %>
                 <td>
                   <%= link_to 'Edit', edit_recipe_path(recipe), :class => 'btn btn-mini' %>
@@ -256,7 +255,7 @@
             <tr>
               <th>Recipe Name</th>
               <th>Beer Style</th>
-              <th>Created at</th>
+              
               <% if current_user?(@user) %>
                 <th>Actions</th>
               <% end %>
@@ -272,7 +271,7 @@
             <% else %>
               <td><%= recipe.generic_category %></td>
             <% end %>
-            <td><%= recipe.created_at %></td>
+            
             <% if current_user?(recipe.user) %>
                 <td>
                   <%= link_to 'Edit', edit_recipe_path(recipe), :class => 'btn btn-mini' %>
@@ -288,9 +287,6 @@
     <% end %>
    
 
-    <% if current_user?(@user) %>
-      <%= link_to 'Create New Recipe', new_recipe_path, :class => 'btn btn-primary' %>
-    <% end %>
-
+   
   </div>
 </div>
