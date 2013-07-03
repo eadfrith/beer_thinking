@@ -14,6 +14,8 @@
     <%= f.label :brewing_method_eq, "Brewing Method" %>
     <%= f.select :brewing_method_eq,  options_from_collection_for_select(BrewingMethod.all, :brewing_method, :brewing_method, @search.brewing_method_eq), include_blank: true %>
 
+ 
+
   </div>
 
   <div class="span6">
@@ -60,6 +62,7 @@
       <thead>
         <tr>
           <th>Brew Name</th>
+          <th>Brew Number</th>
           <th>Style</th>
           <th>Brewer</th>
           <th>Taste Score</th>
@@ -68,17 +71,18 @@
       </thead>
       <tbody>
         <% @brews.each do |brew| %>
-        <% if (brew.published? || brew.user.name == current_user.name) %>
+        <!-- % if (brew.published? || brew.user.name == current_user.name) %> -->
           <tr>
             
             <td><%= link_to brew.recipe_name, brew %></td>
+            <td><%= brew.brew_number %></td>
             <td><%= brew.bjcp_beer_style %></td>
             <td><%= brew.beer_thinker %></td>
             <td><%= brew.taste_score %></td>
               
                 
           </tr>
-      <% end %>
+      <!-- % end % -->
         <% end %>
       </tbody>
     </table>

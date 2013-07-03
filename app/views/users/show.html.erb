@@ -21,7 +21,7 @@
       <thead>
         <tr>
           <th>Brew Name</th>
-          
+          <th>Brew Number</th>
           <th>Based on Recipe</th>
           <% if current_user?(@user) %>
             <th>Actions</th>
@@ -35,7 +35,7 @@
           <tr>
               
             <td><%= link_to @rec.recipe_name, brew %></td>
-            
+            <td><%= brew.brew_number %></td>
             <td><%= link_to @rec_code, @rec %></td>
               <% if current_user?(brew.user) %>
                 <td>
