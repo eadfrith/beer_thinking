@@ -3,7 +3,6 @@ class Fermentation < ActiveRecord::Base
 
   belongs_to :brew
 
-	VALID_GRAVITY_REGEX = /\A[1-9](.)[0-9][0-9][0-9]\z/
-  	validates :specific_gravity, format: { with: VALID_GRAVITY_REGEX }
+	
 
 end

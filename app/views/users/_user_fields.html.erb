@@ -1,17 +1,17 @@
 <%= object.label :name %>
-<%= object.text_field :name %>
+<%= object.text_field :name  %>
 
 <%= object.label :email %>
 <%= object.text_field :email %>
 
 <%= object.label :williams_warn_number, "Williams Warn Personal Brewery Number" %>
-<%= object.text_field :williams_warn_number %>
+<%= object.text_field :williams_warn_number, placeholder: "eg WW53 NOT WW053 (remove the leading zero)"%>
 
 <%= object.label :password %>
-<%= object.password_field :password %>
+<%= object.password_field :password, placeholder: "Minimum length is 6" %>
 
 <%= object.label :password_confirmation, "Password Confirmation" %>
 <%= object.password_field :password_confirmation %>
 
 <%= object.label :secret_code, "Beer Thinkers Access Code" %>
-<%= object.password_field :secret_code %>
+<%= object.password_field :secret_code, placeholder: "Case Sensitive" %>

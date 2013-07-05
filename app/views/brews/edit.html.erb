@@ -13,6 +13,7 @@
       <%= image_tag @brew.image_url(:thumb).to_s %>
       
 </div>
+<%= render 'shared/error_messages', object: f.object %>
     <%= render 'brew', f: f %>
   <% end %>
 </div>

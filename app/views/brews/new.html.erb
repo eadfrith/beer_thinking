@@ -1,8 +1,10 @@
 <%= javascript_include_tag "brew" %>
 <% provide(:title, 'Record a Brew') %>
 <h1>Record a New Brew</h1>
+
 <div class="row">
 	  <%= simple_nested_form_for @brew, :html => {:multipart => true} do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
   	<script>
     var ww_number="<%= current_user.williams_warn_number %>";
     var rec_code = "<%= @recipe.recipe_code %>";
@@ -13,6 +15,7 @@
     var recipe_name = "<%= @recipe.recipe_name %>";
   </script>
    <% @recipe.update_attributes(times_brewed: @recipe.times_brewed+=1) %>
+
     <%= render 'brew', f: f %>
   <% end %>
 </div>

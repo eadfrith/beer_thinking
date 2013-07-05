@@ -6,12 +6,7 @@ jQuery ->
 	$('#recipe_extract').hide()
 	$('#recipe_adjunct').hide()
 	$('#recipe_other_adjunct').hide()
-	$('#recipe_yeast_weight').hide()
-	$('#recipe_yeast_weight_unit').hide()
-	$('#recipe_yeast_packs').hide()
-	$('#recipe_yeast_starter_size').hide()
-	$('#recipe_yeast_starter_unit').hide()
-
+	
 	$('#recipe_yeast_weight').show()
 	$('#recipe_yeast_weight_unit').show()
 
@@ -19,9 +14,7 @@ jQuery ->
 	yeast_sel = $('#recipe_yeast_type :selected').text()
 
 	
-	if yeast_sel == "Dry" || yeast_sel == "Liquid"
-		$('#recipe_yeast_weight').show()
-		$('#recipe_yeast_weight_unit').show()
+	
 	
 	
 	styles = $('#recipe_beer_style').html()
@@ -114,14 +107,4 @@ jQuery ->
 				alc_result = (og_strip_base_10 - fg_strip_base_10) / 7.46
 				$('#recipe_estimate_alcohol').val(Math.floor(alc_result * 100) / 100)
 
-	$('#recipe_yeast_type').change ->
-		yeast = $('#recipe_yeast_type :selected').text()
-		if yeast == "Dry"
-			$('#recipe_yeast_weight').show()
-			$('#recipe_yeast_weight_unit').show()
-		else if yeast == "Liquid"
-			$('#recipe_yeast_packs').show()
-			$('#recipe_yeast_starter_size').show()
-			$('#recipe_yeast_starter_unit').show()
 	
-
