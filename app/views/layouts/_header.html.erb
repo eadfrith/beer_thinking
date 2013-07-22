@@ -1,8 +1,6 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
-    <div class="container">
-      <%= link_to image_tag("ww.png", alt: "WilliamsWarn", id: "logo"), root_path %>
-    </div>
+   
     <div class="navbar navbar-inverse">
    <div class="navbar-inner">
       <!--<a class="brand" href="#">Title</a>-->
@@ -10,7 +8,7 @@
          
           
           <% if signed_in? %>
-          <li><%= link_to "Home", current_user %></li>
+          <li><%= link_to "My Data", current_user %></li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Settings <b class="caret"></b>
@@ -49,7 +47,7 @@
                <li>
                   <%= link_to "Sign out", signout_path, method: "delete" %>
                </li>
-               <li><%= link_to "Help", help_path %></li>
+               <li><%= link_to "Instructions", help_path %></li>
           <% else %>
           <li><%= link_to "Home", root_path %></li>
             <li><%= link_to "Sign in", signin_path %></li>
