@@ -1,5 +1,5 @@
 <fieldset>
-  <legend>Recipe Information</legend>
+  <legend>Recipe Information - You must select either a Generic Style and / or a BJCP Category / Style</legend>
   <%# render 'shared/error_messages', object: f.object %>
   
   <script>
@@ -22,7 +22,7 @@
      <%= f.input :brewing_method, collection: ["Extract", "Extract + Steeping", "Partial Mash", "All Grain"]%>
      <% end %>
 
-   <%= f.input :generic_category, label: "Overall Beverage Style", collection: GenericCategory.order(:generic_category), label_method: :generic_category, value_method: :generic_category, include_blank: true %>
+   <%= f.input :generic_category, label: "Generic Style", collection: GenericCategory.order(:generic_category), label_method: :generic_category, value_method: :generic_category, include_blank: true %>
     
 
  <%= f.input :bjcp_category, label: "BJCP Category", collection: BjcpCategory.order(:bjcp_category_id), label_method: :category, value_method: :category, include_blank: true %>

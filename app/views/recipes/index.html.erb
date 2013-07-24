@@ -20,7 +20,7 @@
   </div>
 
   <div class="span6">
-    <%= f.label :generic_category_eq, "Overall Beverage Style" %>
+    <%= f.label :generic_category_eq, "Generic Style" %>
    
     <%= f.select :generic_category_eq, options_from_collection_for_select(GenericCategory.all, :generic_category, :generic_category,
     @search.generic_category_eq), include_blank: true %>
@@ -29,7 +29,7 @@
   </div>
     
   <div class="span6">
-    <%= f.label :beer_style_eq, "BJCP Beer Style" %>
+    <%= f.label :beer_style_eq, "BJCP Style" %>
     <%# f.text_field :beer_style_cont %>
     <%= f.select :bjcp_category_eq, options_from_collection_for_select(BjcpCategory.all, :category, :category,
     @search.bjcp_category_eq), include_blank: true %>
@@ -43,7 +43,7 @@
   
   <div class="span6">
 
-    <%= f.label :user_id_eq, "Beer Thinker" %>
+    <%= f.label :user_id_eq, "Brewer" %>
     <%= f.select :user_id_eq,  options_from_collection_for_select(User.all, :id, :name, @search.user_id_eq), include_blank: true %>
 
   </div>

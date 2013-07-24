@@ -37,7 +37,7 @@ class Recipe < ActiveRecord::Base
   validates :original_gravity, format: { with: VALID_GRAVITY_REGEX }
   validates :estimate_fg, format: { with: VALID_GRAVITY_REGEX }
   
-  validates :recipe_code, presence: true
+  #validates :recipe_code, presence: true
 
   #default_scope order: 'recipes.times_brewed DESC'
   default_scope order: 'recipes.recipe_name ASC'

@@ -137,20 +137,13 @@
       <% end %>
 
 
-    <% if @recipe.yeast_type == "Dry" %>
-      <tr>
-        <td>Yeast</td>
-        <td><%= @recipe.yeast + " (" + @recipe.yeast_type + ")" + ", " +
-        @recipe.yeast_weight.to_s() + @recipe.yeast_weight_unit %></td>
-      </tr>
-    <% end %>
-    <% if @recipe.yeast_type == "Liquid" %>
+ 
       <tr>
         <td>Yeast</td>
         <td><%= @recipe.yeast + " (" + @recipe.yeast_type + ")" + ", " + @recipe.yeast_packs.to_s() + " Pack(s), "+
         @recipe.yeast_starter_size.to_s() + @recipe.yeast_starter_unit + " Starter" %>
       </tr>
-    <% end %> 
+ 
       
       <% @recipe.hops.each do |h| %>
         
