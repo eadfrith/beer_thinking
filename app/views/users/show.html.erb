@@ -91,8 +91,8 @@
           <thead>
             <tr>
               <th>Recipe Name</th>
-              <th>Beer Style</th>
-            
+              <th>Generic Style</th>
+              <th>BJCP Style</th>
               <% if current_user?(@user) %>
                 <th>Actions</th>
               <% end %>
@@ -103,11 +103,10 @@
   
           <tbody>      
             <td><%= link_to recipe.recipe_name, recipe %></td>
-            <% if recipe.beer_style != "" %>
-              <td><%= recipe.beer_style %></td>
-            <% else %>
+           
+         
               <td><%= recipe.generic_category %></td>
-            <% end %>
+               <td><%= recipe.beer_style %></td>
             
             <% if current_user?(recipe.user) %>
                 <td>
@@ -127,7 +126,8 @@
           <thead>
             <tr>
               <th>Recipe Name</th>
-              <th>Beer Style</th>
+              <th>Generic Style</th>
+              <th>BJCP Style</th>
               
               <% if current_user?(@user) %>
                <th>Actions</th>
@@ -139,11 +139,11 @@
   
           <tbody>      
             <td><%= link_to recipe.recipe_name, recipe %></td>
-            <% if recipe.beer_style != "" %>
+            <td><%= recipe.generic_category %></td>
               <td><%= recipe.beer_style %></td>
-            <% else %>
-              <td><%= recipe.generic_category %></td>
-            <% end %>
+          
+             
+       
             
             <% if current_user?(recipe.user) %>
                 <td>
@@ -163,7 +163,8 @@
           <thead>
             <tr>
               <th>Recipe Name</th>
-              <th>Beer Style</th>
+              <th>Generic Style</th>
+              <th>BJCP Style</th>
               
               <% if current_user?(@user) %>
                 <th>Actions</th>
@@ -175,11 +176,11 @@
   
           <tbody>      
             <td><%= link_to recipe.recipe_name, recipe %></td>
-            <% if recipe.beer_style != "" %>
+             <td><%= recipe.generic_category %></td>
               <td><%= recipe.beer_style %></td>
-            <% else %>
-              <td><%= recipe.generic_category %></td>
-            <% end %>
+         
+             
+            
             
             <% if current_user?(recipe.user) %>
                 <td>
@@ -199,7 +200,8 @@
           <thead>
             <tr>
               <th>Recipe Name</th>
-              <th>Beer Style</th>
+              <th>Generic Style</th>
+              <th>BJCP Style</th>
               
               <% if current_user?(@user) %>
                 <th>Actions</th>
@@ -211,11 +213,11 @@
   
           <tbody>      
             <td><%= link_to recipe.recipe_name, recipe %></td>
-            <% if recipe.beer_style != "" %>
+           <td><%= recipe.generic_category %></td>
               <td><%= recipe.beer_style %></td>
-            <% else %>
-              <td><%= recipe.generic_category %></td>
-            <% end %>
+            
+              
+           
             
             <% if current_user?(recipe.user) %>
                 <td>
@@ -236,8 +238,8 @@
           <thead>
             <tr>
               <th>Recipe Name</th>
-              <th>Beer Style</th>
-              
+              <th>Generic Style</th>
+               <th>BJCP Style</th>
               <% if current_user?(@user) %>
                 <th>Actions</th>
               <% end %>
@@ -248,11 +250,11 @@
   
           <tbody>      
             <td><%= link_to recipe.recipe_name, recipe %></td>
-            <% if recipe.beer_style != "" %>
+            <td><%= recipe.generic_category %></td>
               <td><%= recipe.beer_style %></td>
-            <% else %>
-              <td><%= recipe.generic_category %></td>
-            <% end %>
+          
+              
+           
             
             <% if current_user?(recipe.user) %>
                 <td>
@@ -272,8 +274,8 @@
           <thead>
             <tr>
               <th>Recipe Name</th>
-              <th>Beer Style</th>
-              
+              <th>Generic Style</th>
+              <th>BJCP Style</th>
               <% if current_user?(@user) %>
                 <th>Actions</th>
               <% end %>
@@ -284,11 +286,11 @@
   
           <tbody>      
             <td><%= link_to recipe.recipe_name, recipe %></td>
-            <% if recipe.beer_style != "" %>
+             <td><%= recipe.generic_category %></td>
               <td><%= recipe.beer_style %></td>
-            <% else %>
-              <td><%= recipe.generic_category %></td>
-            <% end %>
+            
+             
+         
             
             <% if current_user?(recipe.user) %>
                 <td>

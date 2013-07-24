@@ -28,21 +28,33 @@
         <td><%= @recipe.recipe_code %></td>
       </tr>
       <tr>
-        <td>Recipe Version for the Category</td>
+        <td>Recipe Version for the Style</td>
         <td><%= @recipe.iteration %></td>
       </tr>
+       <% if @recipe.bjcp_category != "" %>
       <tr>
         <td>BJCP Category</td>
         <td><%= @recipe.bjcp_category %></td>
       </tr>
+      <% end %>
+      <% if @recipe.beer_style != "" %>
       <tr>
-        <td>Beer Style</td>
-            <% if @recipe.beer_style != "" %>
+        <td>BJCP Style</td>
+            
               <td><%= @recipe.beer_style %></td>
-            <% else %>
-              <td><%= @recipe.generic_category %></td>
-            <% end %>
+           
+           
       </tr>
+      <% end %>
+      <% if @recipe.generic_category != "" %>
+      <tr>
+        <td>Generic Style</td>
+            
+              <td><%= @recipe.generic_category %></td>
+            
+           
+      </tr>
+       <% end %>
       <tr>
         <td>Original Gravity</td>
         <td><%= @recipe.original_gravity %></td>

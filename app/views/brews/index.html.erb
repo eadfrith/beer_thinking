@@ -62,8 +62,9 @@
       <thead>
         <tr>
           <th>Brew Name</th>
-          <th>Brew Number</th>
-          <th>Style</th>
+         
+          <th>Generic Style</th>
+          <th>BJCP Style</th>
           <th>Brewer</th>
           <th>Taste Score</th>
           
@@ -75,7 +76,8 @@
           <tr>
             
             <td><%= link_to brew.recipe_name, brew %></td>
-            <td><%= brew.brew_number %></td>
+            
+            <td><%= brew.overall_beverage_style %></td>
             <td><%= brew.bjcp_beer_style %></td>
             <td><%= brew.beer_thinker %></td>
             <td><%= brew.taste_score %></td>
