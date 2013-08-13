@@ -32,10 +32,13 @@ class Recipe < ActiveRecord::Base
   accepts_nested_attributes_for :sugars, :reject_if => :all_blank, :allow_destroy => true
 
   validates :user_id, presence: true
+validates :recipe_name, presence: true
+validates :brewing_method, presence: true
+validates :generic_category, presence: true
 
-  VALID_GRAVITY_REGEX = /\A[1-9](.)[0-9][0-9][0-9]\z/
-  validates :original_gravity, format: { with: VALID_GRAVITY_REGEX }
-  validates :estimate_fg, format: { with: VALID_GRAVITY_REGEX }
+  #VALID_GRAVITY_REGEX = /\A[1-9](.)[0-9][0-9][0-9]\z/
+  #validates :original_gravity, format: { with: VALID_GRAVITY_REGEX }
+  #validates :estimate_fg, format: { with: VALID_GRAVITY_REGEX }
   
   #validates :recipe_code, presence: true
 

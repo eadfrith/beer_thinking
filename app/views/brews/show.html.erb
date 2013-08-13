@@ -19,19 +19,25 @@
       </tr>
     </thead>
     <tbody>
-       <tr>
+         <tr>
         <td>Recipe Name</td>
         <td><%= @recipe.recipe_name %></td>
       </tr>
-      <tr>
-        <td>Recipe Code</td>
-        <td><%= @recipe.recipe_code %></td>
+     <tr>
+        <td>Brewing Method</td>
+        <td><%= @recipe.brewing_method %></td>
       </tr>
+     
+       <% if @recipe.generic_category != "" %>
       <tr>
-        <td>Recipe Version for the Style</td>
-        <td><%= @recipe.iteration %></td>
+        <td>Generic Style</td>
+            
+              <td><%= @recipe.generic_category %></td>
+            
+           
       </tr>
-       <% if @recipe.bjcp_category != "" %>
+       <% end %>
+      <% if @recipe.bjcp_category != "" %>
       <tr>
         <td>BJCP Category</td>
         <td><%= @recipe.bjcp_category %></td>
@@ -46,15 +52,7 @@
            
       </tr>
       <% end %>
-      <% if @recipe.generic_category != "" %>
-      <tr>
-        <td>Generic Style</td>
-            
-              <td><%= @recipe.generic_category %></td>
-            
-           
-      </tr>
-       <% end %>
+     
       <tr>
         <td>Original Gravity</td>
         <td><%= @recipe.original_gravity %></td>
@@ -85,10 +83,7 @@
         <td><%= @recipe.water.to_s() + " " + @recipe.water_unit %></td>
       </tr>
       <% end %>
-      <tr>
-        <td>Brewing Method</td>
-        <td><%= @recipe.brewing_method %></td>
-      </tr>
+      
       <% @recipe.ww_extracts.each do |e| %>
         
         <tr>
@@ -137,13 +132,15 @@
       <% end %>
 
 
- 
+   
+     
+   
       <tr>
         <td>Yeast</td>
         <td><%= @recipe.yeast + " (" + @recipe.yeast_type + ")" + ", " + @recipe.yeast_packs.to_s() + " Pack(s), "+
         @recipe.yeast_starter_size.to_s() + @recipe.yeast_starter_unit + " Starter" %>
       </tr>
- 
+    
       
       <% @recipe.hops.each do |h| %>
         
@@ -171,10 +168,7 @@
       </tr>
       <% end %>
 
-<tr>
-        <td>Published</td>
-        <td><%= @recipe.published %></td>
-      </tr>
+
 
       <% @brew.fermentations.each do |ferm| %>
 

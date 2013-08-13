@@ -14,14 +14,20 @@
         <td>Recipe Name</td>
         <td><%= @recipe.recipe_name %></td>
       </tr>
-      <tr>
-        <td>Recipe Code</td>
-        <td><%= @recipe.recipe_code %></td>
+     <tr>
+        <td>Brewing Method</td>
+        <td><%= @recipe.brewing_method %></td>
       </tr>
+     
+       <% if @recipe.generic_category != "" %>
       <tr>
-        <td>Recipe Version</td>
-        <td><%= @recipe.iteration %></td>
+        <td>Generic Style</td>
+            
+              <td><%= @recipe.generic_category %></td>
+            
+           
       </tr>
+       <% end %>
       <% if @recipe.bjcp_category != "" %>
       <tr>
         <td>BJCP Category</td>
@@ -37,15 +43,7 @@
            
       </tr>
       <% end %>
-      <% if @recipe.generic_category != "" %>
-      <tr>
-        <td>Generic Style</td>
-            
-              <td><%= @recipe.generic_category %></td>
-            
-           
-      </tr>
-       <% end %>
+     
       <tr>
         <td>Original Gravity</td>
         <td><%= @recipe.original_gravity %></td>
@@ -76,10 +74,7 @@
         <td><%= @recipe.water.to_s() + " " + @recipe.water_unit %></td>
       </tr>
       <% end %>
-      <tr>
-        <td>Brewing Method</td>
-        <td><%= @recipe.brewing_method %></td>
-      </tr>
+      
       <% @recipe.ww_extracts.each do |e| %>
         
         <tr>

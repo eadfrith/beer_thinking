@@ -1,5 +1,5 @@
 <fieldset>
-  <legend>Recipe Information - You must select either a Generic Style and / or a BJCP Category / Style</legend>
+  <legend>Recipe Information</legend>
   <%# render 'shared/error_messages', object: f.object %>
   
   <script>
@@ -22,7 +22,7 @@
      <%= f.input :brewing_method, collection: ["Extract", "Extract + Steeping", "Partial Mash", "All Grain"]%>
      <% end %>
 
-   <%= f.input :generic_category, label: "Generic Style", collection: GenericCategory.order(:generic_category), label_method: :generic_category, value_method: :generic_category, include_blank: true %>
+   <%= f.input :generic_category, label: "Generic Style",  collection: GenericCategory.order(:generic_category), label_method: :generic_category, value_method: :generic_category, include_blank: true,placeholder: "This field is mandatory" %>
     
 
  <%= f.input :bjcp_category, label: "BJCP Category", collection: BjcpCategory.order(:bjcp_category_id), label_method: :category, value_method: :category, include_blank: true %>
@@ -40,9 +40,10 @@
 <%= f.hidden_field :recipe_code %>
 
 
+<legend>Beverage Specifications</legend>
     
 
-    <%= f.input :original_gravity, placeholder: "eg 1.040" %>
+    <%= f.input :original_gravity, label: "Original Gravity", placeholder: "eg 1.040" %>
     <%= f.input :estimate_fg, label: "Estimated Final Gravity", placeholder: "eg 1.010" %>
     <%= f.input :estimate_alcohol, label: "Estimated % Alcohol by Volume" %>
     <%= f.input :bitterness, label: "Bitterness (IBU)" %>

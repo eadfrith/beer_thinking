@@ -40,7 +40,7 @@
         <tr>
           <th>Brew Name</th>
           <th>Brew Number</th>
-          <th>Based on Recipe</th>
+          <th>Date Brewed</th>
           <% if current_user?(@user) %>
             <th>Actions</th>
           <% end %>
@@ -54,7 +54,7 @@
               
             <td><%= link_to @rec.recipe_name, brew %></td>
             <td><%= brew.brew_number %></td>
-            <td><%= link_to @rec_code, @rec %></td>
+            <td><%= brew.start_date_time %></td>
               <% if current_user?(brew.user) %>
                 <td>
                   <%= link_to 'Edit', edit_brew_path(brew), :class => 'btn btn-mini' %>
