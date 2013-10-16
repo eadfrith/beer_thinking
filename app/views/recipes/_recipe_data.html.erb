@@ -44,8 +44,8 @@
     
 
     <%= f.input :original_gravity, label: "Original Gravity", placeholder: "eg 1.040" %>
-    <%= f.input :estimate_fg, label: "Estimated Final Gravity", placeholder: "eg 1.010" %>
-    <%= f.input :estimate_alcohol, label: "Estimated % Alcohol by Volume" %>
+    <%= f.input :estimate_fg, label: "Final Gravity", placeholder: "eg 1.010" %>
+    <%= f.input :estimate_alcohol, label: "% Alcohol by Volume" %>
     <%= f.input :bitterness, label: "Bitterness (IBU)" %>
    
  </div>
@@ -68,7 +68,7 @@
   <fieldset>  
     <div class="span4">
     
-    <%= f.input :water, label: "Brew Volume" %>
+    <%= f.input :water, label: "Final Brew Volume" %>
    
   </div>
  <div class="span4">
@@ -137,7 +137,7 @@
 <%= f.simple_fields_for :adjuncts do |a| %>
 <fieldset>
   <div class="span5">
-    <%= a.input :adjunct, label: "WW Adjunct Type", collection: ["WW DME"], include_blank: true %>
+    <%= a.input :adjunct, label: "WW Adjunct Type", collection: ["Light DME"], include_blank: true %>
   </div>
   <div class="span1">
       <%= a.link_to_remove "X", :class => 'btn btn-med btn-danger' %>   
@@ -216,20 +216,24 @@
 <%= f.simple_fields_for :hops do |h| %>
 
   <fieldset>
-    <div class="span4">
+    <div class="span5">
       <%= h.input :name %>
     </div>
-    <div class="span3">
-      <%= h.input :alpha_acids , label: "Alpha Acids (%)"%>
-    </div>
     <div class="span4">
-      <%= h.input :boil_or_steep, label: "Method", collection: [ "Boil", "Steep", "Dry Hop"] %>
+      <%= h.input :form,label: "Form", collection: [ "Pellet", "Leaf", "Plug"] %>
     </div>
     <div class="span1">
       <%= h.link_to_remove "X", :class => 'btn btn-med btn-danger' %>   
     </div>
   </fieldset>
-
+  <fieldset>
+    <div class="span5">
+      <%= h.input :alpha_acids , label: "Alpha Acids (%)"%>
+    </div>
+    <div class="span4">
+      <%= h.input :boil_or_steep, label: "Method", collection: [ "Boil", "Steep", "Dry Hop", "Mash"] %>
+    </div>
+  </fieldset>
   <fieldset>
     <div class="span5">
       <%= h.input :amount, label: "Hop Weight" %>
@@ -249,19 +253,19 @@
   </fieldset>
 
   <fieldset>
-    <div class="span4">
+    <div class="span5">
       <%= h.input :liquid_type, label: "Liquid Type", collection: ["Water", "Wort", "Beer"] %>
     </div>
-    <div class="span3">
+  </fieldset>
+
+  <fieldset>
+    <div class="span5">
       <%= h.input :steep_water_volume, label: "Liquid Volume" %>
     </div>
     <div class="span4">
       <%= h.input :volume_unit, label: "Units", collection: ["ml", "L", "fl. oz", "US Gals.", "UK Gals."] %>
     </div>
-     
-    
-  </fieldset>
-
+ </fieldset>
  <fieldset>
  <div class="span5">
       <%= h.input :steep_water_temp, label: "Liquid Temperature" %>

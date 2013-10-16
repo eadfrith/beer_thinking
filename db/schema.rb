@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130716085600) do
+ActiveRecord::Schema.define(:version => 20131012070357) do
 
   create_table "adjuncts", :force => true do |t|
     t.string   "adjunct"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 20130716085600) do
 
   create_table "beer_styles", :force => true do |t|
     t.string   "beer_style"
-    t.integer  "bjchhhhhhhhhp_category_id"
+    t.integer  "bjcp_category_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(:version => 20130716085600) do
     t.string   "liquid_type"
     t.string   "temp_unit"
     t.string   "volume_unit"
+    t.string   "form"
   end
 
   create_table "other_adjuncts", :force => true do |t|

@@ -14,6 +14,8 @@
     var bjcp_beer_style = "<%= @recipe.beer_style %>";
     var recipe_name = "<%= @recipe.recipe_name %>";
   </script>
+
+
    <% @recipe.update_attributes(times_brewed: @recipe.times_brewed+=1) %>
 
     <%= render 'brew', f: f %>

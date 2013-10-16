@@ -43,7 +43,7 @@
   
   <div class="span6">
 
-    <%= f.label :user_id_eq, "Brewer" %>
+    <%= f.label :user_id_eq, "Beer Thinker" %>
     <%= f.select :user_id_eq,  options_from_collection_for_select(User.all, :id, :name, @search.user_id_eq), include_blank: true %>
 
   </div>
@@ -71,7 +71,7 @@
           <th>Recipe Name</th>
           <th>Generic Style</th>
           <th>BJCP Style</th>
-          <th>Brewer</th>
+          <th>Beer Thinker</th>
           <th>Number of times brewed</th>
         </tr>
       </thead>
