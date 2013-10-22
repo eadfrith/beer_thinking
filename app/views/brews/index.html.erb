@@ -72,7 +72,7 @@
       </thead>
       <tbody>
         <% @brews.each do |brew| %>
-        <!-- % if (brew.published? || brew.user.name == current_user.name) %> -->
+        <% if (brew.status == "Published") %>
           <tr>
             
             <td><%= link_to brew.recipe_name, brew %></td>
@@ -84,7 +84,7 @@
               
                 
           </tr>
-      <!-- % end % -->
+      <% end %>
         <% end %>
       </tbody>
     </table>

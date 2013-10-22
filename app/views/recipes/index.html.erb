@@ -77,7 +77,8 @@
       </thead>
       <tbody>
         <% @recipes.each do |recipe| %>
-        <% if (recipe.published? || recipe.user.name == current_user.name) %>
+        <!-- if (recipe.status == "Published" || recipe.user.name == current_user.name) % -->
+        <% if (recipe.status == "Published") %>
           <tr>
             
             <td><%= link_to recipe.recipe_name, recipe %></td>

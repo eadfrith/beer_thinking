@@ -8,7 +8,7 @@ class Recipe < ActiveRecord::Base
     :steep_time_unit, :yeast_type, :yeast_starter_size, :yeast_starter_unit, :yeast_weight, :yeast_weight_unit, 
     :estimate_fg, :estimate_alcohol, :generic_category,
     :yeast_packs, :hops_attributes, :grains_attributes, :brews_attributes, :ww_extracts_attributes,
-    :other_extracts_attributes, :adjuncts_attributes, :other_adjuncts_attributes, :sugars_attributes
+    :other_extracts_attributes, :adjuncts_attributes, :other_adjuncts_attributes, :sugars_attributes, :status
 
   belongs_to :user, :inverse_of => :recipes
 

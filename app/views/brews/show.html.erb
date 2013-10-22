@@ -3,7 +3,7 @@
 
 <div id="brew_image">
  
-      <%= image_tag @brew.image_url(:thumb).to_s %>
+      <%= image_tag @brew.image_url(:thumb).to_s if @brew.image_url %>
       
 </div>
 
@@ -52,19 +52,24 @@
            
       </tr>
       <% end %>
-     
+     <% if @recipe.original_gravity != "" %>
       <tr>
         <td>Original Gravity</td>
         <td><%= @recipe.original_gravity %></td>
       </tr>
+      <% end %>
+      <% if @recipe.estimate_fg != "" %>
       <tr>
         <td>Estimated Final Gravity</td>
         <td><%= @recipe.estimate_fg %></td>
       </tr>
+      <% end %>
+      <% if @recipe.estimate_alcohol != "" %>
       <tr>
         <td>Estimated % Alcohol by Volume</td>
         <td><%= @recipe.estimate_alcohol %></td>
       </tr>
+      <% end %>
       <% if @recipe.bitterness != nil %>
       <tr>
         <td>Bitterness</td>
@@ -131,14 +136,12 @@
       </tr>
       <% end %>
 
-
-   
-     
+  <%= @yeastie %>
    
       <tr>
         <td>Yeast</td>
-        <td><%= @recipe.yeast + " (" + @recipe.yeast_type + ")" + ", " + @recipe.yeast_packs.to_s() + " Pack(s), "+
-        @recipe.yeast_starter_size.to_s() + @recipe.yeast_starter_unit + " Starter" %>
+        <td><%= @recipe.yeast  + " (" + @recipe.yeast_type + ")" + ", " + @recipe.yeast_packs.to_s() + " Pack(s), "+
+        @recipe.yeast_starter_size.to_s() + @recipe.yeast_starter_unit + " Starter" %></td>
       </tr>
     
       
@@ -181,47 +184,66 @@
             ", Pressure: " + ferm.pressure.to_s() + " " + ferm.pressure_unit + ", Notes: " + ferm.notes%></td>
         </tr>
       <% end %>
+      <% if @brew.actual_og != "" %>
    <tr>
         <td>Actual Original Gravity</td>
         <td><%= @brew.actual_og %></td>
       </tr>
+      <% end %>
+      <% if @brew.estimate_fg != "" %>
       <tr>
         <td>Actual Final Gravity</td>
         <td><%= @brew.estimate_fg %></td>
       </tr>
+      <% end %>
+      <% if @brew.alcohol_percentage != nil %>
       <tr>
         <td>Alcohol Percentage</td>
         <td><%= @brew.alcohol_percentage %></td>
       </tr>
+      <% end %>
+      <% if @brew.clarifiaction != "" %>
       <tr>
         <td>Clarification</td>
         <td><%= @brew.clarifiaction %></td>
       </tr>
-
+      <% end %>
+      <% if @brew.taste != "" %>
       <tr>
         <td>Taste</td>
         <td><%= @brew.taste %></td>
       </tr>
+      <% end %>
+      <% if @brew.taste_score != nil %>
       <tr>
         <td>Taste Score</td>
         <td><%= @brew.taste_score %></td>
       </tr>
+      <% end %>
+      <% if @brew.colour != "" %>
       <tr>
         <td>Colour</td>
         <td><%= @brew.colour %></td>
       </tr>
+      <% end %>
+      <% if @brew.clarity != "" %>
       <tr>
         <td>Clarity</td>
         <td><%= @brew.clarity %></td>
       </tr>
+      <% end %>
+      <% if @brew.carbonation != "" %>
       <tr>
         <td>Carbonation</td>
         <td><%= @brew.carbonation %></td>
       </tr>
+      <% end %>
+      <% if @brew.status != nil %>
       <tr>
-        <td>Published</td>
-        <td><%= @recipe.published %></td>
+        <td>Status</td>
+        <td><%= @brew.status %></td>
       </tr>
+      <% end %>
     </tbody>
   </table>
 

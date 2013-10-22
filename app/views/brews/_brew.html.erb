@@ -3,7 +3,6 @@
   <%# @recipe.update_attributes(times_brewed: @recipe.times_brewed+=1) %>
 
 
-
   
       <div class="form-horizontal">
       <fieldset>
@@ -198,11 +197,12 @@
         <td><%= @recipe.recipe_note %></td>
       </tr>
       <% end %>
-
+<% if @recipe.status != nil %>
 <tr>
-        <td>Published</td>
-        <td><%= @recipe.published %></td>
+        <td>Status</td>
+        <td><%= @recipe.status %></td>
       </tr>
+      <% end %>
     </tbody>
   </table>
 
@@ -227,11 +227,13 @@
      <%# h.link_to_remove "X", :class => 'btn btn-med btn-danger' %>
   
 </fieldset>
+
      <fieldset>
 
          
       <div class="span4">
       <%= h.input :day %>
+      
     </div>
     <div class="span4">
       <%= h.input :specific_gravity, label: "Specific Gravity", placeholder: "eg 1.040" %>
@@ -339,12 +341,20 @@
   
 <%= f.submit "Upload Image" ,:class => 'btn btn-med btn-primary'  %>
 <br></br>
+
+<fieldset>
+<legend>Brew Status</legend>
+</fieldset>
+<div class="span4">
+  <%= f.input :status, label: '', collection: ["Private", "Published"] %>
+</div>
 <br></br>
-    <fieldset>
-    
-    <div>
+
+<div class="span12">
 <%= f.submit "Save Brew" ,:class => 'btn btn-large btn-success'  %>
 </div>
-     </fieldset>
+
+
+    
       </div>
        

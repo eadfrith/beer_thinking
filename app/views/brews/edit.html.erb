@@ -17,7 +17,7 @@
 
   <div id="brew_image">
  
-      <%= image_tag @brew.image_url(:thumb).to_s %>
+      <%= image_tag @brew.image_url(:thumb).to_s if @brew.image_url %>
       
 </div>
 <%= render 'shared/error_messages', object: f.object %>

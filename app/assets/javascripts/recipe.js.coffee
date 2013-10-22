@@ -13,10 +13,6 @@ jQuery ->
 	
 	yeast_sel = $('#recipe_yeast_type :selected').text()
 
-	
-	
-	
-	
 	styles = $('#recipe_beer_style').html()
 
 	kits = $('#recipe_extract').html()
@@ -39,7 +35,7 @@ jQuery ->
 		$('#recipe_generic_category').change ->
 			generic_style_sel = $('#recipe_generic_category :selected').text()
 			rec_code = brewer + "-" + generic_style_sel + "-" + method_code
-			console.log "FWAF " + rec_code
+			
 			$('#recipe_recipe_code').val(rec_code)
 
 		$('#recipe_bjcp_category').show()

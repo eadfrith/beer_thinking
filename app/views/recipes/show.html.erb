@@ -124,8 +124,7 @@
 
 
    
-     
-   
+    
       <tr>
         <td>Yeast</td>
         <td><%= @recipe.yeast + " (" + @recipe.yeast_type + ")" + ", " + @recipe.yeast_packs.to_s() + " Pack(s), "+
@@ -159,10 +158,12 @@
       </tr>
       <% end %>
 
+<% if @recipe.status != nil %>
 <tr>
-        <td>Published</td>
-        <td><%= @recipe.published %></td>
+        <td>Status</td>
+        <td><%= @recipe.status %></td>
       </tr>
+      <% end %>
     </tbody>
   </table>
 

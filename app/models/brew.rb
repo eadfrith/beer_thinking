@@ -2,7 +2,7 @@ class Brew < ActiveRecord::Base
   attr_accessible :alcohol_percentage, :brew_number, :carbonation, :clarifiaction, :clarity, :recipe_id,
   :other_comments, :start_date_time, :taste, :taste_score, :wort_must_production_notes, :published, :brew_code,
   :actual_og, :estimate_fg, :estimate_alcohol, :image, :colour, :brewing_method, :overall_beverage_style, :bjcp_beer_style,
-  :beer_thinker, :recipe_name, :fermentations_attributes
+  :beer_thinker, :recipe_name, :fermentations_attributes, :status
 
   belongs_to :user, :inverse_of => :brews
 

@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
 	$('#brew_start_date_time').datetimepicker(dateFormat: 'yy-mm-dd')
+	$('#fermentation_date_time').datetimepicker(dateFormat: 'yy-mm-dd')
 	$('#brew_brewing_method').val(brewing_method)
 	$('#brew_overall_beverage_style').val(overall_beverage_style)
 	$('#brew_bjcp_beer_style').val(bjcp_beer_style)

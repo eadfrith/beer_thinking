@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131012070357) do
+ActiveRecord::Schema.define(:version => 20131022062827) do
 
   create_table "adjuncts", :force => true do |t|
     t.string   "adjunct"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20131012070357) do
     t.string   "bjcp_beer_style"
     t.string   "beer_thinker"
     t.string   "recipe_name"
+    t.string   "status"
   end
 
   add_index "brews", ["user_id", "created_at"], :name => "index_brews_on_user_id_and_created_at", :unique => true
@@ -194,6 +195,7 @@ ActiveRecord::Schema.define(:version => 20131012070357) do
     t.decimal  "estimate_alcohol"
     t.string   "estimate_fg"
     t.string   "generic_category"
+    t.string   "status"
   end
 
   add_index "recipes", ["user_id", "created_at"], :name => "index_recipes_on_user_id_and_created_at"

@@ -397,16 +397,14 @@
 
 
       
-
-
-
-
- <fieldset>
-<legend>Publish Recipe Or Keep Private</legend>
+<fieldset>
+<legend>Recipe Status</legend>
 </fieldset>
-<div class="span12">
-  <%= f.input :published, label: 'Publish to Beer Thinkers Community', as: :radio_buttons %>
+<div class="span4">
+  <%= f.input :status, label: '', collection: ["Private", "Published"] %>
 </div>
-<div>
-<p><%= f.submit "Save recipe" ,:class => 'btn btn-large btn-success'%></p>
- </div>
+<br></br>
+
+<div class="span12">
+<%= f.submit "Save recipe" ,:class => 'btn btn-large btn-success'%>
+</div>
