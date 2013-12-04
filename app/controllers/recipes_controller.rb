@@ -41,7 +41,8 @@ class RecipesController < ApplicationController
 
   def show
    @recipe = Recipe.find(params[:id])
-   redirect_to recipes_path if !@recipe.published? && @recipe.user.name != current_user.name
+   #redirect_to recipes_path if !@recipe.published? && @recipe.user.name != current_user.name
+   redirect_to recipes_path if @recipe.status != 'Published'
   end
 
   def index
