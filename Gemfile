@@ -12,7 +12,7 @@ gem 'nested_form'
 gem 'ransack'
 gem 'sprockets'
 gem 'jquery-rails'
-gem 'lazy_high_charts'
+gem 'highcharts-rails'
 gem 'carrierwave'
 gem 'rmagick'
 
