@@ -1,7 +1,13 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+
 jQuery ->
+
+	regenerateOG = ->
+		console.log($('#recipe_ww_extracts_weight').html())
+		output="ASSDD"
+
 	$('#recipe_other_extract').hide()
 	$('#recipe_extract').hide()
 	$('#recipe_adjunct').hide()
@@ -60,7 +66,13 @@ jQuery ->
 					rec_code = brewer + "-" + style_sel + "-" + method_code
 					
 					$('#recipe_recipe_code').val(rec_code)
+
 					
+					style_data = $.get('/show_style_data',null,null,null)
+
+					console.log(style_data)
+
+
 			else
 				$('#recipe_beer_style').hide()
 
@@ -89,6 +101,8 @@ jQuery ->
 				$('#recipe_estimate_alcohol').val(Math.floor(alc_result * 100) / 100)
 
 	$('#recipe_estimate_fg').change ->
+		$('#recipe_original_gravity').val(regenerateOG())
+		
 		if $('#recipe_original_gravity').val() != ""
 			p = $('#recipe_original_gravity')
 			og_strip = p.val().substring(2,5)

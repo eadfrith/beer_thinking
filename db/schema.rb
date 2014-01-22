@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131022062827) do
+ActiveRecord::Schema.define(:version => 20140121025006) do
 
   create_table "adjuncts", :force => true do |t|
     t.string   "adjunct"
@@ -25,8 +25,18 @@ ActiveRecord::Schema.define(:version => 20131022062827) do
   create_table "beer_styles", :force => true do |t|
     t.string   "beer_style"
     t.integer  "bjcp_category_id"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
+    t.integer  "ibu_min"
+    t.integer  "ibu_max"
+    t.integer  "srm_min"
+    t.integer  "srm_max"
+    t.decimal  "og_min",           :precision => 4, :scale => 3
+    t.decimal  "og_max",           :precision => 4, :scale => 3
+    t.decimal  "fg_min",           :precision => 4, :scale => 3
+    t.decimal  "fg_max",           :precision => 4, :scale => 3
+    t.decimal  "abv_min",          :precision => 3, :scale => 1
+    t.decimal  "abv_max",          :precision => 3, :scale => 1
   end
 
   create_table "bjcp_categories", :force => true do |t|
@@ -155,8 +165,8 @@ ActiveRecord::Schema.define(:version => 20131022062827) do
     t.string   "recipe_code"
     t.string   "original_gravity"
     t.integer  "user_id"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.string   "extract"
     t.string   "adjunct"
     t.string   "yeast"
@@ -196,6 +206,8 @@ ActiveRecord::Schema.define(:version => 20131022062827) do
     t.string   "estimate_fg"
     t.string   "generic_category"
     t.string   "status"
+    t.decimal  "fermentation_temperature"
+    t.string   "fermentation_temperature_unit"
   end
 
   add_index "recipes", ["user_id", "created_at"], :name => "index_recipes_on_user_id_and_created_at"

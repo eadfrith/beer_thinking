@@ -43,38 +43,7 @@
            
       </tr>
       <% end %>
-     
-      <tr>
-        <td>Original Gravity</td>
-        <td><%= @recipe.original_gravity %></td>
-      </tr>
-      <tr>
-        <td>Estimated Final Gravity</td>
-        <td><%= @recipe.estimate_fg %></td>
-      </tr>
-      <tr>
-        <td>Estimated % Alcohol by Volume</td>
-        <td><%= @recipe.estimate_alcohol %></td>
-      </tr>
-      <% if @recipe.bitterness != nil %>
-      <tr>
-        <td>Bitterness</td>
-        <td><%= @recipe.bitterness.to_s() + " IBU" %></td>
-      </tr>
-      <% end %>
-      <% if @recipe.colour != nil %>
-      <tr>
-        <td>Colour</td>
-        <td><%= @recipe.colour.to_s() + " " + @recipe.colour_unit %></td>
-      </tr>
-      <% end %>
-      <% if @recipe.water != nil %>
-      <tr>
-        <td>Brew Volume</td>
-        <td><%= @recipe.water.to_s() + " " + @recipe.water_unit %></td>
-      </tr>
-      <% end %>
-      
+
       <% @recipe.ww_extracts.each do |e| %>
         
         <tr>
@@ -114,34 +83,8 @@
           <td><%= s.sugar + " " + s.weight.to_s() + s.units %></td>
         </tr>
       <% end %> 
-
-    <% if @recipe.other_ingredient != "" %>
-      <tr>
-        <td>Other Ingredients</td>
-        <td><%= @recipe.other_ingredient %></td>
-      </tr>
-      <% end %>
-
-
    
-    
-      <tr>
-        <td>Yeast</td>
-        <td><%= @recipe.yeast + " (" + @recipe.yeast_type + ")" + ", " + @recipe.yeast_packs.to_s() + " Pack(s), "+
-        @recipe.yeast_starter_size.to_s() + @recipe.yeast_starter_unit + " Starter" %>
-      </tr>
-    
-      
-      <% @recipe.hops.each do |h| %>
-        
-        <tr>
-          <td>Hop</td>
-          <td><%= h.name + ", Alpha Acid (%) " + h.form + ", " + h.alpha_acids.to_s() + ", " + h.amount.to_s() + h.amount_unit +
-          ", " + h.boil_or_steep + " for " + h.boil_or_steep_time.to_s() + " " + h.boil_or_steep_unit + ", in " + 
-          h.steep_water_volume.to_s() + " " + h.volume_unit + " " + h.liquid_type + ", at " + h.steep_water_temp.to_s() + " " + h.temp_unit %></td>
-        </tr>
-      <% end %>
-
+   
       <% @recipe.grains.each do |g| %>
         <tr>
           <td>Grain</td>
@@ -151,12 +94,80 @@
         </tr>
       <% end %>
 
+   <% @recipe.hops.each do |h| %>
+        
+        <tr>
+          <td>Hop</td>
+          <td><%= h.name + ", Alpha Acid (%) " + h.form + ", " + h.alpha_acids.to_s() + ", " + h.amount.to_s() + h.amount_unit +
+          ", " + h.boil_or_steep + " for " + h.boil_or_steep_time.to_s() + " " + h.boil_or_steep_unit + ", in " + 
+          h.steep_water_volume.to_s() + " " + h.volume_unit + " " + h.liquid_type + ", at " + h.steep_water_temp.to_s() + " " + h.temp_unit %></td>
+        </tr>
+      <% end %>
+
+    
+      <tr>
+        <td>Yeast</td>
+        <td><%= @recipe.yeast + " (" + @recipe.yeast_type + ")" + ", " + @recipe.yeast_packs.to_s() + " Pack(s), "+
+        @recipe.yeast_starter_size.to_s() + @recipe.yeast_starter_unit + " Starter" %>
+      </tr>
+   
+
+ <% if @recipe.other_ingredient != "" %>
+      <tr>
+        <td>Other Ingredients</td>
+        <td><%= @recipe.other_ingredient %></td>
+      </tr>
+      <% end %>
+
+
+   
+
     <% if @recipe.recipe_note != "" %>
       <tr>
         <td>Recipe Notes</td>
         <td><%= @recipe.recipe_note %></td>
       </tr>
       <% end %>
+
+<% if @recipe.fermentation_temperature != nil %>
+        <tr>
+          <td>Fermentation Temperature</td>
+          <td><%= @recipe.fermentation_temperature.to_s() + @recipe.fermentation_temperature_unit %></td>
+        </tr>
+<% end %>
+     
+      <tr>
+        <td>Estimated Original Gravity</td>
+        <td><%= @recipe.original_gravity %></td>
+      </tr>
+      <tr>
+        <td>Estimated Final Gravity</td>
+        <td><%= @recipe.estimate_fg %></td>
+      </tr>
+      <tr>
+        <td>Estimated % Alcohol by Volume</td>
+        <td><%= @recipe.estimate_alcohol %></td>
+      </tr>
+      <% if @recipe.bitterness != nil %>
+      <tr>
+        <td>Bitterness</td>
+        <td><%= @recipe.bitterness.to_s() + " IBU" %></td>
+      </tr>
+      <% end %>
+      <% if @recipe.colour != nil %>
+      <tr>
+        <td>Colour</td>
+        <td><%= @recipe.colour.to_s() + " " + @recipe.colour_unit %></td>
+      </tr>
+      <% end %>
+      <% if @recipe.water != nil %>
+      <tr>
+        <td>Brew Volume</td>
+        <td><%= @recipe.water.to_s() + " " + @recipe.water_unit %></td>
+      </tr>
+      <% end %>
+      
+
 
 <% if @recipe.status != nil %>
 <tr>

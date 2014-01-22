@@ -35,6 +35,16 @@
       label_method: :beer_style, value_method: :beer_style,
       include_blank: true) %>
 
+<%= show_style_data[0].ibu_min %>
+
+
+
+<%# tt[0].ibu_min %>
+
+
+
+<%# test = BeerStyle.where(beer_style: :beer_style) %>
+<%#= test[0].ibu_min %>
 
 
 <%= f.hidden_field :recipe_code %>
@@ -380,6 +390,18 @@
     <%= f.input :yeast_starter_unit, label: "Units", collection: ["L", "fl. oz"] %>
   </div>
 </fieldset>
+<hr></hr>
+ <legend>Fermentation Temperature</legend>
+<fieldset>
+  <div class="span5">
+    <%= f.input :fermentation_temperature, label: "Temperature" %>
+  </div>
+  
+  <div class="span5">
+    <%= f.input :fermentation_temperature_unit, label: "Units", collection: ["°C", "°F"] %>
+  </div>
+</fieldset>
+
 <fieldset>
   <legend>Recipe Notes</legend>
   <div class="span9">

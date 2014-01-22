@@ -6,7 +6,7 @@ class Recipe < ActiveRecord::Base
     :bitterness, :colour, :colour_unit, :water_unit, :recipe_note,
     :other_extract_weight, :other_extract_unit, :method, :weight_unit, :colour_unit, :water_unit, :water_temp_unit,
     :steep_time_unit, :yeast_type, :yeast_starter_size, :yeast_starter_unit, :yeast_weight, :yeast_weight_unit, 
-    :estimate_fg, :estimate_alcohol, :generic_category,
+    :estimate_fg, :estimate_alcohol, :generic_category, :fermentation_temperature, :fermentation_temperature_unit,
     :yeast_packs, :hops_attributes, :grains_attributes, :brews_attributes, :ww_extracts_attributes,
     :other_extracts_attributes, :adjuncts_attributes, :other_adjuncts_attributes, :sugars_attributes, :status
 
@@ -22,6 +22,7 @@ class Recipe < ActiveRecord::Base
   has_many :adjuncts, dependent: :destroy
   has_many :other_adjuncts, dependent: :destroy
   has_many :sugars, dependent: :destroy
+  has_one :beer_style
 
   accepts_nested_attributes_for :hops, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :grains, :reject_if => :all_blank, :allow_destroy => true

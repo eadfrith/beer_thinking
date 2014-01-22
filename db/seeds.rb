@@ -28,8 +28,19 @@ CSV.foreach(Rails.root.join("bjcp_beers.csv"), headers: false) do |row|
   BeerStyle.create! do |style|
     style.beer_style = row[0] 
     style.bjcp_category_id = row[1]
+    style.ibu_min = row[2]
+    style.ibu_max = row[3]
+    style.srm_min = row[4]
+    style.srm_max = row[5]
+    style.og_min = row[6]
+    style.og_max = row[7]
+    style.fg_min = row[8]
+    style.fg_max = row[9]
+    style.abv_min = row[10]
+    style.abv_max = row[11]
   end
 end
+
 
 puts "Importing Generic Categories..."
 CSV.foreach(Rails.root.join("generic_categories.csv"), headers: false) do |row|

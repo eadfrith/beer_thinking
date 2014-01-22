@@ -19,7 +19,7 @@ BeerThinking::Application.routes.draw do
   match '/show_recipe', to: 'recipes#show'
   match '/help',    to: 'static_pages#help'
   match '/new_brew', to: 'brews#create'
-  
+  match '/show_style_data', to: 'recipes#show_style_data'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

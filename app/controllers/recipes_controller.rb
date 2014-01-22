@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   before_filter :signed_in_user, only: [:create, :update, :destroy]
   before_filter :correct_user,   only: :destroy
+  helper_method :show_style_data
 
 
   def new
@@ -53,6 +54,9 @@ class RecipesController < ApplicationController
     
   end
 
+def show_style_data
+      @style_data =  BeerStyle.where(beer_style: '1A Lite American Lager')
+    end
 
 private
 
