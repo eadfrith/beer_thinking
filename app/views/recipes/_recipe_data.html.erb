@@ -35,7 +35,10 @@
       label_method: :beer_style, value_method: :beer_style,
       include_blank: true) %>
 
-<%= show_style_data[0].ibu_min %>
+<legend>BJCP Style Specifications</legend>
+<div class="span12">
+<%= f.input :style_spec, label: "Specification", readonly: true %>
+</div>
 
 
 

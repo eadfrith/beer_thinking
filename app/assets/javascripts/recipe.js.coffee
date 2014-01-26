@@ -2,11 +2,16 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
+ShowStyle = 
+	getStyleData: (style_sel) ->
+		if style_sel == '1A Lite American Lager'
+			style_data = 'IBUs: 8 – 12  SRM: 2 – 3  OG: 1.028 – 1.040 FG: 0.998 – 1.008 
+ ABV: 2.8 – 4.2%'
+
+
 jQuery ->
 
-	regenerateOG = ->
-		console.log($('#recipe_ww_extracts_weight').html())
-		output="ASSDD"
+
 
 	$('#recipe_other_extract').hide()
 	$('#recipe_extract').hide()
@@ -68,10 +73,11 @@ jQuery ->
 					$('#recipe_recipe_code').val(rec_code)
 
 					
-					style_data = $.get('/show_style_data',null,null,null)
+					style_sp = ShowStyle.getStyleData(style_sel)
 
-					console.log(style_data)
+					console.log (style_sp)
 
+					$('#recipe_style_spec').val(style_sp)
 
 			else
 				$('#recipe_beer_style').hide()
@@ -101,7 +107,7 @@ jQuery ->
 				$('#recipe_estimate_alcohol').val(Math.floor(alc_result * 100) / 100)
 
 	$('#recipe_estimate_fg').change ->
-		$('#recipe_original_gravity').val(regenerateOG())
+		
 		
 		if $('#recipe_original_gravity').val() != ""
 			p = $('#recipe_original_gravity')
